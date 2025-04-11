@@ -1,0 +1,406 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+   <!-- wrap -->
+   <div id="wrap">
+
+      {% include "layout/header.html" %}
+
+      <hr>
+      <!-- container -->
+      <section id="LiveRelay" class="">
+         <div class="game-schedule">
+            <div class="tab-league">
+               <ul class="tab three">
+                  <li class="tab-main-tit on" le-id="1" sr-id="0" id="leagueRegular"><a href="#none">KBO 정규시즌</a></li>
+                  <li class="tab-main-tit tab-main-fl" le-id="2" sr-id="0,1,10,15" id="leagueFutures"><a href="#none">KBO 퓨처스리그</a></li>
+               </ul>
+            </div>
+            <input type="hidden" id="nowDate" value="20250411">
+            <input type="hidden" id="BeforeDate" value="20250410" match-type="" rank="">
+            <input type="hidden" id="AfterDate" value="20250412" match-type="" rank="">
+            <!-- 경기 일정 -->
+            <div class="today-game">
+               <div class="bx-wrapper" style="max-width: 1090px; margin: 0px auto;">
+                  <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 260px;">
+                     <ul class="game-list-n" style="width: 715%; position: relative; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                        <li class="game-cont" game_sc="1" le_id="1" sr_id="0" season="2025" g_id="20250411OBLG0" g_dt="20250411" s_nm="잠실" vs_game_cn="1" away_id="OB" home_id="LG" away_nm="두산" home_nm="LG" away_p_id="67263" home_p_id="51111" entry_ck="0" start_ck="1" result_ck="0" lineup_ck="0" vod_ck="0" kbot_se="0" style="float: left; list-style: none; position: relative; width: 210px; margin-right: 10px;">
+                           <div class="wrap">
+                              <div class="top">
+                                 <ul>
+                                    <li>잠실</li>
+                                    <li><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/weather/sky/01_n.png"></li>
+                                    <li>18:30</li>
+                                 </ul>
+                              </div>
+                              <div class="middle">
+                                 <div class="broadcasting"> SPO-T</div>
+                                 <p class="staus">경기예정</p>
+                                 <div class="info">
+                                    <div class="team away">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_OB.png" alt="두산"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>최원준 </p>
+                                       </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team home">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_LG.png" alt="LG"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>송승기 </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="game-cont" game_sc="1" le_id="1" sr_id="0" season="2025" g_id="20250411LTNC0" g_dt="20250411" s_nm="사직" vs_game_cn="1" away_id="LT" home_id="NC" away_nm="롯데" home_nm="NC" away_p_id="64021" home_p_id="50992" entry_ck="0" start_ck="1" result_ck="0" lineup_ck="0" vod_ck="0" kbot_se="0" style="float: left; list-style: none; position: relative; width: 210px; margin-right: 10px;">
+                           <div class="wrap">
+                              <div class="top">
+                                 <ul>
+                                    <li>사직</li>
+                                    <li><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/weather/sky/01_n.png"></li>
+                                    <li>18:30</li>
+                                 </ul>
+                              </div>
+                              <div class="middle">
+                                 <div class="broadcasting"> KN-T</div>
+                                 <p class="staus">경기예정</p>
+                                 <div class="info">
+                                    <div class="team away">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_LT.png" alt="롯데"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>박세웅 </p>
+                                       </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team home">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_NC.png" alt="NC"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>김태경 </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="game-cont" game_sc="1" le_id="1" sr_id="0" season="2025" g_id="20250411SSKT0" g_dt="20250411" s_nm="수원" vs_game_cn="1" away_id="SS" home_id="KT" away_nm="삼성" home_nm="KT" away_p_id="51454" home_p_id="69032" entry_ck="0" start_ck="1" result_ck="0" lineup_ck="0" vod_ck="0" kbot_se="0" style="float: left; list-style: none; position: relative; width: 210px; margin-right: 10px;">
+                           <div class="wrap">
+                              <div class="top">
+                                 <ul>
+                                    <li>수원</li>
+                                    <li><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/weather/sky/01_n.png"></li>
+                                    <li>18:30</li>
+                                 </ul>
+                              </div>
+                              <div class="middle">
+                                 <div class="broadcasting"> SPO-2T</div>
+                                 <p class="staus">경기예정</p>
+                                 <div class="info">
+                                    <div class="team away">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_SS.png" alt="삼성"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>이승현 </p>
+                                       </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team home">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_KT.png" alt="KT"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>쿠에바스 </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="game-cont" game_sc="1" le_id="1" sr_id="0" season="2025" g_id="20250411SKHT0" g_dt="20250411" s_nm="광주" vs_game_cn="1" away_id="SK" home_id="HT" away_nm="SSG" home_nm="KIA" away_p_id="60841" home_p_id="77637" entry_ck="0" start_ck="1" result_ck="0" lineup_ck="0" vod_ck="0" kbot_se="0" style="float: left; list-style: none; position: relative; width: 210px; margin-right: 10px;">
+                           <div class="wrap">
+                              <div class="top">
+                                 <ul>
+                                    <li>광주</li>
+                                    <li><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/weather/sky/01_n.png"></li>
+                                    <li>18:30</li>
+                                 </ul>
+                              </div>
+                              <div class="middle">
+                                 <div class="broadcasting"> MS-T</div>
+                                 <p class="staus">경기예정</p>
+                                 <div class="info">
+                                    <div class="team away">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_SK.png" alt="SSG"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>박종훈 </p>
+                                       </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team home">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_HT.png" alt="KIA"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>양현종 </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="game-cont" game_sc="1" le_id="1" sr_id="0" season="2025" g_id="20250411WOHH0" g_dt="20250411" s_nm="대전(신)" vs_game_cn="1" away_id="WO" home_id="HH" away_nm="키움" home_nm="한화" away_p_id="54319" home_p_id="76715" entry_ck="0" start_ck="1" result_ck="0" lineup_ck="0" vod_ck="0" kbot_se="0" style="float: left; list-style: none; position: relative; width: 210px; margin-right: 10px;">
+                           <div class="wrap">
+                              <div class="top">
+                                 <ul>
+                                    <li>대전(신)</li>
+                                    <li><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/weather/sky/01_n.png"></li>
+                                    <li>18:30</li>
+                                 </ul>
+                              </div>
+                              <div class="middle">
+                                 <div class="broadcasting"> SS-T</div>
+                                 <p class="staus">경기예정</p>
+                                 <div class="info">
+                                    <div class="team away">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_WO.png" alt="키움"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>김윤하 </p>
+                                       </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team home">
+                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_HH.png" alt="한화"></div>
+                                       <div class="today-pitcher">
+                                          <p><span class="before">선</span>류현진 </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="bx-controls bx-has-controls-direction">
+                     <div class="bx-controls-direction"><a class="bx-prev disabled" href="">Prev</a><a class="bx-next disabled" href="">Next</a></div>
+                  </div>
+               </div>
+            </div>
+            <!-- // 경기 일정  -->
+         </div>
+         <div class="game-info" style="display: block;">
+            <h4 class="tit-info dp-none" id="lblGameTitle" style="display: none;"></h4>
+            <div class="tab-info" id="gameTab" style="display: block;">
+               <ul class="tab tab2" id="tabGame">
+                  <li class="tab-tit on" section="LIVE"><a href="#none">경기 중계</a></li>
+                  <li class="tab-tit" section="KEY"><a href="#none">키플레이어</a></li>
+               </ul>
+            </div>
+            <div class="tab-cont" id="gameDetail" style="display: block;">
+               <!-- 경기 중계 S -->
+               <div class="row live">
+                  <div class="section-left w65p tbl-live">
+                     <div class="record-etc txt-r mb7"><span id="lblGameInfo">수원구장 (삼성 vs KT)</span><span id="lblGameVsCnt">시즌 1차전</span></div>
+                     <div class="box-score-wrap main">
+                        <div class="tbl-box-score tbl-main data1">
+                           <table class="tbl mb20 scoreBoard" id="tblScoreBoard1">
+                              <colgroup>
+                                 <col width="100%">
+                              </colgroup>
+                              <thead>
+                                 <tr>
+                                    <th>TEAM</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <th><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_SS.png" alt="삼성"></th>
+                                 </tr>
+                                 <tr>
+                                    <th><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_KT.png" alt="KT"></th>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="tbl-box-score tbl-main data2" id="divScoreBoard2">
+                           <table class="tbl" id="tblScoreBoard2">
+                              <colgroup>
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                                 <col row="" style="width:7%">
+                              </colgroup>
+                              <thead>
+                                 <tr>
+                                    <th typeobj="th">1</th>
+                                    <th typeobj="th">2</th>
+                                    <th typeobj="th">3</th>
+                                    <th typeobj="th">4</th>
+                                    <th typeobj="th">5</th>
+                                    <th typeobj="th">6</th>
+                                    <th typeobj="th">7</th>
+                                    <th typeobj="th">8</th>
+                                    <th typeobj="th">9</th>
+                                    <th typeobj="th">10</th>
+                                    <th typeobj="th">11</th>
+                                    <th typeobj="th">12</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                 </tr>
+                                 <tr>
+                                    <td>0</td>
+                                    <td class="inning">0</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="tbl-box-score tbl-main data3">
+                           <table class="tbl mb20 scoreBoard" id="tblScoreBoard3">
+                              <colgroup>
+                                 <col width="4%">
+                                 <col width="4%">
+                                 <col width="4%">
+                                 <col width="4%">
+                              </colgroup>
+                              <thead>
+                                 <tr>
+                                    <th>R</th>
+                                    <th>H</th>
+                                    <th>E</th>
+                                    <th>B</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td class="run_T">0</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="run_B">0</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="issue">
+                        <h6>경기이슈</h6>
+                        <div class="btn-more"><a href="/Game/Summary.aspx?leagueId=1&amp;seriesId=0&amp;gamedate=20250411" class="btn" onclick="window.open(this, 'pop', 'toolbar=no,menubar=no,location=no,scrollbars=no,status=no, width=980, height=930');return false;" target="_blank">경기이슈 더보기&nbsp;</a></div>
+                        <div class="issue-box">
+                           <div class="issue" id="txtIssue" style="text-align: center;">-</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="section-right w30p tbl-live">
+                     <div class="btn-more txt-r mb7"><span class="mr5">더 자세한 경기 상황이 궁금하다면?</span><a href="#none" class="btn" id="btnLiveText"></a></div>
+                     <table class="tbl mb20" summary="현재 투수 표">
+                        <caption>현재투수 표</caption>
+                        <colgroup>
+                           <col width="30%">
+                           <col width="60%">
+                        </colgroup>
+                        <thead>
+                           <tr>
+                              <th class="txt-l">TODAY</th>
+                              <th><span id="txtNowInn">2회말</span></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td id="imgPit"><span class="player-img txt-l"><img class="team" alt="" src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_SS.png"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/51454.png" alt="이승현" onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';"></span></td>
+                              <td class="txt-l">
+                                 <div class="player"><strong class="dp-b fb">현재 투수</strong><span id="txtPitName">이승현 No.57 (좌투)</span></div>
+                                 <div class="record" id="txtPitLive">1이닝 28투구<br>스트라이크 19 / 볼 9</div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td id="imgHit"><span class="player-img txt-l"><img class="team" alt="" src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_KT.png"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/64166.png" alt="배정대" onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';"></span></td>
+                              <td class="txt-l">
+                                 <div class="player"><strong class="dp-b fb">현재 타자</strong><span id="txtHitName">배정대 No.27 (우타)</span></div>
+                                 <div class="record" id="txtHitLive"><b>이전타석</b><br>-</div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section id="partners">
+         <div class="wrapping">
+            <div class="kbo-club">
+               <ul class="club-list">
+                  <li><a href="http://www.tigers.co.kr" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/HT.png" alt="KIA 타이거즈"></a>
+                  </li>
+                  <li><a href="http://www.samsunglions.com/" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/SS.png" alt="삼성 라이온즈"></a>
+                  </li>
+                  <li><a href="http://www.lgtwins.com/" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/LG.png" alt="LG 트윈스"></a>
+                  </li>
+                  <li><a href="http://www.doosanbears.com/" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2025/OB.png" alt="두산 베어스"></a>
+                  </li>
+                  <li><a href="http://www.ktwiz.co.kr/sports/site/baseball/main.do" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/KT.png" alt="kt wiz"></a>
+                  </li>
+                  <li><a href="http://www.ssglanders.com" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2024/SK.png" alt="SSG 랜더스"></a>
+                  </li>
+                  <li><a href="http://www.giantsclub.com/html/" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/LT.png" alt="롯데 자이언츠"></a>
+                  </li>
+                  <li><a href="http://www.hanwhaeagles.co.kr/" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2025/HH.png" alt="한화 이글스"></a>
+                  </li>
+                  <li class="nc"><a href="https://www.ncdinos.com/" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/NC.png" alt="NC 다이노스"></a>
+                  </li>
+                  <li><a href="http://www.heroesbaseball.co.kr/index.do" target="_blank">
+                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/WO.png" alt="키움 히어로즈"></a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </section>
+      <!-- // container -->	
+      <hr>
+
+      {% include "layout/footer.html" %}
+      
+   </div>
+   <!-- // wrap -->
+{% endblock %}
