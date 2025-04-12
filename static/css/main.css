@@ -1,5 +1,4 @@
 @charset "utf-8";#wrap section {
-    margin-top: 31px;
 }
 
 body.modal-hidden {
@@ -9,7 +8,7 @@ body.modal-hidden {
 }
 
 h4 {
-    width: 1090px;
+    width: 1050px;
     margin: 0 auto;
     margin-bottom: 25px;
     font-weight: 700;
@@ -67,6 +66,7 @@ h4 .btn-more .btn {
 }
 
 #mainVisual .bx-viewport {
+    
     height: 430px !important;
 }
 
@@ -444,7 +444,7 @@ h4 .btn-more .btn {
 
 #quickBanner .quick-banner-list {
     overflow: hidden;
-    width: 1090px;
+    width: 1050px;
     margin: 0 auto;
 }
 
@@ -558,24 +558,13 @@ h4 .btn-more .btn {
 
 #partners .wrapping .kbo-club .club-list {
     overflow: hidden;
-    width: 1090px;
+    width: 1050px;
 }
 
 #partners .wrapping .kbo-club .club-list li {
+    width: 105px;
     float: left;
-    margin: 0 15px;
-}
-
-#partners .wrapping .kbo-club .club-list li.nc {
-    margin: 0 15px;
-}
-
-#partners .wrapping .kbo-club .club-list li:first-child {
-    margin-left: 0;
-}
-
-#partners .wrapping .kbo-club .club-list li:last-child {
-    margin-right: 0;
+    text-align: center;
 }
 
 #sponsor {
@@ -599,17 +588,24 @@ h4 .btn-more .btn {
 
 #LiveRelay {
     position: relative;
-    width: 1090px;
+    width: 1050px;
     margin: 0 auto;
+}
+
+#LiveRelay .bx-viewport {
+    width: 100%; 
+    overflow: hidden; 
+    position: relative; 
 }
 
 #LiveRelay .tab-league {
     text-align: center;
+    border-bottom: 1px solid #e1e1e1;
 }
 
 #LiveRelay .tab-league > .tab {
     width: 100%;
-    margin: 0 auto 20px;
+    margin: 0 auto;
 }
 
 #LiveRelay .tab-league > .tab.two {
@@ -628,26 +624,18 @@ h4 .btn-more .btn {
 
 #LiveRelay .tab-league > .tab > li {
     float: left;
-    width: 218px;
+    width: 210px;
 }
 
 #LiveRelay .tab-league > .tab > li a {
     display: block;
-    padding: 10px 10px 11px;
+    padding: 20px 10px 20px;
     font-size: 16px;
     color: #0e2046;
-    border-top: 5px solid #fff;
-    border-bottom: 2px solid #e1e1e1;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
 }
 
-#LiveRelay .tab-league > .tab > li.on a,#LiveRelay .tab-depth1 > .tab > li:hover a {
+#LiveRelay .tab-league > .tab > li:hover a {
     font-weight: 700;
-    border-top-color: #002063;
-    border-bottom-color: #fff;
-    border-left-color: #e1e1e1;
-    border-right-color: #e1e1e1;
 }
 
 #LiveRelay .spon-banner {
@@ -842,23 +830,23 @@ h4 .btn-more .btn {
 }
 
 .game-list-n {
-    height: 260px;
+    display: flex;
+    transition: transform 0.4s ease-in-out;
 }
 
 .game-list-n .game-cont {
-    float: left;
+    float: left; 
+    list-style: none; 
+    position: relative;
     width: 210px;
-    height: 260px;
-    margin-right: 10px;
 }
 
 .game-list-n .game-cont .wrap {
     position: relative;
     width: 210px;
-    height: 210px;
-    border: 1px solid #e1e1e1;
     box-sizing: border-box;
-    /* cursor:pointer; */
+    border-bottom: 3px solid #e1e1e1;
+    cursor: pointer;
 }
 
 .game-list-n .game-cont:last-child {
@@ -877,7 +865,7 @@ h4 .btn-more .btn {
 }
 
 .game-list-n .game-cont.on .wrap, .game-list-n .game-cont:hover .wrap {
-    border-color: #002063
+    border-bottom: 3px solid #393939;
 }
 
 .game-list-n .game-cont .top {
@@ -922,7 +910,6 @@ h4 .btn-more .btn {
 }
 
 .game-list-n .game-cont .middle {
-    height: 168px;
     padding: 0 7px;
     text-align: center;
 }
@@ -1025,7 +1012,7 @@ h4 .btn-more .btn {
     font-size: 12px;
     color: #fff;
     text-align: center;
-    background: #00aeef
+    background: #002063
 }
 
 .game-list-n .game-cont.ing .middle .staus {
@@ -1123,9 +1110,9 @@ h4 .btn-more .btn {
 }
 
 #LiveRelay .game-info {
+    height: 800px;
     padding: 20px;
-    border: 2px solid #2d2d2d;
-    margin-top: 10px;
+    margin: 25px;
     background: #fafafa;
 }
 
@@ -1427,6 +1414,10 @@ h4 .btn-more .btn {
     background: #fafafa;
     height: 75px;
     text-align: left;
+}
+
+.issue {
+    text-align: center;
 }
 
 .tab-cont .live .issue .issue-box dl {

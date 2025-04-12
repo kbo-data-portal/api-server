@@ -702,6 +702,10 @@ a.btn2, input[type="submit"].btn2, button.btn2 {
 .box-score-wrap .tbl-box-score .tbl {
 }
 
+.box-score-wrap .tbl-box-score .tbl col {
+    width: 7%;
+}
+
 .box-score-wrap .tbl-box-score .tbl th, .tbl-box-score .tbl td {
     padding: 10px 0;
     background: none;
