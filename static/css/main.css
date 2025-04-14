@@ -1110,6 +1110,8 @@ h4 .btn-more .btn {
 }
 
 #LiveRelay .game-info {
+    display: flex; 
+    flex-direction: column;
     height: 800px;
     padding: 20px;
     margin: 25px;
@@ -1128,25 +1130,49 @@ h4 .btn-more .btn {
     font-weight: 700;
 }
 
+#LiveRelay .game-info .info {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+#LiveRelay .game-info .info .team {
+    float: left;
+    width: 105px;
+    padding: 30px 15px;
+    text-align: center;
+}
+
+#LiveRelay .game-info .info .vs {
+    float: left;
+    width: 19px;
+    margin: 15px 10px 0;
+    font-weight: 700;
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
 #LiveRelay .game-info .game-info-top #game-info-top-graphLeft {
     float: left;
     width: 390px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #e1e1e1;
 }
 #LiveRelay .game-info .game-info-top #game-info-top-graphCenter {
     float: left;
     width: 180px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #e1e1e1;
 }
 #LiveRelay .game-info .game-info-top #game-info-top-graphRight {
     float: left;
     width: 220px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #e1e1e1;
 }
 #LiveRelay .game-info .game-info-top #game-info-top-graphRight2 {
     float: left;
     width: 170px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #e1e1e1;
 }
 
 #LiveRelay .tab-info .tab5 li {
