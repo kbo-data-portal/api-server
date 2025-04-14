@@ -1128,6 +1128,27 @@ h4 .btn-more .btn {
     font-weight: 700;
 }
 
+#LiveRelay .game-info .game-info-top #game-info-top-graphLeft {
+    float: left;
+    width: 390px;
+    border-bottom: 1px solid #333;
+}
+#LiveRelay .game-info .game-info-top #game-info-top-graphCenter {
+    float: left;
+    width: 180px;
+    border-bottom: 1px solid #333;
+}
+#LiveRelay .game-info .game-info-top #game-info-top-graphRight {
+    float: left;
+    width: 220px;
+    border-bottom: 1px solid #333;
+}
+#LiveRelay .game-info .game-info-top #game-info-top-graphRight2 {
+    float: left;
+    width: 170px;
+    border-bottom: 1px solid #333;
+}
+
 #LiveRelay .tab-info .tab5 li {
     width: 20%;
     text-align: center;

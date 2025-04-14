@@ -60,175 +60,11 @@
             <!-- // 경기 일정  -->
          </div>
          <div class="game-info">
-            <div class="tab-info" id="gameTab">
-               <ul class="tab tab2" id="tabGame">
-                  <li class="tab-tit on" section="LIVE"><a href="#none">경기 중계</a></li>
-                  <li class="tab-tit" section="KEY"><a href="#none">키플레이어</a></li>
-               </ul>
-            </div>
-            <div class="tab-cont" id="gameDetail">
-               <div class="row live">
-                  <div class="section-left w65p tbl-live">
-                     <div class="record-etc txt-r mb7"><span id="lblGameInfo">수원구장 (삼성 vs KT)</span><span id="lblGameVsCnt">시즌 1차전</span></div>
-                     <div class="box-score-wrap main">
-                        <div class="tbl-box-score tbl-main data1">
-                           <table class="tbl mb20 scoreBoard" id="tblScoreBoard1">
-                              <colgroup>
-                                 <col width="100%">
-                              </colgroup>
-                              <thead>
-                                 <tr>
-                                    <th>TEAM</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr>
-                                    <th><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_SS.png" alt="삼성"></th>
-                                 </tr>
-                                 <tr>
-                                    <th><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/emblem_KT.png" alt="KT"></th>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                        <div class="tbl-box-score tbl-main data2" id="divScoreBoard2">
-                           <table class="tbl" id="tblScoreBoard2">
-                              <colgroup>
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                                 <col row="">
-                              </colgroup>
-                              <thead>
-                                 <tr>
-                                    <th typeobj="th">1</th>
-                                    <th typeobj="th">2</th>
-                                    <th typeobj="th">3</th>
-                                    <th typeobj="th">4</th>
-                                    <th typeobj="th">5</th>
-                                    <th typeobj="th">6</th>
-                                    <th typeobj="th">7</th>
-                                    <th typeobj="th">8</th>
-                                    <th typeobj="th">9</th>
-                                    <th typeobj="th">10</th>
-                                    <th typeobj="th">11</th>
-                                    <th typeobj="th">12</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                 </tr>
-                                 <tr>
-                                    <td>0</td>
-                                    <td class="inning">0</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                        <div class="tbl-box-score tbl-main data3">
-                           <table class="tbl mb20 scoreBoard" id="tblScoreBoard3">
-                              <colgroup>
-                                 <col width="4%">
-                                 <col width="4%">
-                                 <col width="4%">
-                                 <col width="4%">
-                              </colgroup>
-                              <thead>
-                                 <tr>
-                                    <th>R</th>
-                                    <th>H</th>
-                                    <th>E</th>
-                                    <th>B</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr>
-                                    <td class="run_T">0</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                 </tr>
-                                 <tr>
-                                    <td class="run_B">0</td>
-                                    <td>2</td>
-                                    <td>0</td>
-                                    <td>1</td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                     <div class="issue">
-                        <h6>경기이슈</h6>
-                        <div class="btn-more"><a href="/Game/Summary.aspx?leagueId=1&amp;seriesId=0&amp;gamedate=20250411" class="btn" onclick="window.open(this, 'pop', 'toolbar=no,menubar=no,location=no,scrollbars=no,status=no, width=980, height=930');return false;" target="_blank">경기이슈 더보기&nbsp;</a></div>
-                        <div class="issue-box">
-                           <div class="issue" id="txtIssue">-</div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="section-right w30p tbl-live">
-                     <div class="btn-more txt-r mb7"><span class="mr5">더 자세한 경기 상황이 궁금하다면?</span><a href="#none" class="btn" id="btnLiveText"></a></div>
-                     <table class="tbl mb20" summary="현재 투수 표">
-                        <caption>현재투수 표</caption>
-                        <colgroup>
-                           <col width="30%">
-                           <col width="60%">
-                        </colgroup>
-                        <thead>
-                           <tr>
-                              <th class="txt-l">TODAY</th>
-                              <th><span id="txtNowInn">2회말</span></th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td id="imgPit"><span class="player-img txt-l"><img class="team" alt="" src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_SS.png"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/51454.png" alt="이승현" onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';"></span></td>
-                              <td class="txt-l">
-                                 <div class="player"><strong class="dp-b fb">현재 투수</strong><span id="txtPitName">이승현 No.57 (좌투)</span></div>
-                                 <div class="record" id="txtPitLive">1이닝 28투구<br>스트라이크 19 / 볼 9</div>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td id="imgHit"><span class="player-img txt-l"><img class="team" alt="" src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_KT.png"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/64166.png" alt="배정대" onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';"></span></td>
-                              <td class="txt-l">
-                                 <div class="player"><strong class="dp-b fb">현재 타자</strong><span id="txtHitName">배정대 No.27 (우타)</span></div>
-                                 <div class="record" id="txtHitLive"><b>이전타석</b><br>-</div>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
+            <div class="game-info-top">
+               <div id="game-info-top-graphLeft"></div>
+               <div id="game-info-top-graphCenter"></div>
+               <div id="game-info-top-graphRight"></div>
+               <div id="game-info-top-graphRight2"></div>
             </div>
          </div>
       </section>
@@ -316,6 +152,8 @@
 
          updateSlider();
       </script>
+      <script src="static/js/chart.js" type="text/javascript"></script>
+      <script src="static/js/script.js" type="text/javascript"></script>
 
       {% include "layout/footer.html" %}
       
