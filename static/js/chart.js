@@ -8,7 +8,7 @@ Highcharts.setOptions({
   },
   title: {
     text: '',
-    style: { fontSize: '15px', color: 'black', fontWeight: 'normal' }
+    style: { fontSize: '13px', color: 'black', fontWeight: 'normal' }
   },
   legend: { enabled: false },
   credits: { enabled: false }
@@ -52,7 +52,7 @@ function craetePie(id, titleText, seriesData) {
   });
 }
 
-function createColumn(id, titleText, categories, seriesData) {
+function createColumn(id, titleText, categories, seriesData, tooltip) {
   Highcharts.chart(id, {
     chart: {
       type: 'column'
@@ -83,7 +83,7 @@ function createColumn(id, titleText, categories, seriesData) {
     series: seriesData,
     tooltip: {
       formatter: function () {
-        return `${this.series.name}: ${this.y}`;
+        return `${this.series.name}: ${this.y} ${tooltip}`;
       }
     }
   });
@@ -105,6 +105,7 @@ function createBar(id, titleText, categories, seriesData, reverse, maxValue) {
         align: 'center',
         x: 20
       },
+      gridLineWidth: 0,
       lineWidth: 0,
       reversed: reverse
     },

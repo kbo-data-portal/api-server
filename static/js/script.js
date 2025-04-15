@@ -1,24 +1,53 @@
-craetePie('game-info-top-graphLeft', '<span>172<br/>GAME</span>',
+craetePie('graph-all-match-left', '<span>172<br/>GAME</span>',
   [
-    { name: '패', y: 63, color: '#000000' },
-    { name: '무효', y: 49, color: '#666666' },
-    { name: '승', y: 65, color: '#0072CE' },
-  ]);
-
-createColumn('game-info-top-graphCenter', '', ['GOAL'],
-  [
-    { name: '득점', data: [45], color: '#0072CE' },
-    { name: '실점', data: [31], color: '#000000' }
+    { name: 'KT 위즈 승', y: 65, color: homeColor },
+    { name: '무', y: 49, color: '#666666' },
+    { name: '삼성 라이온즈 승', y: 63, color: awayColor },
   ]
 );
 
+createColumn('graph-all-match-right', '', ['GOAL'],
+  [
+    { name: '삼성 라이온즈', data: [45], color: awayColor },
+    { name: 'KT 위즈', data: [31], color: homeColor }
+  ]
+  , '득점'
+);
 
-craeteButterflyBar('game-info-top-graphRight', 'game-info-top-graphRight2', '',
+craetePie('graph-match-left', '<span>10<br/>GAME</span>',
+  [
+    { name: 'KT 위즈 승', y: 4, color: homeColor },
+    { name: '무', y: 3, color: '#666666' },
+    { name: '삼성 라이온즈 승', y: 3, color: awayColor },
+  ]
+);
+
+createColumn('graph-match-right', '', ['GOAL'],
+  [
+    { name: '삼성 라이온즈', data: [45], color: awayColor },
+    { name: 'KT 위즈', data: [31], color: homeColor }
+  ]
+  , '득점'
+);
+
+craeteButterflyBar('graph-stat-leftL', 'graph-stat-leftR', '',
   ['홈런', '안타', '타점', '득점권 타율'],
   [{
     data: [27, 148, 91, 6.298],
-    color: '#0072CE',
+    color: awayColor
   }], [{
     data: [14, 58, 121, 11],
-    color: '#000000',
-  }]);
+    color: homeColor
+  }]
+);
+
+craeteButterflyBar('graph-stat-rightL', 'graph-stat-rightR', '',
+  ['홈런', '안타', '타점', '득점권 타율'],
+  [{
+    data: [27, 148, 91, 6.298],
+    color: awayColor
+  }], [{
+    data: [14, 58, 121, 11],
+    color: homeColor
+  }]
+);
