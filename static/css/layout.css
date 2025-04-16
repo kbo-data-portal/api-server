@@ -663,12 +663,14 @@ footer #fnb .fnb-wrap {
 
 footer #fnb .fnb-wrap .fnb-list {
     overflow: hidden;
-    margin-left: 152px
+    margin-left: 130px
 }
 
 footer #fnb .fnb-wrap .fnb-list li {
     float: left;
-    margin-right: 50px
+    color: #687898;
+    margin-right: 50px;
+    margin-bottom: 13px
 }
 
 footer #fnb .fnb-wrap .fnb-list li a {
@@ -714,7 +716,7 @@ footer #kboInfo {
 
 footer #kboInfo h2 {
     float: left;
-    padding: 0 80px 0 30px
+    padding: 25px 0 0 50px;
 }
 
 footer #kboInfo address {

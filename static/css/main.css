@@ -1,5 +1,6 @@
-@charset "utf-8";#wrap section {
-}
+@charset "utf-8";
+
+#wrap section {}
 
 body.modal-hidden {
     overflow: hidden;
@@ -66,7 +67,7 @@ h4 .btn-more .btn {
 }
 
 #mainVisual .bx-viewport {
-    
+
     height: 430px !important;
 }
 
@@ -141,8 +142,7 @@ h4 .btn-more .btn {
     color: #666;
 }
 
-.player-ranking .tab-area {
-}
+.player-ranking .tab-area {}
 
 .player-ranking .tab-area .tab {
     overflow: hidden;
@@ -183,7 +183,8 @@ h4 .btn-more .btn {
     background: none;
 }
 
-.player-ranking .tab-area .tab-cont .tbl th, .player-ranking .tab-area .tab-cont .tbl td {
+.player-ranking .tab-area .tab-cont .tbl th,
+.player-ranking .tab-area .tab-cont .tbl td {
     border: none;
     background: none;
 }
@@ -549,16 +550,41 @@ h4 .btn-more .btn {
 
 #partners {
     background: #002063;
-    padding-top: 145px;
+    margin: 0 auto;
 }
 
 #partners .wrapping {
-    padding: 21px 0 20px;
+    padding: 50px 0 20px;
+}
+
+#partners .notice {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    margin-bottom: 50px;
+    padding: 20px 40px;
+}
+
+#partners .notice-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #b3bcce;
+    color: #00aeef;
+    line-height: 15px;
+}
+
+#partners .notice p {
+    font-size: 13px;
+    color: #b3bcce;
+    line-height: 24px;
 }
 
 #partners .wrapping .kbo-club .club-list {
     overflow: hidden;
     width: 1050px;
+    margin-bottom: 20px;
 }
 
 #partners .wrapping .kbo-club .club-list li {
@@ -593,9 +619,9 @@ h4 .btn-more .btn {
 }
 
 #LiveRelay .bx-viewport {
-    width: 100%; 
-    overflow: hidden; 
-    position: relative; 
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 #LiveRelay .tab-league {
@@ -603,38 +629,38 @@ h4 .btn-more .btn {
     border-bottom: 1px solid #e1e1e1;
 }
 
-#LiveRelay .tab-league > .tab {
+#LiveRelay .tab-league>.tab {
     width: 100%;
     margin: 0 auto;
 }
 
-#LiveRelay .tab-league > .tab.two {
+#LiveRelay .tab-league>.tab.two {
     width: 436px
 }
 
-#LiveRelay .tab-league > .tab.four {
+#LiveRelay .tab-league>.tab.four {
     width: 872px
 }
 
-#LiveRelay .tab-league > .tab::after {
+#LiveRelay .tab-league>.tab::after {
     content: '';
     display: block;
     clear: both;
 }
 
-#LiveRelay .tab-league > .tab > li {
+#LiveRelay .tab-league>.tab>li {
     float: left;
     width: 210px;
 }
 
-#LiveRelay .tab-league > .tab > li a {
+#LiveRelay .tab-league>.tab>li a {
     display: block;
     padding: 20px 10px 20px;
     font-size: 16px;
     color: #0e2046;
 }
 
-#LiveRelay .tab-league > .tab > li:hover a {
+#LiveRelay .tab-league>.tab>li:hover a {
     font-weight: 700;
 }
 
@@ -691,8 +717,7 @@ h4 .btn-more .btn {
     right: 64px;
 }
 
-#LiveRelay .game-schedule {
-}
+#LiveRelay .game-schedule {}
 
 #LiveRelay .date-select {
     position: relative;
@@ -721,12 +746,12 @@ h4 .btn-more .btn {
     right: 0;
 }
 
-#LiveRelay .date-select .btn-wrap > div {
+#LiveRelay .date-select .btn-wrap>div {
     float: left;
     margin-right: 5px;
 }
 
-#LiveRelay .date-select .btn-wrap > div a {
+#LiveRelay .date-select .btn-wrap>div a {
     color: #000;
 }
 
@@ -800,11 +825,13 @@ h4 .btn-more .btn {
     font-size: 12px !important;
 }
 
-.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
     margin-left: -5px;
 }
 
-.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
     margin-top: -5px;
 }
 
@@ -813,14 +840,30 @@ h4 .btn-more .btn {
     margin-top: -5px;
 }
 
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
     border: 1px solid #000;
     background: #676767;
     font-weight: normal;
     color: #fff;
 }
 
-.ui-state-hover a, .ui-state-hover a:hover, .ui-state-hover a:link, .ui-state-hover a:visited, .ui-state-focus a, .ui-state-focus a:hover, .ui-state-focus a:link, .ui-state-focus a:visited, a.ui-button:hover, a.ui-button:focus {
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited,
+.ui-state-focus a,
+.ui-state-focus a:hover,
+.ui-state-focus a:link,
+.ui-state-focus a:visited,
+a.ui-button:hover,
+a.ui-button:focus {
     color: #2b2b2b;
     text-decoration: none;
 }
@@ -835,8 +878,8 @@ h4 .btn-more .btn {
 }
 
 .game-list-n .game-cont {
-    float: left; 
-    list-style: none; 
+    float: left;
+    list-style: none;
     position: relative;
     width: 210px;
 }
@@ -864,7 +907,8 @@ h4 .btn-more .btn {
     border-bottom: 0
 }
 
-.game-list-n .game-cont.on .wrap, .game-list-n .game-cont:hover .wrap {
+.game-list-n .game-cont.on .wrap,
+.game-list-n .game-cont:hover .wrap {
     border-bottom: 3px solid #002063;
 }
 
@@ -1086,7 +1130,10 @@ h4 .btn-more .btn {
     background: #999
 }
 
-.game-list-n .game-cont.cancel .middle .team .score, .game-list-n .game-cont.cancel .middle .vs, .game-list-n .game-cont.cancel .middle .today-pitcher p, .game-list-n .game-cont.cancel .middle .today-pitcher p span {
+.game-list-n .game-cont.cancel .middle .team .score,
+.game-list-n .game-cont.cancel .middle .vs,
+.game-list-n .game-cont.cancel .middle .today-pitcher p,
+.game-list-n .game-cont.cancel .middle .today-pitcher p span {
     color: #999 !important
 }
 
@@ -1110,9 +1157,15 @@ h4 .btn-more .btn {
 }
 
 #LiveRelay .game-info {
-    display: flex; 
+    border: 2px solid #002063;
+    background: #fafafa;
+    margin-top: 25px;
+    padding: 30px;
+}
+
+#LiveRelay .game-info-bg {
+    display: flex;
     flex-direction: column;
-    margin-bottom: 33px;
 }
 
 #LiveRelay .game-info .tab-cont {
@@ -1128,16 +1181,16 @@ h4 .btn-more .btn {
 }
 
 #LiveRelay .game-info .info-area {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 0;
+    padding-bottom: 30px;
     width: 100%;
     border-bottom: 1px solid #e1e1e1;
 }
 
 #LiveRelay .game-info .info-area .team {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     align-items: center;
     float: left;
@@ -1147,7 +1200,7 @@ h4 .btn-more .btn {
 
 #LiveRelay .game-info .info-area .team .score {
     font-size: 16px;
-    color: #1a1a1a;
+    color: #666;
 }
 
 #LiveRelay .game-info .info-area .team .name {
@@ -1165,18 +1218,19 @@ h4 .btn-more .btn {
 }
 
 #LiveRelay .game-info .stat-area-top {
-    display: flex; 
+    display: flex;
     width: 100%;
     padding-top: 25px;
+    padding-bottom: 15px;
     justify-content: space-between;
     align-items: center;
+    background: #fff;
     border-bottom: 1px solid #e1e1e1;
 }
 
 #LiveRelay .game-info .stat-area-bottom {
     width: 100%;
     padding: 25px 0;
-    border-bottom: 1px solid #e1e1e1;
 }
 
 #LiveRelay .game-info .stat-area-bottom .stat-area-button {
@@ -1186,26 +1240,21 @@ h4 .btn-more .btn {
 }
 
 #LiveRelay .game-info .stat-area-bottom .stat-button {
-    display: inline-block;
-    width: 82px;
-    height: 24px;
-    margin-bottom: 4px;
+    width: 65px;
+    height: 23px;
     border-radius: 9px;
-    font-size: 14px;
+    font-size: 13px;
     color: #fff;
     text-align: center;
     background: #002063;
-    padding: 0 20px;
 }
-
 
 #LiveRelay .game-info .stat-area-bottom .stat-button:hover {
     background: #00aeef;
 }
 
-
 #LiveRelay .game-info .stat-area-bottom .stat-area-twobox {
-    display: flex; 
+    display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -1219,7 +1268,7 @@ h4 .btn-more .btn {
     margin-bottom: 15px;
     font-weight: 700;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     color: #002063;
 }
 
@@ -1237,12 +1286,16 @@ h4 .btn-more .btn {
 }
 
 #LiveRelay .game-info .match-list li {
-    font-size: 13px;
-    padding: 7px 0;    
+    font-size: 12px;
+    padding: 7px 0;
 }
 
 #LiveRelay .game-info .match-list .match-name {
     font-weight: 600;
+}
+
+#LiveRelay .game-info .match-list .match-date {
+    color: #666;
 }
 
 #LiveRelay .game-info .match-list .match-score {
@@ -1255,75 +1308,80 @@ h4 .btn-more .btn {
     margin: 0 10px;
 }
 
-#LiveRelay .game-info .score-area {
+#LiveRelay .score-info {
+    display: flex;
     padding-top: 25px;
+    margin-bottom: 33px;
 }
 
-#LiveRelay .game-info .score-area .graph-title {
+#LiveRelay .score-info .score-title {
+    margin-bottom: 15px;
+    font-weight: 700;
     text-align: left;
+    font-size: 16px;
+    color: #002063;
 }
 
-#LiveRelay .game-info .score-area-left {
-    float: left; 
-    width: 60%;
+#LiveRelay .score-info-left {
+    width: 65%;
 }
 
-#LiveRelay .game-info .score-area-right-top {
-    float: right; 
+#LiveRelay .score-info-right {
     width: 35%;
+}
+
+#LiveRelay .score-info-right-top {
     margin-left: 25px;
     margin-bottom: 16px;
 }
 
-#LiveRelay .game-info .score-area-right-bottom {
-    float: right; 
-    width: 35%;
+#LiveRelay .score-info-right-bottom {
     margin-left: 25px;
 }
 
-#LiveRelay .game-info .top-player .player-img {
-    float: left; 
+#LiveRelay .top-player .player-img {
+    float: left;
     width: 100px;
 }
 
-#LiveRelay .game-info .top-player .player {
-    float: left; 
+#LiveRelay .top-player .player {
+    float: left;
     width: 40%;
     font-size: 14px;
     margin-left: 15px;
 }
 
-#LiveRelay .game-info .top-player .record {
-    float: left; 
+#LiveRelay .top-player .record {
+    float: left;
     width: 40%;
     margin-left: 15px;
     margin-bottom: 15px;
 }
 
-#LiveRelay .game-info .top-player .record ul {
+#LiveRelay .top-player .record ul {
     float: left;
     width: 30%;
     text-align: center;
     margin-top: 15px;
 }
 
-#LiveRelay .game-info .top-player .title {
+#LiveRelay .top-player .title {
     font-size: 13px;
 }
 
-#LiveRelay .game-info .top-player .score {
+#LiveRelay .top-player .score {
     margin-top: 3px;
     font-weight: 700;
     font-size: 16px;
     color: #002063;
 }
 
-#LiveRelay .game-info .tbl-rank th {
+#LiveRelay .tbl-rank th {
     font-size: 11px;
     height: 25px;
 }
 
-#LiveRelay .game-info .tbl-rank td {
+#LiveRelay .tbl-rank td {
     font-size: 11px;
     height: 25px;
     padding: 0;
@@ -1370,7 +1428,8 @@ h4 .btn-more .btn {
     border-bottom: 1px solid #dcdddf;
 }
 
-#LiveRelay .tab-info .tab li.on a, #LiveRelay .tab-info .tab li a:hover {
+#LiveRelay .tab-info .tab li.on a,
+#LiveRelay .tab-info .tab li a:hover {
     padding: 10px 0 8px;
     border-bottom: 3px solid #393939;
     font-weight: 700;
@@ -1384,7 +1443,8 @@ h4 .btn-more .btn {
     padding: 5px 0 7px;
 }
 
-#LiveRelay .tab-info .tab3 .tab-img.on a, #LiveRelay .tab-info .tab3 .tab-img a:hover {
+#LiveRelay .tab-info .tab3 .tab-img.on a,
+#LiveRelay .tab-info .tab3 .tab-img a:hover {
     padding: 5px 0;
 }
 
@@ -1396,7 +1456,8 @@ h4 .btn-more .btn {
     padding: 5px 2px 7px;
 }
 
-#LiveRelay .tab-info .tab4 .tab-img.on a, #LiveRelay .tab-info .tab4 .tab-img a:hover {
+#LiveRelay .tab-info .tab4 .tab-img.on a,
+#LiveRelay .tab-info .tab4 .tab-img a:hover {
     padding: 5px 2px;
 }
 
@@ -1537,7 +1598,8 @@ h4 .btn-more .btn {
     font-size: 15px;
 }
 
-.tab-cont .lineup .lineup-tit .era,.tab-cont .lineup .lineup-tit .record {
+.tab-cont .lineup .lineup-tit .era,
+.tab-cont .lineup .lineup-tit .record {
     display: inline;
     font-size: 20px;
 }
@@ -1588,8 +1650,7 @@ h4 .btn-more .btn {
     margin-left: 60px;
 }
 
-.tab-cont .live {
-}
+.tab-cont .live {}
 
 .tab-cont .live .issue {
     position: relative;
@@ -1628,8 +1689,7 @@ h4 .btn-more .btn {
     font-size: 14px;
 }
 
-.tab-cont .live .issue .issue-box dt {
-}
+.tab-cont .live .issue .issue-box dt {}
 
 .tab-cont .live .issue .issue-box dd {
     padding-left: 15px;
@@ -1647,8 +1707,7 @@ h4 .btn-more .btn {
     color: #333;
 }
 
-.tab-cont .record {
-}
+.tab-cont .record {}
 
 .tab-cont .record .record-etc {
     text-align: right;
@@ -1709,8 +1768,7 @@ h4 .btn-more .btn {
     font-size: 15px;
 }
 
-.tab-cont .lineup-analysis {
-}
+.tab-cont .lineup-analysis {}
 
 .tab-cont .section-left .tit-area {
     position: relative;
@@ -1805,8 +1863,7 @@ h4 .btn-more .btn {
     font-weight: bold;
 }
 
-.tab-cont .team-compare .tbl-live .tbl {
-}
+.tab-cont .team-compare .tbl-live .tbl {}
 
 .tab-cont .team-compare .tbl-live .tbl th {
     font-size: 15px;
@@ -1863,7 +1920,7 @@ h4 .btn-more .btn {
     overflow: hidden;
 }
 
-.next-pitcher-list > li {
+.next-pitcher-list>li {
     position: relative;
     float: left;
     width: 190px;
@@ -1872,11 +1929,11 @@ h4 .btn-more .btn {
     box-sizing: border-box;
 }
 
-.next-pitcher-list > li:last-child {
+.next-pitcher-list>li:last-child {
     margin: 0;
 }
 
-.next-pitcher-list > li.on .game-cont {
+.next-pitcher-list>li.on .game-cont {
     border: none;
 }
 
@@ -1977,7 +2034,8 @@ h4 .btn-more .btn {
     color: #00133f;
 }
 
-#LiveRelay #FL .tab-info .tab li.on a, #LiveRelay .tab-info .tab li a:hover {
+#LiveRelay #FL .tab-info .tab li.on a,
+#LiveRelay .tab-info .tab li a:hover {
     border-bottom: 3px solid #00133f;
     font-weight: 700;
 }
@@ -2016,14 +2074,16 @@ h4 .btn-more .btn {
     background: #ecf2f2;
 }
 
-#LiveRelay #FL #tabFL2 .tbl th,#LiveRelay #FL #tabFL2 .tbl td {
+#LiveRelay #FL #tabFL2 .tbl th,
+#LiveRelay #FL #tabFL2 .tbl td {
     padding: 5px 10px;
     border: none;
     background: #fff;
     font-size: 15px;
 }
 
-#LiveRelay #FL #tabFL2 .tbl tr:first-child th, #LiveRelay #FL #tabFL2 .tbl tr:first-child td {
+#LiveRelay #FL #tabFL2 .tbl tr:first-child th,
+#LiveRelay #FL #tabFL2 .tbl tr:first-child td {
     padding-top: 15px;
 }
 
@@ -2040,93 +2100,95 @@ h4 .btn-more .btn {
     margin: 0 auto;
 }
 
-.tbl-live > .tbl {
-}
+.tbl-live>.tbl {}
 
-.tbl-live > .tbl thead th {
+.tbl-live>.tbl thead th {
     padding: 15px 0;
     font-weight: bold;
 }
 
-.tbl-live > .tbl th, td {
+.tbl-live>.tbl th,
+td {
     background: none;
     border-bottom: 1px solid #dcdcdc;
     font-weight: 700;
     font-size: 17px;
 }
 
-.tbl-live > .tbl td,.tbl-live > .tbl tbody th {
+.tbl-live>.tbl td,
+.tbl-live>.tbl tbody th {
     padding: 5px 10px;
 }
 
-.tbl-live > .tbl td .player {
+.tbl-live>.tbl td .player {
     margin-bottom: 10px;
     color: #222;
 }
 
-.tbl-live > .tbl td .player .num {
+.tbl-live>.tbl td .player .num {
     margin-right: 10px;
     font-size: 18px;
     font-weight: bold;
     color: #888;
 }
 
-.tbl-live > .tbl td.win {
+.tbl-live>.tbl td.win {
     font-weight: bold;
     color: #a92424;
 }
 
-.tbl-live > .tbl td.inning {
+.tbl-live>.tbl td.inning {
     font-weight: bold;
     color: navy;
 }
 
-.tbl-live > .tbl td .player {
+.tbl-live>.tbl td .player {
     padding: 15px 0 10px;
     border-bottom: 1px solid #ddd;
 }
 
-.tbl-live > .tbl td .record {
+.tbl-live>.tbl td .record {
     padding: 0 0 15px;
     font-size: 12px;
     line-height: 1.2;
 }
 
-.tbl-live > .tbl td span {
+.tbl-live>.tbl td span {
     display: block;
     font-size: 12px;
 }
 
-.tbl-rev > .tbl {
-}
+.tbl-rev>.tbl {}
 
-.tbl-rev > .tbl thead th {
+.tbl-rev>.tbl thead th {
     padding: 15px 0;
     font-weight: bold;
 }
 
-.tbl-rev > .tbl th, td {
+.tbl-rev>.tbl th,
+td {
     background: none;
     border-bottom: 1px solid #dcdcdc;
     font-weight: 700;
     font-size: 17px;
 }
 
-.tbl-rev > .tbl tbody th {
+.tbl-rev>.tbl tbody th {
     font-size: 13px;
     color: #121212;
 }
 
-.tbl-rev > .tbl tbody th .logo {
+.tbl-rev>.tbl tbody th .logo {
     display: block;
     margin-bottom: 3px;
 }
 
-.tbl-rev > .tbl td, .tbl-rev > .tbl tbody th {
+.tbl-rev>.tbl td,
+.tbl-rev>.tbl tbody th {
     padding: 5px 0;
 }
 
-.tbl-rev > .tbl td .team-name {
+.tbl-rev>.tbl td .team-name {
     display: block;
     margin: 5px auto 0;
     font-size: 13px;
@@ -2134,130 +2196,129 @@ h4 .btn-more .btn {
     font-weight: 700;
 }
 
-.tbl-rev > .tbl td .result {
+.tbl-rev>.tbl td .result {
     margin-bottom: 6px;
     font-size: 13px;
     letter-spacing: -1px;
 }
 
-.tbl-rev > .tbl td .result span {
+.tbl-rev>.tbl td .result span {
     display: block;
 }
 
-.tbl-rev > .tbl td .win {
+.tbl-rev>.tbl td .win {
     color: #b96060;
     font-weight: 700;
 }
 
-.tbl-rev > .tbl td .lose {
+.tbl-rev>.tbl td .lose {
     color: #004694;
     font-weight: 700;
 }
 
-.tbl-rev > .tbl td .save {
+.tbl-rev>.tbl td .save {
     color: #b96060;
     font-weight: 700;
 }
 
-.tbl-rev > .tbl td .hold {
+.tbl-rev>.tbl td .hold {
     color: #b96060;
     font-weight: 700;
 }
 
-.tbl-rev > .tbl td .draw {
+.tbl-rev>.tbl td .draw {
     color: #666;
     font-weight: 700;
 }
 
-.tbl-rev > .tbl td .result .num {
+.tbl-rev>.tbl td .result .num {
     display: inline-block;
     width: inherit;
 }
 
-.tbl-rev > .tbl td .red {
+.tbl-rev>.tbl td .red {
     color: #b96060;
 }
 
-.tbl-rev > .tbl td .blue {
+.tbl-rev>.tbl td .blue {
     color: #004694;
 }
 
-.tbl-rev > .record-etc {
+.tbl-rev>.record-etc {
     text-align: right;
     padding-bottom: 5px;
 }
 
-.tbl-rev > .record-etc span {
+.tbl-rev>.record-etc span {
     margin-left: 15px;
     font-weight: 700;
     font-size: 13px;
 }
 
-.tbl-key > .tbl {
-}
+.tbl-key>.tbl {}
 
-.tbl-key > .tbl thead th {
+.tbl-key>.tbl thead th {
     padding: 15px 20px;
     font-weight: bold;
     text-align: left;
 }
 
-.tbl-key > .tbl th, td {
+.tbl-key>.tbl th,
+td {
     background: none;
     border-bottom: 1px solid #dcdcdc;
     font-weight: 700;
     font-size: 15px;
 }
 
-.tbl-key > .tbl tbody th {
+.tbl-key>.tbl tbody th {
     font-size: 13px;
     color: #121212;
 }
 
-.tbl-key > .tbl tbody th .logo {
+.tbl-key>.tbl tbody th .logo {
     display: block;
     margin-bottom: 3px;
 }
 
-.tbl-key > .tbl td {
+.tbl-key>.tbl td {
     padding: 10px 20px;
     font-size: 14px;
     text-align: left;
     font-size: 13px;
 }
 
-.tbl-key > .tbl td .name {
+.tbl-key>.tbl td .name {
     display: block;
     font-weight: 700;
     font-size: 15px;
     color: #222;
 }
 
-.tbl-key > .tbl td.win {
+.tbl-key>.tbl td.win {
     color: #a92424;
 }
 
-.tbl-key > .tbl td.player-img {
+.tbl-key>.tbl td.player-img {
     display: table-cell;
     padding: 10px 15px;
 }
 
-.tbl-key > .tbl td.data {
+.tbl-key>.tbl td.data {
     padding: 10px 0;
 }
 
-.tbl-key > .tbl td.data .name {
+.tbl-key>.tbl td.data .name {
     font-size: 13px;
 }
 
-.tbl-key > .tbl td.data .date {
+.tbl-key>.tbl td.data .date {
     font-size: 11px;
 }
 
-.tbl-pitching > .tbl {
-}
+.tbl-pitching>.tbl {}
 
-.tbl-pitching > .tbl thead th {
+.tbl-pitching>.tbl thead th {
     padding: 15px;
     font-weight: 700;
     font-weight: 700;
@@ -2265,131 +2326,131 @@ h4 .btn-more .btn {
     text-align: left;
 }
 
-.tbl-pitching > .tbl th, td {
+.tbl-pitching>.tbl th,
+td {
     background: none;
     border-bottom: 1px solid #dcdcdc;
     font-weight: 700;
     font-size: 17px;
 }
 
-.tbl-pitching > .tbl tbody th {
+.tbl-pitching>.tbl tbody th {
     padding: 2px 0;
     font-weight: 700;
     font-size: 14px;
     color: #121212;
 }
 
-.tbl-pitching > .tbl tbody th:first-child {
+.tbl-pitching>.tbl tbody th:first-child {
     text-align: left;
 }
 
-.tbl-pitching > .tbl tbody th.bd-none {
+.tbl-pitching>.tbl tbody th.bd-none {
     border: none;
 }
 
-.tbl-pitching > .tbl tbody td.top {
+.tbl-pitching>.tbl tbody td.top {
     color: #a92424;
 }
 
-.tbl-pitching > .tbl tbody td {
+.tbl-pitching>.tbl tbody td {
     font-size: 13px;
     font-weight: 700;
 }
 
-.tbl-pitcher {
-}
+.tbl-pitcher {}
 
-.tbl-pitcher > .tbl thead th {
+.tbl-pitcher>.tbl thead th {
     font-size: 14px;
 }
 
-.tbl-pitcher > .tbl tbody td {
+.tbl-pitcher>.tbl tbody td {
     padding: 10px 0;
     font-size: 13px;
 }
 
-.tbl-pitcher > .tbl tbody td .name {
+.tbl-pitcher>.tbl tbody td .name {
     display: block;
     font-weight: 700;
     font-size: 15px;
     color: #222;
 }
 
-.tbl-pitcher > .tbl td.win {
+.tbl-pitcher>.tbl td.win {
     color: #a92424;
 }
 
-.tbl-pitcher > .tbl td span.post {
+.tbl-pitcher>.tbl td span.post {
     color: #00133e;
 }
 
-.tbl-keyplayer > .tbl {
+.tbl-keyplayer>.tbl {
     border: none;
     background: none;
 }
 
-.tbl-keyplayer > .tbl th, .tbl-keyplayer > .tbl td {
+.tbl-keyplayer>.tbl th,
+.tbl-keyplayer>.tbl td {
     border: none;
     background: none;
 }
 
-.tbl-keyplayer > .tbl thead th {
+.tbl-keyplayer>.tbl thead th {
     font-size: 16px;
     color: #121212;
     text-align: center;
 }
 
-.tbl-keyplayer > .tbl tbody tr.line01 td {
+.tbl-keyplayer>.tbl tbody tr.line01 td {
     padding-bottom: 40px;
     border-bottom: 1px solid #ddd;
     padding-left: 0
 }
 
-.tbl-keyplayer > .tbl tbody tr.line01 td.no1 {
+.tbl-keyplayer>.tbl tbody tr.line01 td.no1 {
     vertical-align: top;
 }
 
-.tbl-keyplayer > .tbl tbody tr.line01 td span {
+.tbl-keyplayer>.tbl tbody tr.line01 td span {
     display: block;
     text-align: center;
 }
 
-.tbl-keyplayer > .tbl tbody tr.line01 td .player-img {
-}
+.tbl-keyplayer>.tbl tbody tr.line01 td .player-img {}
 
-.tbl-keyplayer > .tbl tbody tr.line01 td .name {
+.tbl-keyplayer>.tbl tbody tr.line01 td .name {
     padding-top: 10px;
     font-weight: 700;
     color: #222;
 }
 
-.tbl-keyplayer > .tbl tbody tr.line01 td .record {
+.tbl-keyplayer>.tbl tbody tr.line01 td .record {
     font-size: 20px;
     font-weight: bold;
     color: #222;
 }
 
-.tbl-keyplayer > .tbl tbody tr.line01 td {
+.tbl-keyplayer>.tbl tbody tr.line01 td {
     padding-bottom: 20px;
 }
 
-.tbl-keyplayer > .tbl tbody td.rank {
+.tbl-keyplayer>.tbl tbody td.rank {
     font-size: 15px;
     color: #888;
     text-decoration: underline;
     text-align: right;
 }
 
-.tbl-keyplayer > .tbl tbody td.no1 {
+.tbl-keyplayer>.tbl tbody td.no1 {
     font-weight: bold;
     color: #ed1c24;
 }
 
-.tbl-keyplayer > .tbl tbody td {
+.tbl-keyplayer>.tbl tbody td {
     text-align: center;
 }
 
-.tbl-keyplayer > .tbl tbody td span {
+.tbl-keyplayer>.tbl tbody td span {
     display: block;
     margin: 0 auto;
     color: #666;
@@ -2397,69 +2458,69 @@ h4 .btn-more .btn {
     vertical-align: middle;
 }
 
-.tbl-keyplayer > .tbl tbody td .rank {
+.tbl-keyplayer>.tbl tbody td .rank {
     text-align: center;
     line-height: 15px;
 }
 
-.tbl-keyplayer > .tbl tbody td .no1 {
+.tbl-keyplayer>.tbl tbody td .no1 {
     color: #ce001e;
 }
 
-.tbl-keyplayer > .tbl tbody td .team-logo {
+.tbl-keyplayer>.tbl tbody td .team-logo {
     display: inline-block;
 }
 
-.tbl-keyplayer > .tbl tbody td .name {
+.tbl-keyplayer>.tbl tbody td .name {
     display: inline-block;
 }
 
-.tbl-keyplayer > .tbl tbody td .record {
+.tbl-keyplayer>.tbl tbody td .record {
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
     color: #444;
 }
 
-.tbl-bg-none > .tbl {
-}
+.tbl-bg-none>.tbl {}
 
-.tbl-bg-none > .tbl thead th {
+.tbl-bg-none>.tbl thead th {
     padding: 15px 0;
     font-weight: 700;
     font-size: 16px;
 }
 
-.tbl-bg-none > .tbl th, td {
+.tbl-bg-none>.tbl th,
+td {
     background: none;
     border-bottom: 1px solid #dcdcdc;
 }
 
-.tbl-bg-none > .tbl td {
+.tbl-bg-none>.tbl td {
     padding: 10px 0;
 }
 
-.tbl-bg-none > .tbl td span {
+.tbl-bg-none>.tbl td span {
     display: block;
     font-size: 13px;
     font-weight: 700;
 }
 
-.tbl-bg-none > .tbl td span.player-img {
+.tbl-bg-none>.tbl td span.player-img {
     margin-bottom: 5px;
 }
 
-.tbl-bg-none > .tbl td span.record {
+.tbl-bg-none>.tbl td span.record {
     font-size: 15px;
     font-weight: bold;
     color: #444;
 }
 
-.tbl-bg-none > .tbl td dl {
+.tbl-bg-none>.tbl td dl {
     overflow: hidden;
 }
 
-.tbl-bg-none > .tbl td dt {
+.tbl-bg-none>.tbl td dt {
     float: left;
     width: 74px;
     margin-bottom: 10px;
@@ -2469,7 +2530,7 @@ h4 .btn-more .btn {
     color: #333;
 }
 
-.tbl-bg-none > .tbl td dd {
+.tbl-bg-none>.tbl td dd {
     float: left;
     width: 70px;
     font-size: 13px;
@@ -2477,8 +2538,7 @@ h4 .btn-more .btn {
     text-align: left;
 }
 
-.postseason2017 {
-}
+.postseason2017 {}
 
 .postseason2017 .tit-area h5 {
     font-weight: 700;
@@ -2488,8 +2548,7 @@ h4 .btn-more .btn {
     margin-bottom: 15px;
 }
 
-.postseason2017 .tbl-history .tbl {
-}
+.postseason2017 .tbl-history .tbl {}
 
 .postseason2017 .tbl-history .tbl th {
     padding: 15px;
@@ -2547,8 +2606,7 @@ h4 .btn-more .btn {
     margin-bottom: 14px;
 }
 
-.postseason2017 .tbl-history-result .tbl {
-}
+.postseason2017 .tbl-history-result .tbl {}
 
 .postseason2017 .tbl-history-result .tbl td {
     padding: 5px 0;
@@ -2589,8 +2647,7 @@ h4 .btn-more .btn {
     font-weight: bold;
 }
 
-.postseason2017 .tab-area {
-}
+.postseason2017 .tab-area {}
 
 .postseason2017 .tab-area .tab {
     overflow: hidden;
@@ -2615,7 +2672,8 @@ h4 .btn-more .btn {
     color: #121212;
 }
 
-.postseason2017 .tab-area .tab li a:hover, .postseason2017 .tab-area .tab li.on a {
+.postseason2017 .tab-area .tab li a:hover,
+.postseason2017 .tab-area .tab li.on a {
     padding: 13px 0 12px;
     background: #fff;
     font-weight: 700;
@@ -2699,8 +2757,7 @@ h4 .btn-more .btn {
     text-align: center;
 }
 
-.postseason2017-entry {
-}
+.postseason2017-entry {}
 
 .postseason2017-entry h5 {
     text-align: center;
@@ -2754,8 +2811,7 @@ h4 .btn-more .btn {
     text-align: center;
 }
 
-.postseason2017 .section-right-post {
-}
+.postseason2017 .section-right-post {}
 
 .postseason2017 .section-right-post h5 {
     margin-bottom: 15px !important;
@@ -3263,7 +3319,7 @@ h4 .btn-more .btn {
     font-weight: 700
 }
 
-.movie-list li .tit > span {
+.movie-list li .tit>span {
     float: left;
     margin-top: 5px;
     letter-spacing: -0.8px
@@ -3314,7 +3370,7 @@ h4 .btn-more .btn {
     margin-right: 0;
 }
 
-.sns-list li > a {
+.sns-list li>a {
     display: block;
     position: relative;
     width: 100%;
@@ -3322,7 +3378,7 @@ h4 .btn-more .btn {
     overflow: hidden
 }
 
-.sns-list li > a:before {
+.sns-list li>a:before {
     content: '';
     display: block;
     position: absolute;
@@ -3330,12 +3386,12 @@ h4 .btn-more .btn {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     transition: all .3s ease;
     opacity: 0;
 }
 
-.sns-list li > a:after {
+.sns-list li>a:after {
     content: '';
     display: block;
     z-index: 10;
@@ -3347,7 +3403,8 @@ h4 .btn-more .btn {
     opacity: 0;
 }
 
-.sns-list li > a:hover:before, .sns-list li > a:hover:after {
+.sns-list li>a:hover:before,
+.sns-list li>a:hover:after {
     opacity: 1;
 }
 
@@ -3363,7 +3420,7 @@ h4 .btn-more .btn {
     line-height: 1.7;
 }
 
-.sns-list li > a:hover > p {
+.sns-list li>a:hover>p {
     display: block;
 }
 
