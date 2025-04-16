@@ -1,21 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
+from fetcher import fetch_data
 from datetime import datetime, timedelta
 
 APP = Flask(__name__)
 
 def get_games():
-    df = pd.read_csv('2025.csv')
-    df['G_DT'] = pd.to_datetime(df['G_DT'], format='%Y%m%d')
-
-    today = datetime.today()
-    before = today - timedelta(days=3)
-    after = today + timedelta(days=7)
-    filtered_df = df[(df['G_DT'] >= before) & (df['G_DT'] <= after)]
-
     games = []
-
-    for i in filtered_df.itertuples(index=False):
+    for i in fetch_data():
         games.append(
         {
             "game_sc": i.GAME_SC_ID, 
@@ -40,15 +32,14 @@ def get_games():
             "kbot_se": i.KBOT_SE,
             "gamedate_str": i.G_DT_TXT, 
             "time": i.G_TM,
-            "away_pitcher": i.T_PIT_P_NM, 
-            "home_pitcher": i.B_PIT_P_NM
+            "away_pitcher": i.T_PIT_P_NM if not pd.isna(i.T_PIT_P_NM) else "미정", 
+            "home_pitcher": i.B_PIT_P_NM if not pd.isna(i.B_PIT_P_NM) else "미정",
         })
-
     return games
 
 @APP.route("/")
 def index():
-    return render_template("index.html", games=get_games())
+    return render_template("index.html", games=get_games(), home_color="#000000", away_color="#0072CE") 
 
 if __name__ == "__main__":
-    APP.run(host="0.0.0.0")
+    APP.run(debug=True)
