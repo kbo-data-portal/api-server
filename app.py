@@ -10,6 +10,7 @@ def get_games():
     for i in fetch_data():
         games.append(
         {
+            "season_id": i.SEASON_ID if i.SEASON_ID > 2018 else 2018,
             "game_sc": i.GAME_SC_ID, 
             "le_id": i.LE_ID, 
             "sr_id": i.SR_ID, 
@@ -32,8 +33,8 @@ def get_games():
             "kbot_se": i.KBOT_SE,
             "gamedate_str": i.G_DT_TXT, 
             "time": i.G_TM,
-            "away_pitcher": i.T_PIT_P_NM if not pd.isna(i.T_PIT_P_NM) else "미정", 
-            "home_pitcher": i.B_PIT_P_NM if not pd.isna(i.B_PIT_P_NM) else "미정",
+            "away_pitcher": i.T_PIT_P_NM, 
+            "home_pitcher": i.B_PIT_P_NM,
         })
     return games
 
