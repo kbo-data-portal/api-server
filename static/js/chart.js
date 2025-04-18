@@ -52,7 +52,7 @@ function craetePie(id, titleText, seriesData) {
   });
 }
 
-function createColumn(id, titleText, categories, seriesData, tooltip) {
+function createColumn(id, titleText, categories, seriesData) {
   Highcharts.chart(id, {
     chart: {
       type: 'column'
@@ -83,7 +83,7 @@ function createColumn(id, titleText, categories, seriesData, tooltip) {
     series: seriesData,
     tooltip: {
       formatter: function () {
-        return `${this.series.name}: ${this.y} ${tooltip}`;
+        return `${this.series.name}: ${this.y} ${this.category}`;
       }
     }
   });

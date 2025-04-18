@@ -6,12 +6,11 @@ craetePie('graph-all-match-left', '<span>172<br/>GAME</span>',
   ]
 );
 
-createColumn('graph-all-match-right', '', ['GOAL'],
+createColumn('graph-all-match-right', '', ['득점'],
   [
     { name: '삼성 라이온즈', data: [45], color: awayColor },
     { name: 'KT 위즈', data: [31], color: homeColor }
   ]
-  , '득점'
 );
 
 craetePie('graph-match-left', '<span>10<br/>GAME</span>',
@@ -22,12 +21,11 @@ craetePie('graph-match-left', '<span>10<br/>GAME</span>',
   ]
 );
 
-createColumn('graph-match-right', '', ['GOAL'],
+createColumn('graph-match-right', '', ['득점'],
   [
     { name: '삼성 라이온즈', data: [45], color: awayColor },
     { name: 'KT 위즈', data: [31], color: homeColor }
   ]
-  , '득점'
 );
 
 craeteButterflyBar('graph-stat-leftL', 'graph-stat-leftR', '',

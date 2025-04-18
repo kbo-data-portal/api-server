@@ -1,331 +1,554 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-   <!-- wrap -->
-   <div id="wrap">
 
-      {% include "layout/header.html" %}
+<div id="wrap">
 
-      <hr>
+  {% include 'layout/header.html' %}
 
-      <section id="LiveRelay" class="">
-         <div class="game-schedule">
-            <div class="tab-league">
-               <ul class="tab three">
-                  <li class="tab-main-tit on" le-id="1" sr-id="0" id="leagueRegular"><a href="#none">KBO 정규시즌</a></li>
-                  <li class="tab-main-tit tab-main-fl" le-id="2" sr-id="0,1,10,15" id="leagueFutures"><a href="#none">KBO 퓨처스리그</a></li>
-               </ul>
+  <hr />
+
+  <section id="LiveRelay" class="">
+    <div class="game-schedule">
+      <div class="tab-league">
+        <ul class="tab three">
+          <li class="tab-main-tit on" le-id="1" sr-id="0" id="leagueRegular">
+            <a href="#none">KBO 정규시즌</a>
+          </li>
+          <li class="tab-main-tit tab-main-fl" le-id="2" sr-id="0,1,10,15" id="leagueFutures">
+            <a href="#none">KBO 퓨처스리그</a>
+          </li>
+        </ul>
+      </div>
+      <div class="today-game">
+        <div class="bx-wrapper">
+          <div class="bx-viewport">
+            <ul class="game-list-n">
+              {% for game in games %}
+              <li class="game-cont" game_sc="{{ game.game_sc }}" le_id="{{ game.le_id }}" sr_id="{{ game.sr_id }}"
+                season="{{ game.season }}" g_id="{{ game.g_id }}" g_dt="{{ game.g_dt }}" s_nm="{{ game.s_nm }}"
+                vs_game_cn="{{ game.vs_game_cn }}" away_id="{{ game.away_id }}" home_id="{{ game.home_id }}"
+                away_nm="{{ game.away_nm }}" home_nm="{{ game.home_nm }}" away_p_id="{{ game.away_p_id }}"
+                home_p_id="{{ game.home_p_id }}" entry_ck="{{ game.entry_ck }}" start_ck="{{ game.start_ck }}"
+                result_ck="{{ game.result_ck }}" lineup_ck="{{ game.lineup_ck }}" vod_ck="{{ game.vod_ck }}"
+                kbot_se="{{ game.kbot_se }}">
+                <div class="wrap">
+                  <div class="top">
+                    <ul>
+                      <li>{{ game.gamedate_str }}</li>
+                    </ul>
+                  </div>
+                  <div class="middle">
+                    <div class="broadcasting">{{ game.time }}</div>
+                    <p class="staus">{{ game.s_nm }}</p>
+                    <div class="info">
+                      <div class="team away">
+                        <div class="emb">
+                          <img
+                            src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.season_id }}/emblem_{{ game.away_id }}.png"
+                            alt="{{ game.away_nm }}" />
+                        </div>
+                        <div class="today-pitcher">
+                          <p>
+                            <span class="before">선</span>{{ game.away_pitcher }}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="vs">VS</div>
+                      <div class="team home">
+                        <div class="emb">
+                          <img
+                            src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.season_id }}/emblem_{{ game.home_id }}.png"
+                            alt="{{ game.home_nm }}" />
+                        </div>
+                        <div class="today-pitcher">
+                          <p>
+                            <span class="before">선</span>{{ game.home_pitcher }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="bx-controls bx-has-controls-direction">
+            <div class="bx-controls-direction">
+              <a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a>
             </div>
-            <div class="today-game">
-               <div class="bx-wrapper">
-                  <div class="bx-viewport">
-                     <ul class="game-list-n">
-                        {% for game in games %}
-                        <li class="game-cont" game_sc="{{ game.game_sc }}" le_id="{{ game.le_id }}" sr_id="{{ game.sr_id }}" season="{{ game.season }}" g_id="{{ game.g_id }}" g_dt="{{ game.g_dt }}" s_nm="{{ game.s_nm }}" vs_game_cn="{{ game.vs_game_cn }}" away_id="{{ game.away_id }}" home_id="{{ game.home_id }}" away_nm="{{ game.away_nm }}" home_nm="{{ game.home_nm }}" away_p_id="{{ game.away_p_id }}" home_p_id="{{ game.home_p_id }}" entry_ck="{{ game.entry_ck }}" start_ck="{{ game.start_ck }}" result_ck="{{ game.result_ck }}" lineup_ck="{{ game.lineup_ck }}" vod_ck="{{ game.vod_ck }}" kbot_se="{{ game.kbot_se }}">
-                           <div class="wrap">
-                              <div class="top">
-                                 <ul>
-                                    <li>{{ game.gamedate_str }}</li>
-                                 </ul>
-                              </div>
-                              <div class="middle">
-                                 <div class="broadcasting">{{ game.time }}</div>
-                                 <p class="staus">{{ game.s_nm }}</p>
-                                 <div class="info">
-                                    <div class="team away">
-                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2018/emblem_{{ game.away_id }}.png" alt="{{ game.away_nm }}"></div>
-                                       <div class="today-pitcher">
-                                          <p><span class="before">선</span>{{ game.away_pitcher }}</p>
-                                       </div>
-                                    </div>
-                                    <div class="vs">VS</div>
-                                    <div class="team home">
-                                       <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2018/emblem_{{ game.home_id }}.png" alt="{{ game.home_nm }}"></div>
-                                       <div class="today-pitcher">
-                                          <p><span class="before">선</span>{{ game.home_pitcher }}</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </li>
-                        {% endfor %}
-                     </ul>
-                  </div>
-                  <div class="bx-controls bx-has-controls-direction">
-                     <div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div>
-                  </div>
-               </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="game-info">
+      <div class="game-info-bg">
+        <div class="match-box">
+          <span class="match-box-title">장소</span>
+          <span class="match-box-txt">대전</span>
+          <span class="match-box-title">경기일자</span>
+          <span class="match-box-txt">2025년 04월 19일</span>
+          <span class="match-box-title">방송중계</span>
+          <span class="match-box-txt">SPO-T, SS-T</span>
+        </div>
+        <div class="info-area">
+          <div class="team away">
+            <div class="emb">
+              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/SS.png" alt="" />
             </div>
-         </div>
-         <div class="game-info">
-         <div class="game-info-bg">
-            <div class="info-area">
-               <div class="team away">
-                  <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2018/SS.png" alt=""></div>
-                  <div class="score">2승2무4패( 9위 )</div>
-                  <div class="name" style="color: {{ away_color }};">삼성 라이온즈</div>
-               </div>
-               <div class="vs">VS</div>
-               <div class="team home">
-                  <div class="name" style="color: {{ home_color }};">SSG 랜더스</div>
-                  <div class="score">2승2무4패( 10위 )</div>
-                  <div class="emb"><img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2018/KT.png" alt=""></div>
-               </div>
+            <div class="score">2승2무4패( 9위 )</div>
+            <div class="name" style="color: {{ away_color }};">삼성 라이온즈</div>
+          </div>
+          <div class="vs">VS</div>
+          <div class="team home">
+            <div class="name" style="color: {{ home_color }};">SSG 랜더스</div>
+            <div class="score">2승2무4패( 10위 )</div>
+            <div class="emb">
+              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/KT.png"
+                alt="" />
             </div>
-            <div class="stat-area-top">
-               <div class="stat-area-twobox">
-                  <div class="graph-title">통산전적</div>
-                  <div class="graph-twobox">
-                     <div class="graph" id="graph-all-match-left"></div>
-                     <div class="graph" id="graph-all-match-right"></div>
-                  </div>
-               </div>
-               <div class="stat-area-match">
-                  <div class="graph-title">최근 5경기 맞대결</div>
-                  <ul class="match-list">
-                     <li>
-                        <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                        <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                        <span class="match-date">2024/07/13</span>
-                        <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                        <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-                     </li>
-                     <li>
-                        <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                        <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                        <span class="match-date">2024/07/13</span>
-                        <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                        <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-                     </li>
-                     <li>
-                        <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                        <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                        <span class="match-date">2024/07/13</span>
-                        <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                        <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-                     </li>
-                     <li>
-                        <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                        <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                        <span class="match-date">2024/07/13</span>
-                        <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                        <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-                     </li>
-                     <li>
-                        <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                        <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                        <span class="match-date">2024/07/13</span>
-                        <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                        <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-                     </li>
-                  </ul>
-               </div>
-               <div class="stat-area-twobox">
-                  <div class="graph-title">최근 10경기 전적</div>
-                  <div class="graph-twobox">
-                     <div class="graph" id="graph-match-left"></div>
-                     <div class="graph" id="graph-match-right"></div>
-                  </div>
-               </div>
+          </div>
+        </div>
+        <div class="stat-area-top">
+          <div class="stat-area-twobox">
+            <div class="graph-title">통산전적</div>
+            <div class="graph-twobox">
+              <div class="graph" id="graph-all-match-left"></div>
+              <div class="graph" id="graph-all-match-right"></div>
             </div>
-            <div class="stat-area-bottom">
-               <div class="stat-area-button">
-                  <button type="button" class="stat-button" id="btnAttFlag">타격</button>
-                  <button type="button" class="stat-button" id="btnPassFlag">투구</button>
-                  <button type="button" class="stat-button" id="btnDefFlag">수비</button>
-               </div>
-               <div class="stat-area-twobox">
-                  <div class="graph-stat">
-                     <div class="graph" id="graph-stat-leftL" style="width: 262px"></div>
-                     <div class="graph" id="graph-stat-leftR" ></div>
-                  </div>
-                  <div class="graph-stat">
-                     <div class="graph" id="graph-stat-rightL" style="width: 262px"></div>
-                     <div class="graph" id="graph-stat-rightR"></div>
-                  </div>
-               </div>
+          </div>
+          <div class="stat-area-match">
+            <div class="graph-title">최근 5경기 맞대결</div>
+            <ul class="match-list">
+              <li>
+                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
+                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
+                <span class="match-date">2024/07/13</span>
+                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
+                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
+              </li>
+              <li>
+                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
+                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
+                <span class="match-date">2024/07/13</span>
+                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
+                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
+              </li>
+              <li>
+                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
+                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
+                <span class="match-date">2024/07/13</span>
+                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
+                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
+              </li>
+              <li>
+                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
+                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
+                <span class="match-date">2024/07/13</span>
+                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
+                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
+              </li>
+              <li>
+                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
+                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
+                <span class="match-date">2024/07/13</span>
+                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
+                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
+              </li>
+            </ul>
+          </div>
+          <div class="stat-area-twobox">
+            <div class="graph-title">최근 10경기 전적</div>
+            <div class="graph-twobox">
+              <div class="graph" id="graph-match-left"></div>
+              <div class="graph" id="graph-match-right"></div>
             </div>
-         </div>
-         </div>
-         <div class="score-info">
-            <div class="score-info-left">
-               <div class="score-title">팀순위표</div>
-               <table id="tblTeamRank" class="tbl">
-                  <thead>
-                      <tr>
-                          <th>순위</th>
-                          <th>팀명</th>
-                          <th>경기</th>
-                          <th>승</th>
-                          <th>패</th>
-                          <th>무</th>
-                          <th>승률</th>
-                          <th>게임차</th>
-                          <th>연속</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                     <tr><td>1</td><td><span class="team-name">LG</span></td><td>17</td><td>14</td><td>3</td><td>0</td><td>0.824</td><td>-</td><td>1패</td></tr>
-                     <tr><td>2</td><td><span class="team-name">SSG</span></td><td>15</td><td>9</td><td>6</td><td>0</td><td>0.600</td><td>4</td><td>1패</td></tr>
-                     <tr><td>3</td><td><span class="team-name">KT</span></td><td>17</td><td>9</td><td>7</td><td>1</td><td>0.563</td><td>4.5</td><td>2승</td></tr>
-                     <tr><td>4</td><td><span class="team-name">삼성</span></td><td>18</td><td>10</td><td>8</td><td>0</td><td>0.556</td><td>4.5</td><td>2패</td></tr>
-                     <tr><td>5</td><td><span class="team-name">롯데</span></td><td>19</td><td>8</td><td>10</td><td>1</td><td>0.444</td><td>6.5</td><td>1패</td></tr>
-                     <tr><td>6</td><td><span class="team-name">NC</span></td><td>16</td><td>7</td><td>9</td><td>0</td><td>0.438</td><td>6.5</td><td>1승</td></tr>
-                     <tr><td>7</td><td><span class="team-name">두산</span></td><td>19</td><td>8</td><td>11</td><td>0</td><td>0.421</td><td>7</td><td>1승</td></tr>
-                     <tr><td>7</td><td><span class="team-name">한화</span></td><td>19</td><td>8</td><td>11</td><td>0</td><td>0.421</td><td>7</td><td>1승</td></tr>
-                     <tr><td>9</td><td><span class="team-name">KIA</span></td><td>17</td><td>7</td><td>10</td><td>0</td><td>0.412</td><td>7</td><td>1승</td></tr>
-                     <tr><td>10</td><td><span class="team-name">키움</span></td><td>19</td><td>7</td><td>12</td><td>0</td><td>0.368</td><td>8</td><td>1패</td></tr>
-                 </tbody>
-               </table>
+          </div>
+        </div>
+        <div class="stat-area-bottom">
+          <div class="stat-area-button">
+            <button type="button" class="stat-button" id="btnAttFlag">타격</button>
+            <button type="button" class="stat-button" id="btnPassFlag">투구</button>
+            <button type="button" class="stat-button" id="btnDefFlag">수비</button>
+          </div>
+          <div class="stat-area-twobox">
+            <div class="graph-stat">
+              <div class="graph" id="graph-stat-leftL" style="width: 262px"></div>
+              <div class="graph" id="graph-stat-leftR"></div>
             </div>
-            <div class="score-info-right">
-            <div class="score-info-right-top">
-               <div class="score-title">타자순위</div>
-               <div class="top-player">
-                  <span class="player-img">
-                     <img class="team" alt="" src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_HH.png">
-                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/61666.png" alt="한승혁" onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';">
-                  </span>
-                  <div class="player">
-                     <div class="title">한화 이글스</div>
-                     <div class="score">한승혁</div>
-                  </div>
-                  <div class="record">
-                     <ul>
-                        <li class="title">득점</li>
-                        <li class="score">6</li>
-                     </ul>
-                     <ul>
-                        <li class="title">득점</li>
-                        <li class="score">6</li>
-                     </ul>
-                     <ul>
-                        <li class="title">득점</li>
-                        <li class="score">6</li>
-                     </ul>
-                  </div>
-               </div>
-               <table id="tblPitcherRank" class="tbl tbl-rank">
-                  <thead>
-                      <tr>
-                          <th>순위</th>
-                          <th>선수</th>
-                          <th>팀명</th>
-                          <th>득점</th>
-                          <th>경기당</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                     <tr><td>2</td><td>이대호</td><td><span class="team-name">SSG</span></td><td>0</td><td>0.600</td></tr>
-                     <tr><td>3</td><td>김광현</td><td><span class="team-name">KT</span></td><td>1</td><td>0.563</td></tr>
-                     <tr><td>4</td><td>추신수</td><td><span class="team-name">삼성</span></td><td>0</td><td>0.556</td></tr>
-                     <tr><td>5</td><td>류현진</td><td><span class="team-name">LG</span></td><td>0</td><td>0.824</td></tr>
-                 </tbody>
-               </table>   
+            <div class="graph-stat">
+              <div class="graph" id="graph-stat-rightL" style="width: 262px"></div>
+              <div class="graph" id="graph-stat-rightR"></div>
             </div>
-            <div class="score-info-right-bottom">
-               <div class="score-title">투수순위</div>
-               <div class="top-player">
-                  <span class="player-img">
-                     <img class="team" alt="" src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_HH.png">
-                     <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/61666.png" alt="한승혁" onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';">
-                  </span>
-                  <div class="player">
-                     <div class="title">한화 이글스</div>
-                     <div class="score">한승혁</div>
-                  </div>
-                  <div class="record">
-                     <ul>
-                        <li class="title">득점</li>
-                        <li class="score">6</li>
-                     </ul>
-                     <ul>
-                        <li class="title">득점</li>
-                        <li class="score">6</li>
-                     </ul>
-                     <ul>
-                        <li class="title">득점</li>
-                        <li class="score">6</li>
-                     </ul>
-                  </div>
-
-               </div>
-               <table id="tblPitcherRank" class="tbl tbl-rank">
-                  <thead>
-                      <tr>
-                          <th>순위</th>
-                          <th>선수</th>
-                          <th>팀명</th>
-                          <th>득점</th>
-                          <th>경기당</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                     <tr><td>2</td><td>이대호</td><td><span class="team-name">SSG</span></td><td>0</td><td>0.600</td></tr>
-                     <tr><td>3</td><td>김광현</td><td><span class="team-name">KT</span></td><td>1</td><td>0.563</td></tr>
-                     <tr><td>4</td><td>추신수</td><td><span class="team-name">삼성</span></td><td>0</td><td>0.556</td></tr>
-                     <tr><td>5</td><td>윤석민</td><td><span class="team-name">롯데</span></td><td>1</td><td>0.444</td></tr>
-                 </tbody>
-               </table>   
-
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="score-info">
+      <div class="score-info-left">
+        <div class="score-title">팀순위표</div>
+        <table id="tblTeamRank" class="tbl">
+          <thead>
+            <tr>
+              <th>순위</th>
+              <th>팀명</th>
+              <th>경기</th>
+              <th>승</th>
+              <th>패</th>
+              <th>무</th>
+              <th>승률</th>
+              <th>게임차</th>
+              <th>연속</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <span class="team-name">LG</span>
+              </td>
+              <td>17</td>
+              <td>14</td>
+              <td>3</td>
+              <td>0</td>
+              <td>0.824</td>
+              <td>-</td>
+              <td>1패</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <span class="team-name">SSG</span>
+              </td>
+              <td>15</td>
+              <td>9</td>
+              <td>6</td>
+              <td>0</td>
+              <td>0.600</td>
+              <td>4</td>
+              <td>1패</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>
+                <span class="team-name">KT</span>
+              </td>
+              <td>17</td>
+              <td>9</td>
+              <td>7</td>
+              <td>1</td>
+              <td>0.563</td>
+              <td>4.5</td>
+              <td>2승</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>
+                <span class="team-name">삼성</span>
+              </td>
+              <td>18</td>
+              <td>10</td>
+              <td>8</td>
+              <td>0</td>
+              <td>0.556</td>
+              <td>4.5</td>
+              <td>2패</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>
+                <span class="team-name">롯데</span>
+              </td>
+              <td>19</td>
+              <td>8</td>
+              <td>10</td>
+              <td>1</td>
+              <td>0.444</td>
+              <td>6.5</td>
+              <td>1패</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>
+                <span class="team-name">NC</span>
+              </td>
+              <td>16</td>
+              <td>7</td>
+              <td>9</td>
+              <td>0</td>
+              <td>0.438</td>
+              <td>6.5</td>
+              <td>1승</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>
+                <span class="team-name">두산</span>
+              </td>
+              <td>19</td>
+              <td>8</td>
+              <td>11</td>
+              <td>0</td>
+              <td>0.421</td>
+              <td>7</td>
+              <td>1승</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>
+                <span class="team-name">한화</span>
+              </td>
+              <td>19</td>
+              <td>8</td>
+              <td>11</td>
+              <td>0</td>
+              <td>0.421</td>
+              <td>7</td>
+              <td>1승</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>
+                <span class="team-name">KIA</span>
+              </td>
+              <td>17</td>
+              <td>7</td>
+              <td>10</td>
+              <td>0</td>
+              <td>0.412</td>
+              <td>7</td>
+              <td>1승</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>
+                <span class="team-name">키움</span>
+              </td>
+              <td>19</td>
+              <td>7</td>
+              <td>12</td>
+              <td>0</td>
+              <td>0.368</td>
+              <td>8</td>
+              <td>1패</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="score-info-right">
+        <div class="score-info-right-top">
+          <div class="score-title">타자순위</div>
+          <div class="top-player">
+            <span class="player-img">
+              <img class="team" alt=""
+                src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_HH.png" />
+              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/61666.png" alt="한승혁"
+                onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';" />
+            </span>
+            <div class="player">
+              <div class="title">한화 이글스</div>
+              <div class="score">한승혁</div>
             </div>
+            <div class="record">
+              <ul>
+                <li class="title">득점</li>
+                <li class="score">6</li>
+              </ul>
+              <ul>
+                <li class="title">득점</li>
+                <li class="score">6</li>
+              </ul>
+              <ul>
+                <li class="title">득점</li>
+                <li class="score">6</li>
+              </ul>
             </div>
-         </div>
-      </section>
-      
-      <hr>
+          </div>
+          <table id="tblPitcherRank" class="tbl tbl-rank">
+            <thead>
+              <tr>
+                <th>순위</th>
+                <th>선수</th>
+                <th>팀명</th>
+                <th>득점</th>
+                <th>경기당</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2</td>
+                <td>이대호</td>
+                <td>
+                  <span class="team-name">SSG</span>
+                </td>
+                <td>0</td>
+                <td>0.600</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>김광현</td>
+                <td>
+                  <span class="team-name">KT</span>
+                </td>
+                <td>1</td>
+                <td>0.563</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>추신수</td>
+                <td>
+                  <span class="team-name">삼성</span>
+                </td>
+                <td>0</td>
+                <td>0.556</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>류현진</td>
+                <td>
+                  <span class="team-name">LG</span>
+                </td>
+                <td>0</td>
+                <td>0.824</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="score-info-right-bottom">
+          <div class="score-title">투수순위</div>
+          <div class="top-player">
+            <span class="player-img">
+              <img class="team" alt=""
+                src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_HH.png" />
+              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/61666.png" alt="한승혁"
+                onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';" />
+            </span>
+            <div class="player">
+              <div class="title">한화 이글스</div>
+              <div class="score">한승혁</div>
+            </div>
+            <div class="record">
+              <ul>
+                <li class="title">득점</li>
+                <li class="score">6</li>
+              </ul>
+              <ul>
+                <li class="title">득점</li>
+                <li class="score">6</li>
+              </ul>
+              <ul>
+                <li class="title">득점</li>
+                <li class="score">6</li>
+              </ul>
+            </div>
+          </div>
+          <table id="tblPitcherRank" class="tbl tbl-rank">
+            <thead>
+              <tr>
+                <th>순위</th>
+                <th>선수</th>
+                <th>팀명</th>
+                <th>득점</th>
+                <th>경기당</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2</td>
+                <td>이대호</td>
+                <td>
+                  <span class="team-name">SSG</span>
+                </td>
+                <td>0</td>
+                <td>0.600</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>김광현</td>
+                <td>
+                  <span class="team-name">KT</span>
+                </td>
+                <td>1</td>
+                <td>0.563</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>추신수</td>
+                <td>
+                  <span class="team-name">삼성</span>
+                </td>
+                <td>0</td>
+                <td>0.556</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>윤석민</td>
+                <td>
+                  <span class="team-name">롯데</span>
+                </td>
+                <td>1</td>
+                <td>0.444</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <script>
-         const homeColor = "{{ home_color }}";
-         const awayColor = "{{ away_color }}";
-         const itemsPerPage = 5;  
-         const slides = document.querySelectorAll('.game-cont');
-         const track = document.querySelector('.game-list-n');
-         const totalPages = Math.ceil(slides.length / itemsPerPage);
-         let currentPage = 3;
+  <hr />
 
-         const prevBtn = document.querySelector('.bx-prev');
-         const nextBtn = document.querySelector('.bx-next');
+  <script>
+    const homeColor = '{{ home_color }}'
+    const awayColor = '{{ away_color }}'
+    const itemsPerPage = 5
+    const slides = document.querySelectorAll('.game-cont')
+    const track = document.querySelector('.game-list-n')
+    const totalPages = Math.ceil(slides.length / itemsPerPage)
+    let currentPage = 3
 
-         function updateSlider() {
-            if (currentPage === 1) {
-               prevBtn.style.display = 'none';
-            } else {
-               prevBtn.style.display = 'block';
-            }
-            if (currentPage === totalPages) {
-               nextBtn.style.display = 'none';
-            } else {
-               nextBtn.style.display = 'block';
-            }
-           const offset = (currentPage - 1) * 1050;
-           track.style.transform = `translateX(-${offset}px)`;
-         }
+    const prevBtn = document.querySelector('.bx-prev')
+    const nextBtn = document.querySelector('.bx-next')
 
-         prevBtn.addEventListener('click', (e) => {
-           e.preventDefault();
-           if (currentPage > 1) {
-             currentPage--;
-             updateSlider();
-           }
-         });
+    function updateSlider() {
+      if (currentPage === 1) {
+        prevBtn.style.display = 'none'
+      } else {
+        prevBtn.style.display = 'block'
+      }
+      if (currentPage === totalPages) {
+        nextBtn.style.display = 'none'
+      } else {
+        nextBtn.style.display = 'block'
+      }
+      const offset = (currentPage - 1) * 1050
+      track.style.transform = `translateX(-${offset}px)`
+    }
 
-         nextBtn.addEventListener('click', (e) => {
-           e.preventDefault();
-           if (currentPage < totalPages) {
-             currentPage++;
-             updateSlider();
-           }
-         });
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      if (currentPage > 1) {
+        currentPage--
+        updateSlider()
+      }
+    })
 
-         updateSlider();
-      </script>
-      <script src="static/js/chart.js" type="text/javascript"></script>
-      <script src="static/js/script.js" type="text/javascript"></script>
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      if (currentPage < totalPages) {
+        currentPage++
+        updateSlider()
+      }
+    })
 
-      {% include "layout/footer.html" %}
-      
-   </div>
-   <!-- // wrap -->
+    updateSlider()
+  </script>
+  <script src="static/js/chart.js" type="text/javascript"></script>
+  <script src="static/js/script.js" type="text/javascript"></script>
+
+  {% include 'layout/footer.html' %}
+
+</div>
+
 {% endblock %}
