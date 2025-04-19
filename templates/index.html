@@ -25,32 +25,26 @@
           <div class="bx-viewport">
             <ul class="game-list-n">
               {% for game in games %}
-              <li class="game-cont" game_sc="{{ game.game_sc }}" le_id="{{ game.le_id }}" sr_id="{{ game.sr_id }}"
-                season="{{ game.season }}" g_id="{{ game.g_id }}" g_dt="{{ game.g_dt }}" s_nm="{{ game.s_nm }}"
-                vs_game_cn="{{ game.vs_game_cn }}" away_id="{{ game.away_id }}" home_id="{{ game.home_id }}"
-                away_nm="{{ game.away_nm }}" home_nm="{{ game.home_nm }}" away_p_id="{{ game.away_p_id }}"
-                home_p_id="{{ game.home_p_id }}" entry_ck="{{ game.entry_ck }}" start_ck="{{ game.start_ck }}"
-                result_ck="{{ game.result_ck }}" lineup_ck="{{ game.lineup_ck }}" vod_ck="{{ game.vod_ck }}"
-                kbot_se="{{ game.kbot_se }}">
+              <li class="game-cont" data-game-id="{{ game.G_ID }}">
                 <div class="wrap">
                   <div class="top">
                     <ul>
-                      <li>{{ game.gamedate_str }}</li>
+                      <li>{{ game.G_DT_TXT }}</li>
                     </ul>
                   </div>
                   <div class="middle">
-                    <div class="broadcasting">{{ game.time }}</div>
-                    <p class="staus">{{ game.s_nm }}</p>
+                    <div class="broadcasting">{{ game.G_TM }}</div>
+                    <p class="staus">{{ game.S_NM }}</p>
                     <div class="info">
                       <div class="team away">
                         <div class="emb">
                           <img
-                            src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.season_id }}/emblem_{{ game.away_id }}.png"
-                            alt="{{ game.away_nm }}" />
+                            src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.SEASON_ID }}/emblem_{{ game.AWAY_ID }}.png"
+                            alt="{{ game.AWAY_NM }}" />
                         </div>
                         <div class="today-pitcher">
                           <p>
-                            <span class="before">선</span>{{ game.away_pitcher }}
+                            <span class="before">선</span>{{ game.T_PIT_P_NM }}
                           </p>
                         </div>
                       </div>
@@ -58,12 +52,12 @@
                       <div class="team home">
                         <div class="emb">
                           <img
-                            src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.season_id }}/emblem_{{ game.home_id }}.png"
-                            alt="{{ game.home_nm }}" />
+                            src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.SEASON_ID }}/emblem_{{ game.HOME_ID }}.png"
+                            alt="{{ game.HOME_NM }}" />
                         </div>
                         <div class="today-pitcher">
                           <p>
-                            <span class="before">선</span>{{ game.home_pitcher }}
+                            <span class="before">선</span>{{ game.B_PIT_P_NM }}
                           </p>
                         </div>
                       </div>
@@ -84,31 +78,11 @@
     </div>
     <div class="game-info">
       <div class="game-info-bg">
-        <div class="match-box">
-          <span class="match-box-title">장소</span>
-          <span class="match-box-txt">대전</span>
-          <span class="match-box-title">경기일자</span>
-          <span class="match-box-txt">2025년 04월 19일</span>
-          <span class="match-box-title">방송중계</span>
-          <span class="match-box-txt">SPO-T, SS-T</span>
-        </div>
+        <div class="match-box"></div>
         <div class="info-area">
-          <div class="team away">
-            <div class="emb">
-              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/SS.png" alt="" />
-            </div>
-            <div class="score">2승2무4패( 9위 )</div>
-            <div class="name" style="color: {{ away_color }};">삼성 라이온즈</div>
-          </div>
+          <div class="team away info"></div>
           <div class="vs">VS</div>
-          <div class="team home">
-            <div class="name" style="color: {{ home_color }};">SSG 랜더스</div>
-            <div class="score">2승2무4패( 10위 )</div>
-            <div class="emb">
-              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/2022/KT.png"
-                alt="" />
-            </div>
-          </div>
+          <div class="team home info"></div>
         </div>
         <div class="stat-area-top">
           <div class="stat-area-twobox">
@@ -120,43 +94,7 @@
           </div>
           <div class="stat-area-match">
             <div class="graph-title">최근 5경기 맞대결</div>
-            <ul class="match-list">
-              <li>
-                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                <span class="match-date">2024/07/13</span>
-                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-              </li>
-              <li>
-                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                <span class="match-date">2024/07/13</span>
-                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-              </li>
-              <li>
-                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                <span class="match-date">2024/07/13</span>
-                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-              </li>
-              <li>
-                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                <span class="match-date">2024/07/13</span>
-                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-              </li>
-              <li>
-                <span class="match-name away-name" style="color: {{ away_color }};">제주</span>
-                <span class="match-score away-score" style="background: {{ away_color }};">2</span>
-                <span class="match-date">2024/07/13</span>
-                <span class="match-score home-score" style="background: {{ home_color }};">1</span>
-                <span class="match-name home-name" style="color: {{ home_color }};">포항</span>
-              </li>
-            </ul>
+            <ul class="match-list"></ul>
           </div>
           <div class="stat-area-twobox">
             <div class="graph-title">최근 10경기 전적</div>
