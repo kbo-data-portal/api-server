@@ -1322,13 +1322,16 @@ a.ui-button:focus {
 }
 
 #LiveRelay .game-info .match-list .match-score {
+    display: inline-block;
+    width: 22px;
+    font-size: 10px;
     font-weight: 600;
     color: #fff;
     text-align: center;
     vertical-align: middle;
-    padding: 2px 5px;
+    padding: 1px 3px;
     border-radius: 3px;
-    margin: 0 10px;
+    margin: 0 5px;
 }
 
 #LiveRelay .score-info {

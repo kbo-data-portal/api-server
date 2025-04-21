@@ -37,13 +37,12 @@ $(document).on("click", ".game-cont", function () {
         <div class="score">${response.AWAY_SCORE}</div>
         <div class="name" style="color: ${response.AWAY_COLOR};">${response.AWAY_NM}</div>
       `);
-
       
-      craetePie('graph-all-match-left', '<span>172<br/>GAME</span>',
+      craetePie('graph-all-match-left', `<span>${response.OP_SCORE[0]+response.OP_SCORE[1]+response.OP_SCORE[2]}<br/>GAME</span>`,
         [
-          { name: `${response.HOME_NM} 승`, y: 65, color: response.HOME_COLOR },
-          { name: '무', y: 49, color: '#666666' },
-          { name: `${response.AWAY_NM} 승`, y: 63, color:response.AWAY_COLOR },
+          { name: `${response.HOME_NM} 승`, y: response.OP_SCORE[0], color: response.HOME_COLOR },
+          { name: '무', y: response.OP_SCORE[1], color: '#666666' },
+          { name: `${response.AWAY_NM} 승`, y: response.OP_SCORE[2], color:response.AWAY_COLOR },
         ]
       );
 
@@ -54,11 +53,11 @@ $(document).on("click", ".game-cont", function () {
         ]
       );
 
-      craetePie('graph-match-left', '<span>10<br/>GAME</span>',
+      craetePie('graph-match-left', `<span>${response.SS_OP_SCORE[0]+response.SS_OP_SCORE[1]+response.SS_OP_SCORE[2]}<br/>GAME</span>`,
         [
-          { name: `${response.HOME_NM} 승`, y: 4, color: response.HOME_COLOR },
-          { name: '무', y: 3, color: '#666666' },
-          { name: `${response.AWAY_NM} 승`, y: 3, color: response.AWAY_COLOR },
+          { name: `${response.HOME_NM} 승`, y: response.SS_OP_SCORE[0], color: response.HOME_COLOR },
+          { name: '무', y: response.SS_OP_SCORE[1], color: '#666666' },
+          { name: `${response.AWAY_NM} 승`, y: response.SS_OP_SCORE[2], color: response.AWAY_COLOR },
         ]
       );
 
@@ -96,11 +95,11 @@ $(document).on("click", ".game-cont", function () {
       response.matches.forEach(match => {
         const li = `
             <li>
-              <span class="match-name away-name" style="color: ${match.away_color};">${match.away}</span>
-              <span class="match-score away-score" style="background: ${match.away_color};">${match.away_score}</span>
-              <span class="match-date">${match.date}</span>
-              <span class="match-score home-score" style="background: ${match.home_color};">${match.home_score}</span>
-              <span class="match-name home-name" style="color: ${match.home_color};">${match.home}</span>
+              <span class="match-name away-name" style="color: ${response.AWAY_COLOR};">${match.AWAY_NM}</span>
+              <span class="match-score away-score" style="background: ${response.AWAY_COLOR};">${match.AWAY_SCORE}</span>
+              <span class="match-date">${match.G_DT}</span>
+              <span class="match-score home-score" style="background: ${response.HOME_COLOR};">${match.HOME_SCORE}</span>
+              <span class="match-name home-name" style="color: ${response.HOME_COLOR};">${match.HOME_NM}</span>
             </li>
           `;
         matchList.append(li);
