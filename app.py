@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
-from fetcher import fetch_game_list, fetch_match_info, fetch_rank_info
+from fetcher import fetch_game_list, fetch_match_info, fetch_rank_info, fetch_op_rank_info, fetch_op_match_info
+from datetime import datetime
 
 APP = Flask(__name__)
 
@@ -23,6 +24,19 @@ def get_match():
 
     match = fetch_match_info(game_id)
     rank = fetch_rank_info(match.SEASON_ID)
+    op_rank = fetch_op_rank_info(0, match.HOME_NM, match.AWAY_NM)
+    ss_op_rank = fetch_op_rank_info(match.SEASON_ID, match.HOME_NM, match.AWAY_NM)
+    op_match = fetch_op_match_info(match.HOME_NM, match.AWAY_NM)
+
+    matches = []
+    for row in op_match:
+        matches.append({
+            "G_DT": datetime.strptime(row.G_DT, "%Y-%m-%d").strftime("%Y년 %m월 %d일"),
+            "HOME_NM": match.HOME_NM, 
+            "AWAY_NM": match.AWAY_NM,
+            "HOME_SCORE": row.HOME_SCORE if row.HOME_NM == match.HOME_NM else row.AWAY_SCORE,
+            "AWAY_SCORE": row.AWAY_SCORE if row.AWAY_NM == match.AWAY_NM else row.HOME_SCORE,
+        })
     
     home = [row for row in rank if row.TEAM_NM == match.HOME_NM][0]
     away = [row for row in rank if row.TEAM_NM == match.AWAY_NM][0]
@@ -40,7 +54,9 @@ def get_match():
         "AWAY_NM": team[match.AWAY_ID]["full"],
         "AWAY_SCORE": f"{away.W_CN}승 {away.D_CN}무 {away.L_CN}패 ( {away.RANK}위 )",
         "AWAY_COLOR": team[match.AWAY_ID]["color"],
-        "matches": [],
+        "OP_SCORE": [int(op_rank.W_CN), int(op_rank.D_CN), int(op_rank.L_CN)],
+        "SS_OP_SCORE": [int(ss_op_rank.W_CN), int(ss_op_rank.D_CN), int(ss_op_rank.L_CN)],
+        "matches": matches,
     })
 
 @APP.route("/")
