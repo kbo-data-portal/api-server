@@ -107,7 +107,6 @@ function createBar(id, titleText, categories, seriesData, reverse, maxValue) {
       },
       gridLineWidth: 0,
       lineWidth: 0,
-      reversed: reverse
     },
     yAxis: {
       max: maxValue,
@@ -135,7 +134,9 @@ function createBar(id, titleText, categories, seriesData, reverse, maxValue) {
     },
     series: seriesData,
     tooltip: {
-      enabled: false
+      formatter: function () {
+        return `${this.series.name} ${this.category}<br/> ${this.y}`;
+      }
     }
   });
 }

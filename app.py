@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from fetcher import fetch_game_list, fetch_match_info, fetch_rank_info, fetch_op_rank_info, fetch_op_match_info
+from fetcher import fetch_game_list, fetch_match_info, fetch_rank_info, fetch_op_rank_info, fetch_op_match_info, fetch_hitter_info
 from datetime import datetime
 
 APP = Flask(__name__)
@@ -27,6 +27,9 @@ def get_match():
     op_rank = fetch_op_rank_info(0, match.HOME_NM, match.AWAY_NM)
     ss_op_rank = fetch_op_rank_info(match.SEASON_ID, match.HOME_NM, match.AWAY_NM)
     op_match = fetch_op_match_info(match.HOME_NM, match.AWAY_NM)
+    
+    home_hitter = fetch_hitter_info(match.SEASON_ID, match.HOME_NM)
+    away_hitter = fetch_hitter_info(match.SEASON_ID, match.AWAY_NM)
 
     matches = []
     for row in op_match:
@@ -56,7 +59,23 @@ def get_match():
         "AWAY_COLOR": team[match.AWAY_ID]["color"],
         "OP_SCORE": [int(op_rank.W_CN), int(op_rank.D_CN), int(op_rank.L_CN)],
         "SS_OP_SCORE": [int(ss_op_rank.W_CN), int(ss_op_rank.D_CN), int(ss_op_rank.L_CN)],
-        "matches": matches,
+        "MATCH_SCORE": matches,
+        "H_HITTER_INFO": [int(home_hitter["R"]), 
+                     int(home_hitter["H"]), 
+                     int(home_hitter["HR"]), 
+                     int(home_hitter["RBI"]), 
+                     int(home_hitter["2B"]), 
+                     int(home_hitter["3B"]), 
+                     int(home_hitter["BB"]), 
+                     int(home_hitter["SO"])],
+        "A_HITTER_INFO": [int(away_hitter["R"]), 
+                     int(away_hitter["H"]), 
+                     int(away_hitter["HR"]), 
+                     int(away_hitter["RBI"]), 
+                     int(away_hitter["2B"]), 
+                     int(away_hitter["3B"]), 
+                     int(away_hitter["BB"]), 
+                     int(away_hitter["SO"])]
     })
 
 @APP.route("/")
