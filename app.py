@@ -5,16 +5,16 @@ from datetime import datetime
 APP = Flask(__name__)
 
 team = {
+    "WO": {"full": "키움 히어로즈", "color": "#570514"},
+    "OB": {"full": "두산 베어스", "color": "#1A1748"},
+    "LT": {"full": "롯데 자이언츠", "color": "#041E42"},
+    "SS": {"full": "삼성 라이온즈", "color": "#074CA1"},
+    "HH": {"full": "한화 이글스", "color": "#FC4E00"},
+    "HT": {"full": "KIA 타이거즈", "color": "#EA0029"},
     "LG": {"full": "LG 트윈스", "color": "#C30452"},
-    "OB": {"full": "두산 베어스", "color": "#0E1C34"},
-    "SK": {"full": "SSG 랜더스", "color": "#E60012"},
-    "WO": {"full": "키움 히어로즈", "color": "#76232F"},
+    "SK": {"full": "SSG 랜더스", "color": "#CE0E2D"},
+    "NC": {"full": "NC 다이노스", "color": "#315288"},
     "KT": {"full": "KT 위즈", "color": "#000000"},
-    "NC": {"full": "NC 다이노스", "color": "#012E67"},
-    "HT": {"full": "KIA 타이거즈", "color": "#D6001C"},
-    "SS": {"full": "삼성 라이온즈", "color": "#0072CE"},
-    "LT": {"full": "롯데 자이언츠", "color": "#13294B"},
-    "HH": {"full": "한화 이글스", "color": "#F26722"},
 }
 
 @APP.route("/get_match", methods=["POST"])
