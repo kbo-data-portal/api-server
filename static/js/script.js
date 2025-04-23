@@ -4,9 +4,9 @@ let currentPage = (totalPages + 5) % 10
 
 $(document).ready(function () {
   updateSlider()
-
-  const firstGame = $(".game-list-n .game-cont").eq((10 - totalPages) * 5);
+  const firstGame = $(".game-list-n .game-cont").eq((currentPage - 1) * 5);
   firstGame.addClass("on");
+
   getMatch(firstGame.data("game-id"));
 });
 

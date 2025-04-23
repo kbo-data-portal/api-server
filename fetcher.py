@@ -14,7 +14,6 @@ TABLES = {
 
 def fetch_recent_games():
     today = datetime.today()
-    today =datetime(2025, 7, 21)
     start_date = today - timedelta(days=3)
     end_date = today + timedelta(days=7)
 
