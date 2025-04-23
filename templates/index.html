@@ -106,18 +106,18 @@
         </div>
         <div class="stat-area-bottom">
           <div class="stat-area-button">
-            <button type="button" class="stat-button" id="btnAttFlag">타격</button>
-            <button type="button" class="stat-button" id="btnPassFlag">투구</button>
-            <button type="button" class="stat-button" id="btnDefFlag">수비</button>
+            <button type="button" class="stat-button active" data-player-type="hitter">타격</button>
+            <button type="button" class="stat-button" data-player-type="pitcher">투구</button>
+            <button type="button" class="stat-button" data-player-type="defense">수비</button>
           </div>
           <div class="stat-area-twobox">
             <div class="graph-stat">
-              <div class="graph" id="graph-stat-leftL" style="width: 225px"></div>
-              <div class="graph" id="graph-stat-leftR"></div>
+              <div class="graph" id="graph-stat-left-away" style="width: 225px"></div>
+              <div class="graph" id="graph-stat-left-home"></div>
             </div>
             <div class="graph-stat">
-              <div class="graph" id="graph-stat-rightL" style="width: 225px"></div>
-              <div class="graph" id="graph-stat-rightR"></div>
+              <div class="graph" id="graph-stat-right-away" style="width: 225px"></div>
+              <div class="graph" id="graph-stat-right-home"></div>
             </div>
           </div>
         </div>
@@ -436,53 +436,10 @@
   </section>
 
   <hr />
-
-  <script>
-    const homeColor = '{{ home_color }}'
-    const awayColor = '{{ away_color }}'
-    const itemsPerPage = 5
-    const slides = document.querySelectorAll('.game-cont')
-    const track = document.querySelector('.game-list-n')
-    const totalPages = Math.ceil(slides.length / itemsPerPage)
-    let currentPage = 3
-
-    const prevBtn = document.querySelector('.bx-prev')
-    const nextBtn = document.querySelector('.bx-next')
-
-    function updateSlider() {
-      if (currentPage === 1) {
-        prevBtn.style.display = 'none'
-      } else {
-        prevBtn.style.display = 'block'
-      }
-      if (currentPage === totalPages) {
-        nextBtn.style.display = 'none'
-      } else {
-        nextBtn.style.display = 'block'
-      }
-      const offset = (currentPage - 1) * 1050
-      track.style.transform = `translateX(-${offset}px)`
-    }
-
-    prevBtn.addEventListener('click', (e) => {
-      e.preventDefault()
-      if (currentPage > 1) {
-        currentPage--
-        updateSlider()
-      }
-    })
-
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault()
-      if (currentPage < totalPages) {
-        currentPage++
-        updateSlider()
-      }
-    })
-
-    updateSlider()
-  </script>
+  
   <script src="static/js/chart.js" type="text/javascript"></script>
+  <script src="static/js/update.js" type="text/javascript"></script>
+  <script src="static/js/ajax.js" type="text/javascript"></script>
   <script src="static/js/script.js" type="text/javascript"></script>
 
   {% include 'layout/footer.html' %}

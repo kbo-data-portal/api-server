@@ -1,177 +1,185 @@
 from datetime import datetime, timedelta
-from sqlalchemy import create_engine, MetaData, Table, select, and_, func, over
-from sqlalchemy.sql import desc
+from sqlalchemy import create_engine, MetaData, Table, select, and_, func, desc, or_
 
-engine = create_engine("postgresql+psycopg2://postgres:postgres@localhost:5432/postgres")
-metadata = MetaData(schema="public")
+ENGINE = create_engine("postgresql+psycopg2://postgres:postgres@localhost:5432/postgres")
+METADATA = MetaData(schema="public")
+TABLES = {
+    "game_schedule": Table("game_schedule", METADATA, autoload_with=ENGINE),
+    "game_summary": Table("game_summary", METADATA, autoload_with=ENGINE),      
+    "team_summary": Table("team_summary", METADATA, autoload_with=ENGINE),
+    "team_op_summary": Table("team_op_summary", METADATA, autoload_with=ENGINE),
+    "team_pitcher": Table("team_pitcher", METADATA, autoload_with=ENGINE),
+    "team_hitter": Table("team_hitter", METADATA, autoload_with=ENGINE)
+}
 
-def fetch_game_list():
+def fetch_recent_games():
     today = datetime.today()
-    before = today - timedelta(days=3)
-    after = today + timedelta(days=7)
-    tbl = Table("game_schedule", metadata, autoload_with=engine)
-    with engine.connect() as conn:
+    today =datetime(2025, 7, 21)
+    start_date = today - timedelta(days=3)
+    end_date = today + timedelta(days=7)
+
+    table = TABLES["game_schedule"]
+    with ENGINE.connect() as conn:
         query = (
             select(
-                tbl.c["G_ID"],
-                tbl.c["G_DT_TXT"],
-                tbl.c["G_TM"],
-                tbl.c["S_NM"],
-                tbl.c["AWAY_ID"],
-                tbl.c["AWAY_NM"],
-                tbl.c["HOME_ID"],
-                tbl.c["HOME_NM"],
-                func.coalesce(tbl.c["T_PIT_P_NM"], "미정").label("T_PIT_P_NM"),
-                func.coalesce(tbl.c["B_PIT_P_NM"], "미정").label("B_PIT_P_NM"),
-                tbl.c["T_PIT_P_NM"],
-                tbl.c["B_PIT_P_NM"],
-                tbl.c["SEASON_ID"]
+                table.c["G_ID"],
+                table.c["G_DT_TXT"],
+                table.c["G_TM"],
+                table.c["S_NM"],
+                table.c["AWAY_ID"],
+                table.c["AWAY_NM"],
+                table.c["HOME_ID"],
+                table.c["HOME_NM"],
+                func.coalesce(table.c["T_PIT_P_NM"], "미정").label("T_PIT_P_NM"),
+                func.coalesce(table.c["B_PIT_P_NM"], "미정").label("B_PIT_P_NM"),
+                table.c["SEASON_ID"]
             )
             .where(and_(
-                tbl.c["G_DT"] > before.strftime("%Y%m%d"),
-                tbl.c["G_DT"] < after.strftime("%Y%m%d"),
+                table.c["G_DT"] > start_date.strftime("%Y%m%d"),
+                table.c["G_DT"] < end_date.strftime("%Y%m%d"),
             ))
-           .order_by(tbl.c["G_DT"])
-        )   
+            .order_by(table.c["G_DT"])
+            .limit(40)
+        )
         return conn.execute(query).fetchall()
 
 
-def fetch_match_info(game_id):
-    tbl = Table("game_schedule", metadata, autoload_with=engine)
-    with engine.connect() as conn:
+def fetch_game_info_by_id(game_id: str):
+    table = TABLES["game_schedule"]
+    with ENGINE.connect() as conn:
         query = (
             select(
-                tbl.c["SEASON_ID"],
-                tbl.c["AWAY_ID"],
-                tbl.c["AWAY_NM"],
-                tbl.c["HOME_ID"],
-                tbl.c["HOME_NM"],
-                tbl.c["G_DT_TXT"],
-                tbl.c["TV_IF"],
-                tbl.c["S_NM"]
+                table.c["SEASON_ID"],
+                table.c["AWAY_ID"],
+                table.c["AWAY_NM"],
+                table.c["HOME_ID"],
+                table.c["HOME_NM"],
+                table.c["G_DT_TXT"],
+                func.coalesce(table.c["TV_IF"], "미정").label("TV_IF"),
+                table.c["S_NM"]
             )
-            .where(tbl.c["G_ID"] == game_id)
-        )   
+            .where(table.c["G_ID"] == game_id)
+        )
         return conn.execute(query).fetchone()
 
 
-def fetch_op_match_info(home, away):
-    tbl = Table("game_summary", metadata, autoload_with=engine)
-    with engine.connect() as conn:
+def fetch_head_to_head_recent_games(home_team: str, away_team: str):
+    table = TABLES["game_summary"]
+    with ENGINE.connect() as conn:
         query = (
             select(
-                tbl.c["G_DT"],
-                tbl.c["HOME_NM"], 
-                tbl.c["AWAY_NM"],
-                func.max(tbl.c["B_SCORE_CN"]).label("HOME_SCORE"),
-                func.max(tbl.c["T_SCORE_CN"]).label("AWAY_SCORE")
+                table.c["G_DT"],
+                table.c["HOME_NM"],
+                table.c["AWAY_NM"],
+                func.max(table.c["B_SCORE_CN"]).label("HOME_SCORE"),
+                func.max(table.c["T_SCORE_CN"]).label("AWAY_SCORE")
             )
-            .where(and_(
-                tbl.c["HOME_NM"].in_([home, away]),
-                tbl.c["AWAY_NM"].in_([home, away])
+            .where(or_(
+                and_(table.c["HOME_NM"] == home_team, table.c["AWAY_NM"] == away_team, table.c["SR_ID"] == 0),
+                and_(table.c["HOME_NM"] == away_team, table.c["AWAY_NM"] == home_team, table.c["SR_ID"] == 0)
             ))
-            .group_by(tbl.c["G_DT"], tbl.c["HOME_NM"], tbl.c["AWAY_NM"])
-            .order_by(desc(tbl.c["G_DT"]))
+            .group_by(table.c["G_DT"], table.c["HOME_NM"], table.c["AWAY_NM"])
+            .order_by(desc(table.c["G_DT"]))
             .limit(5)
-        )   
+        )
         return conn.execute(query).fetchall()
 
 
-def fetch_rank_info(season):
-    tbl = Table("team_summary", metadata, autoload_with=engine)
-    with engine.connect() as conn:
+def fetch_team_rankings(season_id: int):
+    table = TABLES["team_summary"]
+    with ENGINE.connect() as conn:
         query = (
             select(
-                tbl.c["TEAM_NM"],
-                tbl.c["W_CN"],
-                tbl.c["L_CN"],
-                tbl.c["D_CN"],
-                func.rank().over(order_by=desc(tbl.c["W_RATE"])).label("RANK")
+                table.c["TEAM_NM"],
+                table.c["W_CN"],
+                table.c["L_CN"],
+                table.c["D_CN"],
+                func.rank().over(order_by=desc(table.c["W_RATE"])).label("RANK")
             )
-            .where(tbl.c["SEASON_ID"] == season)
-        )   
+            .where(table.c["SEASON_ID"] == season_id)
+        )
         return conn.execute(query).fetchall()
-    
 
-def fetch_op_rank_info(season, home, away):
-    tbl = Table("team_op_summary", metadata, autoload_with=engine)
-    with engine.connect() as conn:
-        if season > 0:
+
+def fetch_vs_team_stats(season_id: int, team_name: str, opponent_name: str):
+    table = TABLES["team_op_summary"]
+    with ENGINE.connect() as conn:
+        if season_id > 0:
             query = (
                 select(
-                    tbl.c["W_CN"],
-                    tbl.c["L_CN"],
-                    tbl.c["D_CN"],
-                    tbl.c["R"],
-                    tbl.c["H"],
-                    tbl.c["B"],
-                    tbl.c["E"]
+                    table.c["W_CN"],
+                    table.c["L_CN"],
+                    table.c["D_CN"],
+                    table.c["R"],
+                    table.c["H"],
+                    table.c["B"],
+                    table.c["E"]
                 )
                 .where(and_(
-                    tbl.c["SEASON_ID"] == season,
-                    tbl.c["TEAM_NM"] == home,
-                    tbl.c["OP_NM"] == away
+                    table.c["SEASON_ID"] == season_id,
+                    table.c["TEAM_NM"] == team_name,
+                    table.c["OP_NM"] == opponent_name
                 ))
-            )   
+            )
         else:
             query = (
                 select(
-                    func.sum(tbl.c["W_CN"]).label("W_CN"),
-                    func.sum(tbl.c["L_CN"]).label("L_CN"),
-                    func.sum(tbl.c["D_CN"]).label("D_CN"),
-                    func.sum(tbl.c["R"]).label("R"),
-                    func.sum(tbl.c["H"]).label("H"),
-                    func.sum(tbl.c["B"]).label("B"),
-                    func.sum(tbl.c["E"]).label("E")
+                    func.sum(table.c["W_CN"]).label("W_CN"),
+                    func.sum(table.c["L_CN"]).label("L_CN"),
+                    func.sum(table.c["D_CN"]).label("D_CN"),
+                    func.sum(table.c["R"]).label("R"),
+                    func.sum(table.c["H"]).label("H"),
+                    func.sum(table.c["B"]).label("B"),
+                    func.sum(table.c["E"]).label("E")
                 )
                 .where(and_(
-                    tbl.c["TEAM_NM"] == home,
-                    tbl.c["OP_NM"] == away
+                    table.c["TEAM_NM"] == team_name,
+                    table.c["OP_NM"] == opponent_name
                 ))
-                .group_by(tbl.c["TEAM_NM"], tbl.c["OP_NM"])
-            )   
-        return conn.execute(query).fetchone()
-    
-    
-def fetch_pitcher_info(season, team):
-    tbl = Table("team_pitcher", metadata, autoload_with=engine)
-    with engine.connect() as conn:
-        query = (
-            select(
-                func.sum(tbl.c["W_CN"]).label("W_CN"),
-                func.sum(tbl.c["L_CN"]).label("L_CN"),
-                func.sum(tbl.c["D_CN"]).label("D_CN"),
-                func.sum(tbl.c["R"]).label("R"),
-                func.sum(tbl.c["H"]).label("H"),
-                func.sum(tbl.c["B"]).label("B"),
-                func.sum(tbl.c["E"]).label("E")
+                .group_by(table.c["TEAM_NM"], table.c["OP_NM"])
             )
-            .where(and_(
-                tbl.c["SEASON_ID"] == season,
-                tbl.c["TEAM_NM"] == team
-            ))
-            .group_by(tbl.c["TEAM_NM"], tbl.c["OP_NM"])
-        )   
         return conn.execute(query).fetchone()
-    
 
-def fetch_hitter_info(season, team):
-    tbl = Table("team_hitter", metadata, autoload_with=engine)
-    with engine.connect() as conn:
+
+def fetch_team_pitching_stats(season_id: int, team_name: str):
+    table = TABLES["team_pitcher"]
+    with ENGINE.connect() as conn:
         query = (
             select(
-                tbl.c["R"],
-                tbl.c["H"],
-                tbl.c["HR"],
-                tbl.c["RBI"],
-                tbl.c["2B"],
-                tbl.c["3B"],
-                tbl.c["BB"],
-                tbl.c["SO"]
+                table.c["W"],
+                table.c["L"],
+                table.c["SO"],
+                table.c["BB"],
+                table.c["SV"],
+                table.c["HLD"],
+                table.c["H"],
+                table.c["ER"]
             )
             .where(and_(
-                tbl.c["SEASON_ID"] == 2024,
-                tbl.c["TEAM_NM"] == team
+                table.c["SEASON_ID"] == season_id,
+                table.c["TEAM_NM"] == team_name
             ))
-        )   
+        )
+        return conn.execute(query).fetchone()
+
+
+def fetch_team_hitting_stats(season_id: int, team_name: str):
+    table = TABLES["team_hitter"]
+    with ENGINE.connect() as conn:
+        query = (
+            select(
+                table.c["R"],
+                table.c["H"],
+                table.c["HR"],
+                table.c["RBI"],
+                table.c["2B"],
+                table.c["3B"],
+                table.c["BB"],
+                table.c["SO"]
+            )
+            .where(and_(
+                table.c["SEASON_ID"] == season_id,
+                table.c["TEAM_NM"] == team_name
+            ))
+        )
         return conn.execute(query).fetchone()
