@@ -14,7 +14,7 @@ Highcharts.setOptions({
   credits: { enabled: false }
 });
 
-function craetePie(id, titleText, seriesData) {
+function createPie(id, titleText, seriesData) {
   Highcharts.chart(id, {
     chart: {
       type: 'pie',
@@ -118,6 +118,9 @@ function createBar(id, titleText, categories, seriesData, reverse, maxValue) {
       reversed: reverse
     },
     plotOptions: {
+      series: {
+        minPointLength: 15
+      },
       bar: {
         dataLabels: {
           enabled: true,
@@ -134,14 +137,12 @@ function createBar(id, titleText, categories, seriesData, reverse, maxValue) {
     },
     series: seriesData,
     tooltip: {
-      formatter: function () {
-        return `${this.series.name} ${this.category}<br/> ${this.y}`;
-      }
+      enabled: false
     }
   });
 }
 
-function craeteButterflyBar(leftId, rightId, titleText, categories, leftData, rightData) {
+function createButterflyBar(leftId, rightId, titleText, categories, leftData, rightData) {
   const maxArray1 = Math.max(...leftData[0].data);
   const maxArray2 = Math.max(...rightData[0].data);
   const maxValue = Math.max(maxArray1, maxArray2);
