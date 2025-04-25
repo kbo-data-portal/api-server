@@ -130,14 +130,14 @@ function updateTopPlayer(player, playerType, columns) {
   const topPlayer = $(`.score-info-right-${ playerType } .top-player`);
   topPlayer.empty();
   topPlayer.append(`
-      <span class="player-img" onclick="location.href='https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=${ player.player_id }'">
+      <span class="player-img" onclick="location.href='https://www.koreabaseball.com/Record/Player/${ playerType }Detail/Basic.aspx?playerId=${ player.player_id }'">
         <img class="team" src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_${ player.team_id }.png" />
         <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/${ player.player_id }.png" onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';" />
       </span>
       <div class="player">
         <div class="title">${ player.team }</div>
         <div class="score">
-          <a href="https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=${ player.player_id }">${ player.name }</a>
+          <a href="https://www.koreabaseball.com/Record/Player/${ playerType }Detail/Basic.aspx?playerId=${ player.player_id }">${ player.name }</a>
         </div>
       </div>
       <div class="record">
@@ -162,7 +162,7 @@ function updatePlayerRank(players, playerType) {
   playerRank.empty();
   players.forEach(player => {
     const li = `
-      <tr onclick="location.href='https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=${ player.player_id }'">
+      <tr onclick="location.href='https://www.koreabaseball.com/Record/Player/${ playerType }Detail/Basic.aspx?playerId=${ player.player_id }'">
         <td>${ player.rank }</td>
         <td>${ player.name }</td>
         <td>
