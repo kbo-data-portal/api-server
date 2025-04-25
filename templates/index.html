@@ -141,7 +141,7 @@
           </thead>
           <tbody>
             {% for rank in ranks %}
-            <tr>
+            <tr class="rank-info" data-team-name="{{ rank.TEAM_NM }}">
               <td>{{ rank.RANK }}</td>
               <td>
                 <span class="team-name">{{ rank.TEAM_NM }}</span>
@@ -163,26 +163,26 @@
           <div class="top-player">
             <span class="player-img">
               <img class="team" alt=""
-                src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_HH.png" />
-              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/61666.png" alt="한승혁"
+                src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_{{ top_hitter.team_id }}.png" />
+              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/{{ top_hitter.player_id }}.png" alt={{ top_hitter.name }}
                 onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';" />
             </span>
             <div class="player">
-              <div class="title">한화 이글스</div>
-              <div class="score">한승혁</div>
+              <div class="title">{{ top_hitter.team }}</div>
+              <div class="score">{{ top_hitter.name }}</div>
             </div>
             <div class="record">
               <ul>
-                <li class="title">득점</li>
-                <li class="score">6</li>
+                <li class="title">타율</li>
+                <li class="score">{{ top_hitter.avg }}</li>
               </ul>
               <ul>
                 <li class="title">득점</li>
-                <li class="score">6</li>
+                <li class="score">{{ top_hitter.run }}</li>
               </ul>
               <ul>
-                <li class="title">득점</li>
-                <li class="score">6</li>
+                <li class="title">안타</li>
+                <li class="score">{{ top_hitter.hit }}</li>
               </ul>
             </div>
           </div>
@@ -192,47 +192,22 @@
                 <th>순위</th>
                 <th>선수</th>
                 <th>팀명</th>
-                <th>득점</th>
-                <th>경기당</th>
+                <th>안타</th>
+                <th>AVG</th>
               </tr>
             </thead>
             <tbody>
+              {% for rank in hitter_ranks %}
               <tr>
-                <td>2</td>
-                <td>이대호</td>
+                <td>{{ rank.RANK }}</td>
+                <td>{{ rank.P_NM }}</td>
                 <td>
-                  <span class="team-name">SSG</span>
+                  <span class="team-name">{{ rank.TEAM_NM }}</span>
                 </td>
-                <td>0</td>
-                <td>0.600</td>
+                <td>{{ rank.H }}</td>
+                <td>{{ rank.AVG }}</td>
               </tr>
-              <tr>
-                <td>3</td>
-                <td>김광현</td>
-                <td>
-                  <span class="team-name">KT</span>
-                </td>
-                <td>1</td>
-                <td>0.563</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>추신수</td>
-                <td>
-                  <span class="team-name">삼성</span>
-                </td>
-                <td>0</td>
-                <td>0.556</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>류현진</td>
-                <td>
-                  <span class="team-name">LG</span>
-                </td>
-                <td>0</td>
-                <td>0.824</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -241,26 +216,26 @@
           <div class="top-player">
             <span class="player-img">
               <img class="team" alt=""
-                src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_HH.png" />
-              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/61666.png" alt="한승혁"
+                src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_{{ top_pitcher.team_id }}.png" />
+              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/{{ top_pitcher.player_id }}.png" alt={{ top_pitcher.name }}
                 onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';" />
             </span>
             <div class="player">
-              <div class="title">한화 이글스</div>
-              <div class="score">한승혁</div>
+              <div class="title">{{ top_pitcher.team }}</div>
+              <div class="score">{{ top_pitcher.name }}</div>
             </div>
             <div class="record">
               <ul>
-                <li class="title">득점</li>
-                <li class="score">6</li>
+                <li class="title">평균자책점</li>
+                <li class="score">{{ top_pitcher.era }}</li>
               </ul>
               <ul>
-                <li class="title">득점</li>
-                <li class="score">6</li>
+                <li class="title">승리</li>
+                <li class="score">{{ top_pitcher.win }}</li>
               </ul>
               <ul>
-                <li class="title">득점</li>
-                <li class="score">6</li>
+                <li class="title">탈삼진</li>
+                <li class="score">{{ top_pitcher.strike_out }}</li>
               </ul>
             </div>
           </div>
@@ -270,47 +245,23 @@
                 <th>순위</th>
                 <th>선수</th>
                 <th>팀명</th>
-                <th>득점</th>
-                <th>경기당</th>
+                <th>삼진</th>
+                <th>평균자책점</th>
               </tr>
             </thead>
             <tbody>
+              {% for rank in pitcher_ranks %}
               <tr>
-                <td>2</td>
-                <td>이대호</td>
+                <td>{{ rank.RANK }}</td>
+                <td>{{ rank.P_NM }}</td>
                 <td>
-                  <span class="team-name">SSG</span>
+                  <span class="team-name">{{ rank.TEAM_NM }}</span>
                 </td>
-                <td>0</td>
-                <td>0.600</td>
+                <td>{{ rank.SO }}</td>
+                <td>{{ rank.ERA }}</td>
               </tr>
+              {% endfor %}
               <tr>
-                <td>3</td>
-                <td>김광현</td>
-                <td>
-                  <span class="team-name">KT</span>
-                </td>
-                <td>1</td>
-                <td>0.563</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>추신수</td>
-                <td>
-                  <span class="team-name">삼성</span>
-                </td>
-                <td>0</td>
-                <td>0.556</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>윤석민</td>
-                <td>
-                  <span class="team-name">롯데</span>
-                </td>
-                <td>1</td>
-                <td>0.444</td>
-              </tr>
             </tbody>
           </table>
         </div>

@@ -6,22 +6,24 @@ from fetcher import (
     fetch_vs_team_stats,
     fetch_head_to_head_recent_games,
     fetch_team_hitting_stats,
-    fetch_team_pitching_stats
+    fetch_team_pitching_stats,
+    fetch_player_hitting_stats,
+    fetch_player_pitching_stats,
 )
 from datetime import datetime
 
 APP = Flask(__name__)
 TEAMS = {
-  "WO": { "short": "키움", "full": "키움 히어로즈", "color": "#570514" },
-  "OB": { "short": "두산", "full": "두산 베어스", "color": "#1A1748" },
-  "LT": { "short": "롯데", "full": "롯데 자이언츠", "color": "#041E42" },
-  "SS": { "short": "삼성", "full": "삼성 라이온즈", "color": "#074CA1" },
-  "HH": { "short": "한화", "full": "한화 이글스", "color": "#FC4E00" },
-  "HT": { "short": "KIA", "full": "KIA 타이거즈", "color": "#EA0029" },
-  "LG": { "short": "LG", "full": "LG 트윈스", "color": "#C30452" },
-  "SK": { "short": "SSG", "full": "SSG 랜더스", "color": "#CE0E2D" },
-  "NC": { "short": "NC", "full": "NC 다이노스", "color": "#315288" },
-  "KT": { "short": "KT", "full": "KT 위즈", "color": "#000000" }
+  "키움": { "id": "WO", "full": "키움 히어로즈", "color": "#570514" },
+  "두산": { "id": "OB", "full": "두산 베어스", "color": "#1A1748" },
+  "롯데": { "id": "LT", "full": "롯데 자이언츠", "color": "#041E42" },
+  "삼성": { "id": "SS", "full": "삼성 라이온즈", "color": "#074CA1" },
+  "한화": { "id": "HH", "full": "한화 이글스", "color": "#FC4E00" },
+  "KIA": { "id": "HT", "full": "KIA 타이거즈", "color": "#EA0029" },
+  "LG": { "id": "LG", "full": "LG 트윈스", "color": "#C30452" },
+  "SSG": { "id": "SK", "full": "SSG 랜더스", "color": "#CE0E2D" },
+  "NC": { "id": "NC", "full": "NC 다이노스", "color": "#315288" },
+  "KT": { "id": "KT", "full": "KT 위즈", "color": "#000000" }
 }
 
 
@@ -31,19 +33,19 @@ def get_team_stats_by_type():
     player_type = data.get("player_type")
 
     season_id = data.get("season_id")
-    home_id = data.get("home_id")
-    away_id = data.get("away_id")
+    home_name = data.get("home_name")
+    away_name = data.get("away_name")
     
     if player_type == "hitter":
         columns = ["R", "H", "HR", "RBI", "2B", "3B", "BB", "SO"]
         stat_columns = ["득점", "안타", "홈런", "타점", "2루타", "3루타", "볼넷", "삼진"]
-        home_stats_raw = fetch_team_hitting_stats(season_id, TEAMS[home_id]["short"])
-        away_stats_raw = fetch_team_hitting_stats(season_id, TEAMS[away_id]["short"])
+        home_stats_raw = fetch_team_hitting_stats(season_id, home_name)
+        away_stats_raw = fetch_team_hitting_stats(season_id, away_name)
     elif player_type == "pitcher":
         columns = ["W", "L", "SO", "BB", "SV", "HLD", "H", "ER"]
         stat_columns = ["승리", "패배", "삼진", "볼넷", "세이브", "홀드", "피안타", "자책점"]
-        home_stats_raw = fetch_team_pitching_stats(season_id, TEAMS[home_id]["short"])
-        away_stats_raw = fetch_team_pitching_stats(season_id, TEAMS[away_id]["short"])
+        home_stats_raw = fetch_team_pitching_stats(season_id, home_name)
+        away_stats_raw = fetch_team_pitching_stats(season_id, away_name)
     else:
         return jsonify({"error": "Invalid player type"}), 400
 
@@ -55,9 +57,9 @@ def get_team_stats_by_type():
     return jsonify({
         "columns": stat_columns,
         "home_team_stats": home_stats,
-        "home_team_color": TEAMS[home_id]["color"],
+        "home_team_color": TEAMS[home_name]["color"],
         "away_team_stats": away_stats,
-        "away_team_color": TEAMS[away_id]["color"],
+        "away_team_color": TEAMS[away_name]["color"],
     })
 
 @APP.route("/get_match", methods=["POST"])
@@ -94,13 +96,15 @@ def get_match_info():
         "game_date": match_info.G_DT_TXT,
         "tv_channel": match_info.TV_IF,
         "home_team_id": match_info.HOME_ID,
-        "home_team_name": TEAMS[match_info.HOME_ID]["full"],
+        "home_team_name": match_info.HOME_NM,
+        "home_team_full_name": TEAMS[match_info.HOME_NM]["full"],
+        "home_team_color": TEAMS[match_info.HOME_NM]["color"],
         "home_team_record": f"{home_rank.W_CN}승 {home_rank.D_CN}무 {home_rank.L_CN}패 ( {home_rank.RANK}위 )",
-        "home_team_color": TEAMS[match_info.HOME_ID]["color"],
         "away_team_id": match_info.AWAY_ID,
-        "away_team_name": TEAMS[match_info.AWAY_ID]["full"],
+        "away_team_name": match_info.AWAY_NM,
+        "away_team_full_name": TEAMS[match_info.AWAY_NM]["full"],
+        "away_team_color": TEAMS[match_info.AWAY_NM]["color"],
         "away_team_record": f"{away_rank.W_CN}승 {away_rank.D_CN}무 {away_rank.L_CN}패 ( {away_rank.RANK}위 )",
-        "away_team_color": TEAMS[match_info.AWAY_ID]["color"],
         "overall_vs_record": [int(home_overall_vs_rank.W_CN), int(home_overall_vs_rank.D_CN), int(away_overall_vs_rank.W_CN), int(home_overall_vs_rank.R), int(away_overall_vs_rank.R)],
         "season_vs_record": [int(home_season_vs_rank.W_CN), int(home_season_vs_rank.D_CN), int(away_season_vs_rank.W_CN), int(home_season_vs_rank.R), int(away_season_vs_rank.R)],
         "recent_match_results": match_summary_list
@@ -108,10 +112,35 @@ def get_match_info():
 
 @APP.route("/")
 def index():
+    hitter_ranks = fetch_player_hitting_stats(datetime.now().year)
+    hitter_top_player = {
+        "team_id": TEAMS[hitter_ranks[0].TEAM_NM]["id"],
+        "team": TEAMS[hitter_ranks[0].TEAM_NM]["full"],
+        "player_id": hitter_ranks[0].P_ID,
+        "name": hitter_ranks[0].P_NM,
+        "avg": hitter_ranks[0].AVG,
+        "run": hitter_ranks[0].R,
+        "hit": hitter_ranks[0].H
+    }
+
+    pitcher_ranks = fetch_player_pitching_stats(datetime.now().year)
+    pitcher_top_player = {
+        "team_id": TEAMS[pitcher_ranks[0].TEAM_NM]["id"],
+        "team": TEAMS[pitcher_ranks[0].TEAM_NM]["full"],
+        "player_id": pitcher_ranks[0].P_ID,
+        "name": pitcher_ranks[0].P_NM,
+        "era": pitcher_ranks[0].ERA,
+        "win": pitcher_ranks[0].W,
+        "strike_out": pitcher_ranks[0].SO
+    }
 
     return render_template("index.html", 
                            games=fetch_recent_games(), 
-                           ranks=fetch_team_rankings(datetime.now().year))
+                           ranks=fetch_team_rankings(datetime.now().year),
+                           top_hitter=hitter_top_player,
+                           hitter_ranks=hitter_ranks[1:5],
+                           top_pitcher=pitcher_top_player,
+                           pitcher_ranks=pitcher_ranks[1:5])
 
 if __name__ == "__main__":
     APP.run(debug=True)

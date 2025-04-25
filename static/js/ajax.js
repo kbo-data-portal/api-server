@@ -6,8 +6,8 @@ function getMatch(gameId) {
     data: JSON.stringify({ game_id: gameId }),
     success: function (response) {
       $('.stat-button').data('season-id', response.season_id);
-      $('.stat-button').data('home-id', response.home_team_id);
-      $('.stat-button').data('away-id', response.away_team_id);
+      $('.stat-button').data('home-name', response.home_team_name);
+      $('.stat-button').data('away-name', response.away_team_name);
 
       updateMatchBox(response);
       updateTeamInfo(response);
@@ -22,7 +22,7 @@ function getMatch(gameId) {
   });
 }
 
-function getTeamStats(playerType, seasonId, homeId, awayId) {
+function getTeamStats(playerType, seasonId, homeName, awayName) {
   $.ajax({
     url: "/get_team_stats",
     method: "POST",
@@ -30,8 +30,8 @@ function getTeamStats(playerType, seasonId, homeId, awayId) {
     data: JSON.stringify({
       player_type: playerType,
       season_id: seasonId,
-      home_id: homeId,
-      away_id: awayId
+      home_name: homeName,
+      away_name: awayName
     }),
     success: function (response) {
       updateStats(response);
