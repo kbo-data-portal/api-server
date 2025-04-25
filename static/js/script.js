@@ -8,6 +8,8 @@ $(document).ready(function () {
   const firstGame = $(".game-list-n .game-cont").eq((currentPage - 1) * 5);
   firstGame.addClass("on");
   getMatch(firstGame.data("game-id"));
+
+  getTeamPlayers(NaN);
 });
 
 $(document).on("click", ".bx-prev", function (e) {
@@ -49,6 +51,15 @@ $(document).on("click", ".stat-button", function () {
 
 
 $(document).on("click", ".rank-info", function () {
-  const teamName = $(this).data("team-name");
-  console.log(teamName);
+  if ($(this).hasClass('on')) {
+    $(".rank-info").removeClass("on");
+    getTeamPlayers(NaN);
+  }
+  else {
+    $(".rank-info").removeClass("on");
+    $(this).addClass("on");
+
+    const teamName = $(this).data("team-name");
+    getTeamPlayers(teamName);
+  }
 });

@@ -1357,12 +1357,12 @@ a.ui-button:focus {
     width: 35%;
 }
 
-#LiveRelay .score-info-right-top {
+#LiveRelay .score-info-right-hitter {
     margin-left: 25px;
     margin-bottom: 16px;
 }
 
-#LiveRelay .score-info-right-bottom {
+#LiveRelay .score-info-right-pitcher {
     margin-left: 25px;
 }
 

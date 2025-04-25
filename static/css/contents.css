@@ -148,6 +148,10 @@ a.btn2, input[type="submit"].btn2, button.btn2 {
     background-color: #e1e1e1;
 }
 
+.tbl tr.on {
+    background-color: #e1e1e1;
+}
+
 .tbl td {
     padding: 15px 0;
     border-bottom: 1px solid #dcdcdc;
@@ -1103,6 +1107,7 @@ a.btn2, input[type="submit"].btn2, button.btn2 {
 }
 
 .player-img {
+    cursor: pointer;
     display: inline-block;
     position: relative;
     width: 99px;

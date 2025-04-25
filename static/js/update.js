@@ -49,19 +49,6 @@ function updateTeamInfo(response) {
   `);
 }
 
-function updatePlayerRank(response) {
-  const matchBox = $(".match-box");
-  matchBox.empty();
-  matchBox.append(`
-    <span class="match-box-title">장소</span>
-    <span class="match-box-txt">${response.stadium_name}</span>
-    <span class="match-box-title">경기일자</span>
-    <span class="match-box-txt">${response.game_date}</span>
-    <span class="match-box-title">방송중계</span>
-    <span class="match-box-txt">${response.tv_channel}</span>
-  `);
-}
-
 function updateMatchGraph(response) {
   createPie('graph-all-match-left', `${response.overall_vs_record[0] + response.overall_vs_record[1] + response.overall_vs_record[2]}<br/>GAME`,
     [
@@ -137,4 +124,54 @@ function updateStats(response) {
       color: response.home_team_color
     }]
   );
+}
+
+function updateTopPlayer(player, playerType, columns) {
+  const topPlayer = $(`.score-info-right-${ playerType } .top-player`);
+  topPlayer.empty();
+  topPlayer.append(`
+      <span class="player-img" onclick="location.href='https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=${ player.player_id }'">
+        <img class="team" src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_${ player.team_id }.png" />
+        <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/${ player.player_id }.png" onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';" />
+      </span>
+      <div class="player">
+        <div class="title">${ player.team }</div>
+        <div class="score">
+          <a href="https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=${ player.player_id }">${ player.name }</a>
+        </div>
+      </div>
+      <div class="record">
+        <ul>
+          <li class="title">${ columns[0] }</li>
+          <li class="score">${ player.data[0] }</li>
+        </ul>
+        <ul>
+          <li class="title">${ columns[1] }</li>
+          <li class="score">${ player.data[1] }</li>
+        </ul>
+        <ul>
+          <li class="title">${ columns[2] }</li>
+          <li class="score">${ player.data[2] }</li>
+        </ul>
+      </div>
+  `);
+}
+
+function updatePlayerRank(players, playerType) {
+  const playerRank = $(`.score-info-right-${ playerType } .player-rank`);
+  playerRank.empty();
+  players.forEach(player => {
+    const li = `
+      <tr onclick="location.href='https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=${ player.player_id }'">
+        <td>${ player.rank }</td>
+        <td>${ player.name }</td>
+        <td>
+          <span class="team-name">${ player.team }</span>
+        </td>
+        <td>${ player.data[2] }</td>
+        <td>${ player.data[0] }</td>
+      </tr>
+    `;
+    playerRank.append(li);
+  });
 }

@@ -41,3 +41,25 @@ function getTeamStats(playerType, seasonId, homeName, awayName) {
     }
   });
 }
+
+function getTeamPlayers(teamName) {
+  $.ajax({
+    url: "/get_team_players",
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({
+      team_name: teamName
+    }),
+    success: function (response) {
+      $(".tbl th").css('background', response.color);
+
+      updateTopPlayer(response.hitter[0], 'hitter', ['타율', '득점', '안타']);
+      updatePlayerRank(response.hitter.slice(1, 5), 'hitter');
+      updateTopPlayer(response.pitcher[0], 'pitcher', ['평균자책점', '승리', '탈삼진']);
+      updatePlayerRank(response.pitcher.slice(1, 5), 'pitcher');
+    },
+    error: function (e) {
+      console.error(e);
+    }
+  });
+}

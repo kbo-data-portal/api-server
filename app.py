@@ -14,17 +14,54 @@ from datetime import datetime
 
 APP = Flask(__name__)
 TEAMS = {
-  "키움": { "id": "WO", "full": "키움 히어로즈", "color": "#570514" },
-  "두산": { "id": "OB", "full": "두산 베어스", "color": "#1A1748" },
-  "롯데": { "id": "LT", "full": "롯데 자이언츠", "color": "#041E42" },
-  "삼성": { "id": "SS", "full": "삼성 라이온즈", "color": "#074CA1" },
-  "한화": { "id": "HH", "full": "한화 이글스", "color": "#FC4E00" },
-  "KIA": { "id": "HT", "full": "KIA 타이거즈", "color": "#EA0029" },
-  "LG": { "id": "LG", "full": "LG 트윈스", "color": "#C30452" },
-  "SSG": { "id": "SK", "full": "SSG 랜더스", "color": "#CE0E2D" },
-  "NC": { "id": "NC", "full": "NC 다이노스", "color": "#315288" },
-  "KT": { "id": "KT", "full": "KT 위즈", "color": "#000000" }
+    "키움": { "id": "WO", "full": "키움 히어로즈", "color": "#570514" },
+    "두산": { "id": "OB", "full": "두산 베어스", "color": "#1A1748" },
+    "롯데": { "id": "LT", "full": "롯데 자이언츠", "color": "#041E42" },
+    "삼성": { "id": "SS", "full": "삼성 라이온즈", "color": "#074CA1" },
+    "한화": { "id": "HH", "full": "한화 이글스", "color": "#FC4E00" },
+    "KIA": { "id": "HT", "full": "KIA 타이거즈", "color": "#EA0029" },
+    "LG": { "id": "LG", "full": "LG 트윈스", "color": "#C30452" },
+    "SSG": { "id": "SK", "full": "SSG 랜더스", "color": "#CE0E2D" },
+    "NC": { "id": "NC", "full": "NC 다이노스", "color": "#315288" },
+    "KT": { "id": "KT", "full": "KT 위즈", "color": "#000000" },
+    None: { "id": "NO", "full": "없음", "color": "#002063" }
 }
+
+
+@APP.route("/get_team_players", methods=["POST"])
+def get_team_players():
+    data = request.get_json()
+    team_name = data.get("team_name")
+    
+    hitter_ranks = fetch_player_hitting_stats(datetime.now().year, team_name)
+    hitters = []
+    for hitter in hitter_ranks[:5]:
+        hitters.append({
+            "team_id": TEAMS[hitter.TEAM_NM]["id"],
+            "team": TEAMS[hitter.TEAM_NM]["full"],
+            "player_id": hitter.P_ID,
+            "name": hitter.P_NM,
+            "data": [f"{hitter.AVG:.3f}", hitter.R, hitter.H],
+            "rank": hitter.RANK
+        })
+
+    pitcher_ranks = fetch_player_pitching_stats(datetime.now().year, team_name)
+    pitchers = []
+    for pitcher in pitcher_ranks[:5]:
+        pitchers.append({
+            "team_id": TEAMS[pitcher.TEAM_NM]["id"],
+            "team": TEAMS[pitcher.TEAM_NM]["full"],
+            "player_id": pitcher.P_ID,
+            "name": pitcher.P_NM,
+            "data": [f"{pitcher.ERA:.2f}", pitcher.W, pitcher.SO],
+            "rank": pitcher.RANK
+        })
+
+    return jsonify({
+        "hitter": hitters,
+        "pitcher": pitchers,
+        "color": TEAMS[team_name]["color"],
+    })
 
 
 @APP.route("/get_team_stats", methods=["POST"])
@@ -61,6 +98,7 @@ def get_team_stats_by_type():
         "away_team_stats": away_stats,
         "away_team_color": TEAMS[away_name]["color"],
     })
+
 
 @APP.route("/get_match", methods=["POST"])
 def get_match_info():
@@ -110,37 +148,12 @@ def get_match_info():
         "recent_match_results": match_summary_list
     })
 
+
 @APP.route("/")
 def index():
-    hitter_ranks = fetch_player_hitting_stats(datetime.now().year)
-    hitter_top_player = {
-        "team_id": TEAMS[hitter_ranks[0].TEAM_NM]["id"],
-        "team": TEAMS[hitter_ranks[0].TEAM_NM]["full"],
-        "player_id": hitter_ranks[0].P_ID,
-        "name": hitter_ranks[0].P_NM,
-        "avg": hitter_ranks[0].AVG,
-        "run": hitter_ranks[0].R,
-        "hit": hitter_ranks[0].H
-    }
-
-    pitcher_ranks = fetch_player_pitching_stats(datetime.now().year)
-    pitcher_top_player = {
-        "team_id": TEAMS[pitcher_ranks[0].TEAM_NM]["id"],
-        "team": TEAMS[pitcher_ranks[0].TEAM_NM]["full"],
-        "player_id": pitcher_ranks[0].P_ID,
-        "name": pitcher_ranks[0].P_NM,
-        "era": pitcher_ranks[0].ERA,
-        "win": pitcher_ranks[0].W,
-        "strike_out": pitcher_ranks[0].SO
-    }
-
     return render_template("index.html", 
                            games=fetch_recent_games(), 
-                           ranks=fetch_team_rankings(datetime.now().year),
-                           top_hitter=hitter_top_player,
-                           hitter_ranks=hitter_ranks[1:5],
-                           top_pitcher=pitcher_top_player,
-                           pitcher_ranks=pitcher_ranks[1:5])
+                           ranks=fetch_team_rankings(datetime.now().year))
 
 if __name__ == "__main__":
     APP.run(debug=True)

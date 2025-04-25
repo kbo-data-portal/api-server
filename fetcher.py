@@ -204,7 +204,7 @@ def fetch_player_pitching_stats(season_id: int, team_name: str = None):
                 .where(and_(
                     table.c["SEASON_ID"] == season_id,
                     table.c["TEAM_NM"] == team_name,
-                    table.c["IP"] > table.c["G"] * 5.1
+                    table.c["IP"] > table.c["G"] * 1.6
                 ))
                 .limit(10)
             )
@@ -221,7 +221,7 @@ def fetch_player_pitching_stats(season_id: int, team_name: str = None):
                 )
                 .where(and_(
                     table.c["SEASON_ID"] == season_id,
-                    table.c["IP"] > table.c["G"] * 5.1
+                    table.c["IP"] > table.c["G"] * 1.6
                 ))
                 .limit(10)
             )

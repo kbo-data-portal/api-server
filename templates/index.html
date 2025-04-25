@@ -125,7 +125,7 @@
     </div>
     <div class="score-info">
       <div class="score-info-left">
-        <div class="score-title">팀순위표</div>
+        <div class="score-title rank-info" style="cursor: pointer;">팀순위표</div>
         <table id="tblTeamRank" class="tbl">
           <thead>
             <tr>
@@ -158,34 +158,9 @@
         </table>
       </div>
       <div class="score-info-right">
-        <div class="score-info-right-top">
+        <div class="score-info-right-hitter">
           <div class="score-title">타자순위</div>
-          <div class="top-player">
-            <span class="player-img">
-              <img class="team" alt=""
-                src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_{{ top_hitter.team_id }}.png" />
-              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/{{ top_hitter.player_id }}.png" alt={{ top_hitter.name }}
-                onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';" />
-            </span>
-            <div class="player">
-              <div class="title">{{ top_hitter.team }}</div>
-              <div class="score">{{ top_hitter.name }}</div>
-            </div>
-            <div class="record">
-              <ul>
-                <li class="title">타율</li>
-                <li class="score">{{ top_hitter.avg }}</li>
-              </ul>
-              <ul>
-                <li class="title">득점</li>
-                <li class="score">{{ top_hitter.run }}</li>
-              </ul>
-              <ul>
-                <li class="title">안타</li>
-                <li class="score">{{ top_hitter.hit }}</li>
-              </ul>
-            </div>
-          </div>
+          <div class="top-player"></div>
           <table id="tblPitcherRank" class="tbl tbl-rank">
             <thead>
               <tr>
@@ -193,52 +168,15 @@
                 <th>선수</th>
                 <th>팀명</th>
                 <th>안타</th>
-                <th>AVG</th>
+                <th>타율</th>
               </tr>
             </thead>
-            <tbody>
-              {% for rank in hitter_ranks %}
-              <tr>
-                <td>{{ rank.RANK }}</td>
-                <td>{{ rank.P_NM }}</td>
-                <td>
-                  <span class="team-name">{{ rank.TEAM_NM }}</span>
-                </td>
-                <td>{{ rank.H }}</td>
-                <td>{{ rank.AVG }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
+            <tbody class="player-rank"></tbody>
           </table>
         </div>
-        <div class="score-info-right-bottom">
+        <div class="score-info-right-pitcher">
           <div class="score-title">투수순위</div>
-          <div class="top-player">
-            <span class="player-img">
-              <img class="team" alt=""
-                src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/2025/player_{{ top_pitcher.team_id }}.png" />
-              <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/{{ top_pitcher.player_id }}.png" alt={{ top_pitcher.name }}
-                onerror="this.src='//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/common/noImage_player.png';" />
-            </span>
-            <div class="player">
-              <div class="title">{{ top_pitcher.team }}</div>
-              <div class="score">{{ top_pitcher.name }}</div>
-            </div>
-            <div class="record">
-              <ul>
-                <li class="title">평균자책점</li>
-                <li class="score">{{ top_pitcher.era }}</li>
-              </ul>
-              <ul>
-                <li class="title">승리</li>
-                <li class="score">{{ top_pitcher.win }}</li>
-              </ul>
-              <ul>
-                <li class="title">탈삼진</li>
-                <li class="score">{{ top_pitcher.strike_out }}</li>
-              </ul>
-            </div>
-          </div>
+          <div class="top-player"></div>
           <table id="tblPitcherRank" class="tbl tbl-rank">
             <thead>
               <tr>
@@ -249,20 +187,7 @@
                 <th>평균자책점</th>
               </tr>
             </thead>
-            <tbody>
-              {% for rank in pitcher_ranks %}
-              <tr>
-                <td>{{ rank.RANK }}</td>
-                <td>{{ rank.P_NM }}</td>
-                <td>
-                  <span class="team-name">{{ rank.TEAM_NM }}</span>
-                </td>
-                <td>{{ rank.SO }}</td>
-                <td>{{ rank.ERA }}</td>
-              </tr>
-              {% endfor %}
-              <tr>
-            </tbody>
+            <tbody class="player-rank"></tbody>
           </table>
         </div>
       </div>
