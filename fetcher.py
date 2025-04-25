@@ -7,7 +7,7 @@ TABLES = {
     "game_schedule": Table("game_schedule", METADATA, autoload_with=ENGINE),
     "game_summary": Table("game_summary", METADATA, autoload_with=ENGINE),      
     "team_summary": Table("team_summary", METADATA, autoload_with=ENGINE),
-    "team_op_summary": Table("team_op_summary", METADATA, autoload_with=ENGINE),
+    "team_vs_summary": Table("team_vs_summary", METADATA, autoload_with=ENGINE),
     "team_pitcher": Table("team_pitcher", METADATA, autoload_with=ENGINE),
     "team_hitter": Table("team_hitter", METADATA, autoload_with=ENGINE)
 }
@@ -93,6 +93,7 @@ def fetch_team_rankings(season_id: int):
                 table.c["W_CN"],
                 table.c["L_CN"],
                 table.c["D_CN"],
+                table.c["W_RATE"],
                 func.rank().over(order_by=desc(table.c["W_RATE"])).label("RANK")
             )
             .where(table.c["SEASON_ID"] == season_id)
@@ -101,7 +102,7 @@ def fetch_team_rankings(season_id: int):
 
 
 def fetch_vs_team_stats(season_id: int, team_name: str, opponent_name: str):
-    table = TABLES["team_op_summary"]
+    table = TABLES["team_vs_summary"]
     with ENGINE.connect() as conn:
         if season_id > 0:
             query = (

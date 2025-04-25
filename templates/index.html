@@ -137,140 +137,23 @@
               <th>무</th>
               <th>승률</th>
               <th>게임차</th>
-              <th>연속</th>
             </tr>
           </thead>
           <tbody>
+            {% for rank in ranks %}
             <tr>
-              <td>1</td>
+              <td>{{ rank.RANK }}</td>
               <td>
-                <span class="team-name">LG</span>
+                <span class="team-name">{{ rank.TEAM_NM }}</span>
               </td>
-              <td>17</td>
-              <td>14</td>
-              <td>3</td>
-              <td>0</td>
-              <td>0.824</td>
-              <td>-</td>
-              <td>1패</td>
+              <td>{{ rank.W_CN+rank.L_CN+rank.D_CN }}</td>
+              <td>{{ rank.W_CN }}</td>
+              <td>{{ rank.L_CN }}</td>
+              <td>{{ rank.D_CN }}</td>
+              <td>{{ rank.W_RATE }}</td>
+              <td>{{ ((ranks[0].W_CN-rank.W_CN) + (rank.L_CN-ranks[0].L_CN)) / 2 }}</td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>
-                <span class="team-name">SSG</span>
-              </td>
-              <td>15</td>
-              <td>9</td>
-              <td>6</td>
-              <td>0</td>
-              <td>0.600</td>
-              <td>4</td>
-              <td>1패</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>
-                <span class="team-name">KT</span>
-              </td>
-              <td>17</td>
-              <td>9</td>
-              <td>7</td>
-              <td>1</td>
-              <td>0.563</td>
-              <td>4.5</td>
-              <td>2승</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>
-                <span class="team-name">삼성</span>
-              </td>
-              <td>18</td>
-              <td>10</td>
-              <td>8</td>
-              <td>0</td>
-              <td>0.556</td>
-              <td>4.5</td>
-              <td>2패</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>
-                <span class="team-name">롯데</span>
-              </td>
-              <td>19</td>
-              <td>8</td>
-              <td>10</td>
-              <td>1</td>
-              <td>0.444</td>
-              <td>6.5</td>
-              <td>1패</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>
-                <span class="team-name">NC</span>
-              </td>
-              <td>16</td>
-              <td>7</td>
-              <td>9</td>
-              <td>0</td>
-              <td>0.438</td>
-              <td>6.5</td>
-              <td>1승</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>
-                <span class="team-name">두산</span>
-              </td>
-              <td>19</td>
-              <td>8</td>
-              <td>11</td>
-              <td>0</td>
-              <td>0.421</td>
-              <td>7</td>
-              <td>1승</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>
-                <span class="team-name">한화</span>
-              </td>
-              <td>19</td>
-              <td>8</td>
-              <td>11</td>
-              <td>0</td>
-              <td>0.421</td>
-              <td>7</td>
-              <td>1승</td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>
-                <span class="team-name">KIA</span>
-              </td>
-              <td>17</td>
-              <td>7</td>
-              <td>10</td>
-              <td>0</td>
-              <td>0.412</td>
-              <td>7</td>
-              <td>1승</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>
-                <span class="team-name">키움</span>
-              </td>
-              <td>19</td>
-              <td>7</td>
-              <td>12</td>
-              <td>0</td>
-              <td>0.368</td>
-              <td>8</td>
-              <td>1패</td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>

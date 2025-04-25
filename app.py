@@ -108,7 +108,10 @@ def get_match_info():
 
 @APP.route("/")
 def index():
-    return render_template("index.html", games=fetch_recent_games(), home_color="#000000", away_color="#0072CE")
+
+    return render_template("index.html", 
+                           games=fetch_recent_games(), 
+                           ranks=fetch_team_rankings(datetime.now().year))
 
 if __name__ == "__main__":
     APP.run(debug=True)
