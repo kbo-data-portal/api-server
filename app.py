@@ -67,8 +67,12 @@ def get_match_info():
 
     match_info = fetch_game_info_by_id(game_id)
     team_ranks = fetch_team_rankings(match_info.SEASON_ID)
-    overall_vs_rank = fetch_vs_team_stats(0, match_info.HOME_NM, match_info.AWAY_NM)
-    season_vs_rank = fetch_vs_team_stats(match_info.SEASON_ID, match_info.HOME_NM, match_info.AWAY_NM)
+
+    home_overall_vs_rank = fetch_vs_team_stats(0, match_info.HOME_NM, match_info.AWAY_NM)
+    home_season_vs_rank = fetch_vs_team_stats(match_info.SEASON_ID, match_info.HOME_NM, match_info.AWAY_NM)
+    away_overall_vs_rank = fetch_vs_team_stats(0, match_info.AWAY_NM, match_info.HOME_NM)
+    away_season_vs_rank = fetch_vs_team_stats(match_info.SEASON_ID, match_info.AWAY_NM, match_info.HOME_NM)
+
     recent_match_results = fetch_head_to_head_recent_games(match_info.HOME_NM, match_info.AWAY_NM)
 
     match_summary_list = []
@@ -97,8 +101,8 @@ def get_match_info():
         "away_team_name": TEAMS[match_info.AWAY_ID]["full"],
         "away_team_record": f"{away_rank.W_CN}승 {away_rank.D_CN}무 {away_rank.L_CN}패 ( {away_rank.RANK}위 )",
         "away_team_color": TEAMS[match_info.AWAY_ID]["color"],
-        "overall_vs_record": [int(overall_vs_rank.W_CN), int(overall_vs_rank.D_CN), int(overall_vs_rank.L_CN)],
-        "season_vs_record": [int(season_vs_rank.W_CN), int(season_vs_rank.D_CN), int(season_vs_rank.L_CN)],
+        "overall_vs_record": [int(home_overall_vs_rank.W_CN), int(home_overall_vs_rank.D_CN), int(away_overall_vs_rank.W_CN), int(home_overall_vs_rank.R), int(away_overall_vs_rank.R)],
+        "season_vs_record": [int(home_season_vs_rank.W_CN), int(home_season_vs_rank.D_CN), int(away_season_vs_rank.W_CN), int(home_season_vs_rank.R), int(away_season_vs_rank.R)],
         "recent_match_results": match_summary_list
     })
 

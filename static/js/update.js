@@ -60,8 +60,8 @@ function updateMatchGraph(response) {
 
   createColumn('graph-all-match-right', '', ['득점'],
     [
-      { name: response.away_team_name, data: [45], color: response.away_team_color },
-      { name: response.home_team_name, data: [31], color: response.home_team_color }
+      { name: response.away_team_name, data: [response.overall_vs_record[4]], color: response.away_team_color },
+      { name: response.home_team_name, data: [response.overall_vs_record[3]], color: response.home_team_color }
     ]
   );
 
@@ -75,8 +75,8 @@ function updateMatchGraph(response) {
 
   createColumn('graph-match-right', '', ['득점'],
     [
-      { name: response.away_team_name, data: [45], color: response.away_team_color },
-      { name: response.home_team_name, data: [31], color: response.home_team_color }
+      { name: response.away_team_name, data: [response.season_vs_record[4]], color: response.away_team_color },
+      { name: response.home_team_name, data: [response.season_vs_record[3]], color: response.home_team_color }
     ]
   );
 }
