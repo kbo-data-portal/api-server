@@ -2,16 +2,15 @@ from datetime import datetime, timedelta
 from sqlalchemy import create_engine, MetaData, Table, select, and_, func, asc, desc, or_
 
 ENGINE = create_engine("postgresql+psycopg2://postgres:postgres@localhost:5432/postgres")
-METADATA = MetaData(schema="public")
 TABLES = {
-    "game_schedule": Table("game_schedule", METADATA, autoload_with=ENGINE),
-    "game_summary": Table("game_summary", METADATA, autoload_with=ENGINE),      
-    "team_summary": Table("team_summary", METADATA, autoload_with=ENGINE),
-    "team_vs_summary": Table("team_vs_summary", METADATA, autoload_with=ENGINE),
-    "team_pitcher": Table("team_pitcher", METADATA, autoload_with=ENGINE),
-    "team_hitter": Table("team_hitter", METADATA, autoload_with=ENGINE),
-    "player_pitcher_stats": Table("player_pitcher_stats", METADATA, autoload_with=ENGINE),
-    "player_hitter_stats": Table("player_hitter_stats", METADATA, autoload_with=ENGINE)
+    "game_schedule": Table("game_schedule", MetaData(schema="public"), autoload_with=ENGINE),
+    "game_summary": Table("game_summary", MetaData(schema="public"), autoload_with=ENGINE),      
+    "player_pitcher_stats": Table("player_pitcher_stats", MetaData(schema="public"), autoload_with=ENGINE),
+    "player_hitter_stats": Table("player_hitter_stats", MetaData(schema="public"), autoload_with=ENGINE),
+    "team_summary": Table("fct_team_season_summary", MetaData(schema="analytics"), autoload_with=ENGINE),
+    "team_vs_summary": Table("fct_team_vs_summary", MetaData(schema="analytics"), autoload_with=ENGINE),
+    "team_pitcher": Table("fct_team_pitcher_stats", MetaData(schema="analytics"), autoload_with=ENGINE),
+    "team_hitter": Table("fct_team_hitter_stats", MetaData(schema="analytics"), autoload_with=ENGINE),
 }
 
 def fetch_recent_games():
