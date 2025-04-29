@@ -168,6 +168,7 @@ function updatePlayerRank(players, playerType) {
         <td>
           <span class="team-name">${ player.team }</span>
         </td>
+        <td>${ player.data[1] }</td>
         <td>${ player.data[2] }</td>
         <td>${ player.data[0] }</td>
       </tr>
