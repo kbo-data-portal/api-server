@@ -152,6 +152,7 @@ def get_match_info():
 @APP.route("/")
 def index():
     return render_template("index.html", 
+                           today=datetime.now().strftime("%Y%m%d"),
                            games=fetch_recent_games(), 
                            ranks=fetch_team_rankings(datetime.now().year))
 

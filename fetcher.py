@@ -39,7 +39,6 @@ def fetch_recent_games():
                 table.c["G_DT"] < end_date.strftime("%Y%m%d"),
             ))
             .order_by(table.c["G_DT"])
-            .limit(40)
         )
         return conn.execute(query).fetchall()
 

@@ -1,11 +1,25 @@
 
 const totalPages = Math.ceil($(".game-cont").length / 5)
-let currentPage = (totalPages + 5) % 10
+let currentPage = 1
 
 $(document).ready(function () {
+  const today = $(".game-list-n").data("today")
+
+  let firstGame = $(".game-list-n .game-cont")[0];
+  let page = 0;
+  $(".game-list-n .game-cont").each(function () {
+    const date = $(this).data("game-id");
+    page += 1;
+
+    if (date.startsWith(today)) {
+      firstGame = $(this);
+      currentPage += Math.round(page / 5);
+      return false;
+    }
+  });
+
   updateSlider();
 
-  const firstGame = $(".game-list-n .game-cont").eq((currentPage - 1) * 5);
   firstGame.addClass("on");
   getMatch(firstGame.data("game-id"));
 

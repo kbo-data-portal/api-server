@@ -23,7 +23,7 @@
       <div class="today-game">
         <div class="bx-wrapper">
           <div class="bx-viewport">
-            <ul class="game-list-n">
+            <ul class="game-list-n" data-today="{{ today }}">
               {% for game in games %}
               <li class="game-cont" data-game-id="{{ game.G_ID }}">
                 <div class="wrap">
