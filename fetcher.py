@@ -138,7 +138,11 @@ def fetch_vs_team_stats(season_id: int, team_name: str, opponent_name: str):
                 ))
                 .group_by(table.c["TEAM_NM"], table.c["OP_NM"])
             )
-        return conn.execute(query).fetchone()
+
+        result = conn.execute(query).fetchone()
+        if result is None:
+            return { "W_CN": 0, "L_CN": 0, "D_CN": 0, "R": 0, "H": 0, "B": 0, "E": 0 }
+        return result
 
 
 def fetch_team_pitching_stats(season_id: int, team_name: str):
@@ -160,7 +164,11 @@ def fetch_team_pitching_stats(season_id: int, team_name: str):
                 table.c["TEAM_NM"] == team_name
             ))
         )
-        return conn.execute(query).fetchone()
+
+        result = conn.execute(query).fetchone()
+        if result is None:
+            return { "W": 0, "L": 0, "SO": 0, "BB": 0, "SV": 0, "HLD": 0, "H": 0, "ER": 0 }
+        return result
 
 
 def fetch_team_hitting_stats(season_id: int, team_name: str):
@@ -182,7 +190,11 @@ def fetch_team_hitting_stats(season_id: int, team_name: str):
                 table.c["TEAM_NM"] == team_name
             ))
         )
-        return conn.execute(query).fetchone()
+        
+        result = conn.execute(query).fetchone()
+        if result is None:
+            return { "R": 0, "H": 0, "HR": 0, "RBI": 0, "2B": 0, "3B": 0, "BB": 0, "SO": 0 }
+        return result
 
 
 def fetch_player_pitching_stats(season_id: int, team_name: str = None):
