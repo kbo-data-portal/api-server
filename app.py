@@ -12,7 +12,8 @@ from fetcher import (
 )
 from datetime import datetime
 
-APP = Flask(__name__)
+app = Flask(__name__)
+
 TEAMS = {
     "키움": { "id": "WO", "full": "키움 히어로즈", "color": "#570514" },
     "두산": { "id": "OB", "full": "두산 베어스", "color": "#1A1748" },
@@ -28,7 +29,7 @@ TEAMS = {
 }
 
 
-@APP.route("/get_team_players", methods=["POST"])
+@app.route("/get_team_players", methods=["POST"])
 def get_team_players():
     data = request.get_json()
     team_name = data.get("team_name")
@@ -64,7 +65,7 @@ def get_team_players():
     })
 
 
-@APP.route("/get_team_stats", methods=["POST"])
+@app.route("/get_team_stats", methods=["POST"])
 def get_team_stats_by_type():
     data = request.get_json()
     player_type = data.get("player_type")
@@ -100,7 +101,7 @@ def get_team_stats_by_type():
     })
 
 
-@APP.route("/get_match", methods=["POST"])
+@app.route("/get_match", methods=["POST"])
 def get_match_info():
     data = request.get_json()
     game_id = data.get("game_id")
@@ -149,7 +150,7 @@ def get_match_info():
     })
 
 
-@APP.route("/")
+@app.route("/")
 def index():
     return render_template("index.html", 
                            today=datetime.now().strftime("%Y%m%d"),
@@ -157,4 +158,4 @@ def index():
                            ranks=fetch_team_rankings(datetime.now().year))
 
 if __name__ == "__main__":
-    APP.run(debug=True)
+    app.run(debug=True)

@@ -3,11 +3,11 @@ from sqlalchemy import create_engine, MetaData, Table, select, and_, func, asc, 
 
 ENGINE = create_engine("postgresql+psycopg2://postgres:postgres@localhost:5432/postgres")
 TABLES = {
-    "game_schedule": Table("game_schedule", MetaData(schema="public"), autoload_with=ENGINE),
-    "game_summary": Table("game_summary", MetaData(schema="public"), autoload_with=ENGINE),      
-    "player_pitcher_stats": Table("player_pitcher_stats", MetaData(schema="public"), autoload_with=ENGINE),
-    "player_hitter_stats": Table("player_hitter_stats", MetaData(schema="public"), autoload_with=ENGINE),
-    "team_summary": Table("fct_team_season_summary", MetaData(schema="analytics"), autoload_with=ENGINE),
+    "game_schedule": Table("schedule", MetaData(schema="game"), autoload_with=ENGINE),
+    "game_result": Table("result", MetaData(schema="game"), autoload_with=ENGINE),      
+    "player_pitcher": Table("pitcher_season_summary", MetaData(schema="player"), autoload_with=ENGINE),
+    "player_hitter": Table("hitter_season_summary", MetaData(schema="player"), autoload_with=ENGINE),
+    "team_summary": Table("fct_team_result_summary", MetaData(schema="analytics"), autoload_with=ENGINE),
     "team_vs_summary": Table("fct_team_vs_summary", MetaData(schema="analytics"), autoload_with=ENGINE),
     "team_pitcher": Table("fct_team_pitcher_stats", MetaData(schema="analytics"), autoload_with=ENGINE),
     "team_hitter": Table("fct_team_hitter_stats", MetaData(schema="analytics"), autoload_with=ENGINE),
@@ -63,7 +63,7 @@ def fetch_game_info_by_id(game_id: str):
 
 
 def fetch_head_to_head_recent_games(home_team: str, away_team: str):
-    table = TABLES["game_summary"]
+    table = TABLES["game_result"]
     with ENGINE.connect() as conn:
         query = (
             select(
@@ -118,7 +118,7 @@ def fetch_vs_team_stats(season_id: int, team_name: str, opponent_name: str):
                 .where(and_(
                     table.c["SEASON_ID"] == season_id,
                     table.c["TEAM_NM"] == team_name,
-                    table.c["OP_NM"] == opponent_name
+                    table.c["OPP_NM"] == opponent_name
                 ))
             )
         else:
@@ -134,9 +134,9 @@ def fetch_vs_team_stats(season_id: int, team_name: str, opponent_name: str):
                 )
                 .where(and_(
                     table.c["TEAM_NM"] == team_name,
-                    table.c["OP_NM"] == opponent_name
+                    table.c["OPP_NM"] == opponent_name
                 ))
-                .group_by(table.c["TEAM_NM"], table.c["OP_NM"])
+                .group_by(table.c["TEAM_NM"], table.c["OPP_NM"])
             )
 
         result = conn.execute(query).fetchone()
@@ -198,7 +198,7 @@ def fetch_team_hitting_stats(season_id: int, team_name: str):
 
 
 def fetch_player_pitching_stats(season_id: int, team_name: str = None):
-    table = TABLES["player_pitcher_stats"]
+    table = TABLES["player_pitcher"]
     with ENGINE.connect() as conn:
         if team_name:
             query = (
@@ -214,7 +214,7 @@ def fetch_player_pitching_stats(season_id: int, team_name: str = None):
                 .where(and_(
                     table.c["SEASON_ID"] == season_id,
                     table.c["TEAM_NM"] == team_name,
-                    table.c["IP"] > table.c["G"] * 1.6
+                    table.c["IP"] > table.c["G"] * 2.65
                 ))
                 .limit(10)
             )
@@ -231,7 +231,7 @@ def fetch_player_pitching_stats(season_id: int, team_name: str = None):
                 )
                 .where(and_(
                     table.c["SEASON_ID"] == season_id,
-                    table.c["IP"] > table.c["G"] * 1.6
+                    table.c["IP"] > table.c["G"] * 5.3
                 ))
                 .limit(10)
             )
@@ -239,8 +239,9 @@ def fetch_player_pitching_stats(season_id: int, team_name: str = None):
 
 
 def fetch_player_hitting_stats(season_id: int, team_name: str = None):
-    table = TABLES["player_hitter_stats"]
+    table = TABLES["player_hitter"]
     with ENGINE.connect() as conn:
+        game_avg = conn.execute(select(func.avg(table.c["G"]))).fetchone()[0]
         if team_name:
             query = (
                 select(
@@ -256,7 +257,8 @@ def fetch_player_hitting_stats(season_id: int, team_name: str = None):
                 .where(and_(
                     table.c["SEASON_ID"] == season_id,
                     table.c["TEAM_NM"] == team_name,
-                    table.c["PA"] > table.c["G"] * 3.1
+                    table.c["G"] > float(game_avg) / 1.5,
+                    table.c["PA"] > table.c["G"] * 1.8,
                 ))
                 .limit(10)
             )
@@ -274,7 +276,8 @@ def fetch_player_hitting_stats(season_id: int, team_name: str = None):
                 )
                 .where(and_(
                     table.c["SEASON_ID"] == season_id,
-                    table.c["PA"] > table.c["G"] * 3.1
+                    table.c["G"] > float(game_avg) / 1.5,
+                    table.c["PA"] > table.c["G"] * 3.6
                 ))
                 .limit(10)
             )
