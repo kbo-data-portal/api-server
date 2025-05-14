@@ -1,7 +1,24 @@
+import os
 from datetime import datetime, timedelta
-from sqlalchemy import create_engine, MetaData, Table, select, and_, func, asc, desc, or_
 
-ENGINE = create_engine("postgresql+psycopg2://postgres:postgres@localhost:5432/postgres")
+from sqlalchemy import engine, create_engine
+from sqlalchemy import MetaData, Table, select, and_, func, asc, desc, or_
+
+
+def _get_engine():
+    url_object = engine.URL.create(
+        drivername="postgresql+psycopg2",
+        username=os.getenv("DB_USER", "postgres"),
+        password=os.getenv("DB_PASSWORD", "postgres"),
+        host=os.getenv("DB_HOST", "localhost"),
+        port=5432,
+        database=os.getenv("DB_NAME", "postgres")
+    )
+    
+    return create_engine(url_object)
+
+
+ENGINE = _get_engine()
 TABLES = {
     "game_schedule": Table("schedule", MetaData(schema="game"), autoload_with=ENGINE),
     "game_result": Table("result", MetaData(schema="game"), autoload_with=ENGINE),      
@@ -12,6 +29,7 @@ TABLES = {
     "team_pitcher": Table("fct_team_pitcher_stats", MetaData(schema="analytics"), autoload_with=ENGINE),
     "team_hitter": Table("fct_team_hitter_stats", MetaData(schema="analytics"), autoload_with=ENGINE),
 }
+
 
 def fetch_recent_games():
     today = datetime.today()
