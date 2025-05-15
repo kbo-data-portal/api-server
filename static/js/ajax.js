@@ -1,6 +1,6 @@
 function getMatch(gameId) {
   $.ajax({
-    url: "/get_match",
+    url: "/web/match_info",
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify({ game_id: gameId }),
@@ -24,7 +24,7 @@ function getMatch(gameId) {
 
 function getTeamStats(playerType, seasonId, homeName, awayName) {
   $.ajax({
-    url: "/get_team_stats",
+    url: "/web/team_stats",
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify({
@@ -44,7 +44,7 @@ function getTeamStats(playerType, seasonId, homeName, awayName) {
 
 function getTeamPlayers(teamName) {
   $.ajax({
-    url: "/get_team_players",
+    url: "/web/team_players",
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify({
