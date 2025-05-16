@@ -4,6 +4,7 @@ from datetime import datetime
 from fetcher.analytics import (
     fetch_team_rankings,
     fetch_vs_team_stats,
+    fetch_vs_team_stats_by_season,
     fetch_team_hitting_stats,
     fetch_team_pitching_stats,
 )
@@ -114,10 +115,10 @@ def match_info():
     match_info = fetch_game_info_by_id(game_id)
     team_ranks = fetch_team_rankings(match_info["SEASON_ID"])
 
-    home_overall_vs = fetch_vs_team_stats(0, match_info["HOME_NM"], match_info["AWAY_NM"])
-    home_season_vs = fetch_vs_team_stats(match_info["SEASON_ID"], match_info["HOME_NM"], match_info["AWAY_NM"])
-    away_overall_vs = fetch_vs_team_stats(0, match_info["AWAY_NM"], match_info["HOME_NM"])
-    away_season_vs = fetch_vs_team_stats(match_info["SEASON_ID"], match_info["AWAY_NM"], match_info["HOME_NM"])
+    home_overall_vs = fetch_vs_team_stats(match_info["HOME_NM"], match_info["AWAY_NM"])
+    home_season_vs = fetch_vs_team_stats_by_season(match_info["SEASON_ID"], match_info["HOME_NM"], match_info["AWAY_NM"])
+    away_overall_vs = fetch_vs_team_stats(match_info["AWAY_NM"], match_info["HOME_NM"])
+    away_season_vs = fetch_vs_team_stats_by_season(match_info["SEASON_ID"], match_info["AWAY_NM"], match_info["HOME_NM"])
 
     recent_matches = fetch_head_to_head_recent_games(match_info["HOME_NM"], match_info["AWAY_NM"])
 
