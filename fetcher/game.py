@@ -34,6 +34,45 @@ def fetch_recent_games():
         return conn.execute(query).fetchall()
 
 
+def fetch_game_schedule_by_date(date: datetime = None, teams: list = None):
+    table = TABLES["game_schedule"]
+    with ENGINE.connect() as conn:
+        conditions = []
+
+        if date:
+            conditions.append(table.c["G_DT"] == date.strftime("%Y%m%d"))
+        else:
+            conditions.append(table.c["G_DT"] >= datetime.now().strftime("%Y%m%d"))
+
+        if teams:
+            if len(teams) > 1:
+                conditions.append(or_(
+                    and_(table.c["HOME_NM"] == teams[0], table.c["AWAY_NM"] == teams[1]),
+                    and_(table.c["HOME_NM"] == teams[1], table.c["AWAY_NM"] == teams[0])
+                ))
+            else:
+                conditions.append(or_(
+                    table.c["HOME_NM"] == teams[0], table.c["AWAY_NM"] == teams[0]
+                ))
+
+        query = (
+            select(
+                table.c["SEASON_ID"],
+                table.c["G_ID"],
+                table.c["G_DT"],
+                table.c["G_DT_TXT"],
+                table.c["G_TM"],
+                table.c["S_NM"],
+                table.c["HOME_ID"],
+                table.c["HOME_NM"],
+                table.c["AWAY_NM"],
+            )
+            .where(and_(*conditions))
+            .order_by(table.c["G_DT"])
+        )
+        return conn.execute(query).fetchall()
+
+
 def fetch_game_info_by_id(game_id: str):
     table = TABLES["game_schedule"]
     with ENGINE.connect() as conn:
