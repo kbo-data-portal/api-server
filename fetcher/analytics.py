@@ -20,43 +20,51 @@ def fetch_team_rankings(season_id: int):
         return conn.execute(query).fetchall()
 
 
-def fetch_vs_team_stats(season_id: int, team_name: str, opponent_name: str):
+def fetch_vs_team_stats(team_name: str, opponent_name: str):
     table = TABLES["team_vs_summary"]
     with ENGINE.connect() as conn:
-        if season_id > 0:
-            query = (
-                select(
-                    table.c["W_CN"],
-                    table.c["L_CN"],
-                    table.c["D_CN"],
-                    table.c["R"],
-                    table.c["H"],
-                    table.c["B"],
-                    table.c["E"]
-                )
-                .where(and_(
-                    table.c["SEASON_ID"] == season_id,
-                    table.c["TEAM_NM"] == team_name,
-                    table.c["OPP_NM"] == opponent_name
-                ))
+        query = (
+            select(
+                func.sum(table.c["W_CN"]).label("W_CN"),
+                func.sum(table.c["L_CN"]).label("L_CN"),
+                func.sum(table.c["D_CN"]).label("D_CN"),
+                func.sum(table.c["R"]).label("R"),
+                func.sum(table.c["H"]).label("H"),
+                func.sum(table.c["B"]).label("B"),
+                func.sum(table.c["E"]).label("E")
             )
-        else:
-            query = (
-                select(
-                    func.sum(table.c["W_CN"]).label("W_CN"),
-                    func.sum(table.c["L_CN"]).label("L_CN"),
-                    func.sum(table.c["D_CN"]).label("D_CN"),
-                    func.sum(table.c["R"]).label("R"),
-                    func.sum(table.c["H"]).label("H"),
-                    func.sum(table.c["B"]).label("B"),
-                    func.sum(table.c["E"]).label("E")
-                )
-                .where(and_(
-                    table.c["TEAM_NM"] == team_name,
-                    table.c["OPP_NM"] == opponent_name
-                ))
-                .group_by(table.c["TEAM_NM"], table.c["OPP_NM"])
+            .where(and_(
+                table.c["TEAM_NM"] == team_name,
+                table.c["OPP_NM"] == opponent_name
+            ))
+            .group_by(table.c["TEAM_NM"], table.c["OPP_NM"])
+        )
+
+        result = conn.execute(query).fetchone()
+        if result is None:
+            return { "W_CN": 0, "L_CN": 0, "D_CN": 0, "R": 0, "H": 0, "B": 0, "E": 0 }
+        return result
+    
+
+def fetch_vs_team_stats_by_season(season_id: int, team_name: str, opponent_name: str):
+    table = TABLES["team_vs_summary"]
+    with ENGINE.connect() as conn:
+        query = (
+            select(
+                table.c["W_CN"],
+                table.c["L_CN"],
+                table.c["D_CN"],
+                table.c["R"],
+                table.c["H"],
+                table.c["B"],
+                table.c["E"]
             )
+            .where(and_(
+                table.c["SEASON_ID"] == season_id,
+                table.c["TEAM_NM"] == team_name,
+                table.c["OPP_NM"] == opponent_name
+            ))
+        )
 
         result = conn.execute(query).fetchone()
         if result is None:

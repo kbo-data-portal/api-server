@@ -1,6 +1,6 @@
 import os
 from sqlalchemy import create_engine, MetaData, Table
-from sqlalchemy.engine import Engine
+from sqlalchemy.engine import Engine, URL
 
 DB_USER = os.getenv("DB_USER", "postgres")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "postgres")
@@ -8,9 +8,7 @@ DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = 5432
 DB_NAME = os.getenv("DB_NAME", "postgres")
 
-def get_engine() -> Engine:
-    from sqlalchemy.engine import URL
-
+def _get_engine() -> Engine:
     url = URL.create(
         drivername="postgresql+psycopg2",
         username=DB_USER,
@@ -21,7 +19,7 @@ def get_engine() -> Engine:
     )
     return create_engine(url)
 
-ENGINE = get_engine()
+ENGINE = _get_engine()
 
 meta_game = MetaData(schema="game")
 meta_player = MetaData(schema="player")
