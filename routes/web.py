@@ -17,21 +17,9 @@ from fetcher.player import (
     fetch_player_pitching_stats,
 )
 
-web_bp = Blueprint('web_bp', __name__)
+from constants import TEAMS
 
-TEAMS = {
-    "키움": { "id": "WO", "full": "키움 히어로즈", "color": "#570514" },
-    "두산": { "id": "OB", "full": "두산 베어스", "color": "#1A1748" },
-    "롯데": { "id": "LT", "full": "롯데 자이언츠", "color": "#041E42" },
-    "삼성": { "id": "SS", "full": "삼성 라이온즈", "color": "#074CA1" },
-    "한화": { "id": "HH", "full": "한화 이글스", "color": "#FC4E00" },
-    "KIA": { "id": "HT", "full": "KIA 타이거즈", "color": "#EA0029" },
-    "LG": { "id": "LG", "full": "LG 트윈스", "color": "#C30452" },
-    "SSG": { "id": "SK", "full": "SSG 랜더스", "color": "#CE0E2D" },
-    "NC": { "id": "NC", "full": "NC 다이노스", "color": "#315288" },
-    "KT": { "id": "KT", "full": "KT 위즈", "color": "#000000" },
-    None: { "id": "NO", "full": "없음", "color": "#002063" }
-}
+web_bp = Blueprint('web_bp', __name__)
 
 
 @web_bp.route("/team_players", methods=["POST"])
