@@ -123,11 +123,8 @@ def _get_stat_comparison(home_nm, away_nm, home_stat, away_stat, convert=False, 
 
 @chatbot_bp.route("/schedule", methods=["GET"])
 def schedule():
-    # data = request.get_json()
-    # params = data["action"]["detailParams"]
-    params = {
-        "date": "내일",
-    }
+    data = request.get_json()
+    params = data["action"]["detailParams"]
 
     request_date = _get_date(params)
     if not request_date:
@@ -226,12 +223,8 @@ def team_schedule():
 
 @chatbot_bp.route("/game_detail", methods=["GET"])
 def game_detail():
-    #data = request.get_json()
-    #params = data["action"]["clientExtra"]
-    params = {
-        "date": "5월18일",
-        "team": "한화"
-    }
+    data = request.get_json()
+    params = data["action"]["clientExtra"]
 
     request_date = _get_date(params)
     request_team = _get_team(params)
