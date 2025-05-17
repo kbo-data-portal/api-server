@@ -110,12 +110,25 @@ def _get_proba(game):
 
     return team, f"{team} {descriptor} (승리 확률 {percent}%)"
 
+def _get_stat_comparison(home_nm, away_nm, home_stat, away_stat, convert=False, reverse=False):
+    if convert:
+        home_stat = int(home_stat)
+        away_stat = int(away_stat)
+    if reverse:
+        home_stat = round(home_stat, 2)
+        away_stat = round(away_stat, 2)
+        return f"{away_nm}({away_stat}) {"🔼" if away_stat < home_stat else ""} vs {home_nm}({home_stat}) {"🔼" if home_stat < away_stat else ""}"
+    return f"{away_nm}({away_stat}) {"🔼" if away_stat > home_stat else ""} vs {home_nm}({home_stat}) {"🔼" if home_stat > away_stat else ""}"
+
 
 @chatbot_bp.route("/schedule", methods=["GET"])
 def schedule():
-    data = request.get_json()
-    params = data["action"]["detailParams"]
-    
+    # data = request.get_json()
+    # params = data["action"]["detailParams"]
+    params = {
+        "date": "내일",
+    }
+
     request_date = _get_date(params)
     if not request_date:
         return jsonify(_get_error_template(
@@ -133,9 +146,9 @@ def schedule():
             "description": f"{schedule.G_TM} · {proba}",
             "imageUrl": TEAMS[team]["logo"],
             "action": "block",
-            "blockId": "test",
+            "blockId": "682822d64df7f67fcdd445fe",
             "extra": {
-              "date": request_date.strftime('%m월 %d일'),
+              "date": request_date.strftime("%m월 %d일"),
               "team": schedule.HOME_NM
             }
         })
@@ -156,7 +169,7 @@ def schedule():
                   {
                     "label": "경기 정보 더 보기",
                     "action": "webLink",
-                    "webLinkUrl": f"https://www.koreabaseball.com/Schedule/GameCenter/Main.aspx?gameDate={request_date.strftime('%Y%m%d')}"
+                    "webLinkUrl": f"https://www.koreabaseball.com/Schedule/GameCenter/Main.aspx?gameDate={request_date.strftime("%Y%m%d")}"
                   }
                 ]
             }
@@ -187,9 +200,9 @@ def team_schedule():
             "description": f"{schedule.G_DT_TXT} {schedule.G_TM}",
             "imageUrl": TEAMS[team]["logo"],
             "action": "block",
-            "blockId": "test",
+            "blockId": "682822d64df7f67fcdd445fe",
             "extra": {
-              "date": request_date.strftime('%m월 %d일'),
+              "date": request_date.strftime("%m월 %d일"),
               "team": request_team
             }
         })
@@ -207,6 +220,62 @@ def team_schedule():
                 },
                 "items": items, 
             }
+        }
+    ))
+
+
+@chatbot_bp.route("/game_detail", methods=["GET"])
+def game_detail():
+    #data = request.get_json()
+    #params = data["action"]["clientExtra"]
+    params = {
+        "date": "5월18일",
+        "team": "한화"
+    }
+
+    request_date = _get_date(params)
+    request_team = _get_team(params)
+    if not request_date:
+        return jsonify(_get_error_template(
+            "입력하신 날짜 형식을 이해하지 못했습니다.\n예: '오늘 경기 알려줘', '다음 주 금요일 일정 알려줘'처럼 입력해 주세요."
+        ))
+    if not request_team:
+        return jsonify(_get_error_template(
+            "입력하신 팀 이름을 이해하지 못했습니다.\n예: '삼성 경기 일정 알려줘', '내일 삼성 경기 알려줘'처럼 입력해 주세요."
+        ))
+    
+    
+    game = fetch_game_prediction(request_date, request_team)[0]
+    team, proba = _get_proba(game)
+    card = {
+            "title": f"{TEAMS[game.AWAY_NM]["full"]} vs {TEAMS[game.HOME_NM]["full"]}",
+            "description": (
+                f"장소: {game.S_NM} · 일시: {game.G_DT.strftime("%m월 %d일")} {game.G_TM}\n\n"
+                f"🏆 예상 승리 확률\n"
+                f"- {TEAMS[game.AWAY_NM]["full"]}: {round(game.AWAY_WIN_PROB * 100, 2)}% {"🔼" if game.AWAY_NM == team else ""}\n"
+                f"- {TEAMS[game.HOME_NM]["full"]}: {round(game.HOME_WIN_PROB * 100, 2)}% {"🔼" if game.HOME_NM == team else ""}\n\n"
+                f"⚾️ 팀 투수 비교\n"
+                f"- ERA: {_get_stat_comparison(game.HOME_NM, game.AWAY_NM, game.HOME_ERA, game.AWAY_ERA, False, True)}\n"
+                f"- 탈삼진: {_get_stat_comparison(game.HOME_NM, game.AWAY_NM, game.HOME_PSO, game.AWAY_PSO, True)}\n\n"
+                f"🔥 팀 타자 비교\n"
+                f"- 타율: {_get_stat_comparison(game.HOME_NM, game.AWAY_NM, game.HOME_AVG, game.AWAY_AVG)}\n"
+                f"- 홈런: {_get_stat_comparison(game.HOME_NM, game.AWAY_NM, game.HOME_HR, game.AWAY_HR, True)}\n"
+            ),
+            "thumbnail": {
+                "imageUrl": TEAMS[team]["logo"],
+            },
+            "buttons": [
+                {
+                    "label": "경기 정보 자세히 보기",
+                    "action": "webLink",
+                    "webLinkUrl": f"https://www.koreabaseball.com/Schedule/GameCenter/Main.aspx?gameDate={game.G_DT}&gameId=gameDate={game.G_ID}&section=REVIEW"
+                }
+            ]
+        }
+
+    return jsonify(_get_template(
+        {
+            "basicCard": card
         }
     ))
 
