@@ -28,6 +28,7 @@ meta_analytics = MetaData(schema="analytics")
 TABLES = {
     "game_schedule": Table("schedule", meta_game, autoload_with=ENGINE),
     "game_result": Table("result", meta_game, autoload_with=ENGINE),
+    "game_prediction": Table("prediction", meta_game, autoload_with=ENGINE),
     "player_pitcher": Table("pitcher_season_summary", meta_player, autoload_with=ENGINE),
     "player_hitter": Table("hitter_season_summary", meta_player, autoload_with=ENGINE),
     "team_summary": Table("fct_team_result_summary", meta_analytics, autoload_with=ENGINE),
