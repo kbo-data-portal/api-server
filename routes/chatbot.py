@@ -121,7 +121,7 @@ def _get_stat_comparison(home_nm, away_nm, home_stat, away_stat, convert=False, 
     return f"{away_nm}({away_stat}) {"🔼" if away_stat > home_stat else ""} vs {home_nm}({home_stat}) {"🔼" if home_stat > away_stat else ""}"
 
 
-@chatbot_bp.route("/schedule", methods=["GET"])
+@chatbot_bp.route("/schedule", methods=["POST"])
 def schedule():
     data = request.get_json()
     params = data["action"]["detailParams"]
@@ -174,7 +174,7 @@ def schedule():
     ))
 
 
-@chatbot_bp.route("/team_schedule", methods=["GET"])
+@chatbot_bp.route("/team_schedule", methods=["POST"])
 def team_schedule():
     data = request.get_json()
     params = data["action"]["detailParams"]
@@ -221,7 +221,7 @@ def team_schedule():
     ))
 
 
-@chatbot_bp.route("/game_detail", methods=["GET"])
+@chatbot_bp.route("/game_detail", methods=["POST"])
 def game_detail():
     data = request.get_json()
     params = data["action"]["clientExtra"]
