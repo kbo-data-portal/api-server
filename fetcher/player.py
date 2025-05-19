@@ -13,15 +13,11 @@ def fetch_player_pitching_stats(season_id: int, team_name: str = None):
         ]
 
         if team_name:
-            conditions.append([
-                table.c["TEAM_NM"] == team_name,
-                table.c["IP"] > table.c["G"] * 2.65
-            ])
+            conditions.append(table.c["TEAM_NM"] == team_name)
+            conditions.append(table.c["IP"] > table.c["G"] * 2.65)
         else:
-            conditions.append([
-                table.c["TEAM_NM"] == team_name,
-                table.c["IP"] > table.c["G"] * 5.3
-            ])
+            conditions.append(table.c["TEAM_NM"] == team_name)
+            conditions.append(table.c["IP"] > table.c["G"] * 5.3)
             
         query = (
             select(
@@ -49,15 +45,11 @@ def fetch_player_hitting_stats(season_id: int, team_name: str = None):
         ]
 
         if team_name:
-            conditions.append([
-                table.c["TEAM_NM"] == team_name,
-                table.c["PA"] > table.c["G"] * 1.8
-            ])
+            conditions.append(table.c["TEAM_NM"] == team_name)
+            conditions.append(table.c["PA"] > table.c["G"] * 1.8)
         else:
-            conditions.append([
-                table.c["TEAM_NM"] == team_name,
-                table.c["PA"] > table.c["G"] * 3.6
-            ])
+            conditions.append(table.c["TEAM_NM"] == team_name)
+            conditions.append(table.c["PA"] > table.c["G"] * 3.6)
 
         query = (
             select(
