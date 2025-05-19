@@ -145,8 +145,8 @@ def schedule():
             "action": "block",
             "blockId": "682822d64df7f67fcdd445fe",
             "extra": {
-              "date": request_date.strftime("%m월 %d일"),
-              "team": schedule.HOME_NM
+                "date": { "origin": schedule.G_DT_TXT },
+                "team": { "origin": schedule.HOME_NM }
             }
         })
         
@@ -199,8 +199,8 @@ def team_schedule():
             "action": "block",
             "blockId": "682822d64df7f67fcdd445fe",
             "extra": {
-              "date": request_date.strftime("%m월 %d일") if request_date else datetime.now().strftime("%m월 %d일"),
-              "team": request_team
+                "date": { "origin": schedule.G_DT_TXT },
+                "team": { "origin": request_team }
             }
         })
         
