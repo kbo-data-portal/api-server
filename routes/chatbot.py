@@ -36,7 +36,7 @@ def _get_date(params):
     text = ""
     for key in ["date", "date1", "date2"]:
         if key in params:
-            text += params[key]["origin"]
+            text += str(params[key]["origin"])
 
     if "오늘" in text:
         return today
@@ -87,7 +87,7 @@ def _get_team(params):
     text = ""
     for key in ["team", "team1"]:
         if key in params:
-            text += params[key]["origin"]
+            text += str(params[key]["origin"])
 
     for name, keywords in team_mapping.items():
         for keyword in keywords:
@@ -199,7 +199,7 @@ def team_schedule():
             "action": "block",
             "blockId": "682822d64df7f67fcdd445fe",
             "extra": {
-              "date": request_date.strftime("%m월 %d일"),
+              "date": request_date.strftime("%m월 %d일") if request_date else datetime.now().strftime("%m월 %d일"),
               "team": request_team
             }
         })
