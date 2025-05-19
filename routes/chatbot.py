@@ -36,7 +36,7 @@ def _get_date(params):
     text = ""
     for key in ["date", "date1", "date2"]:
         if key in params:
-            text += params[key]
+            text += params[key]["origin"]
 
     if "오늘" in text:
         return today
@@ -87,7 +87,7 @@ def _get_team(params):
     text = ""
     for key in ["team", "team1"]:
         if key in params:
-            text += params[key]
+            text += params[key]["origin"]
 
     for name, keywords in team_mapping.items():
         for keyword in keywords:
