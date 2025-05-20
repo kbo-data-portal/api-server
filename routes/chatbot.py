@@ -103,11 +103,11 @@ def _get_proba(game):
     prob = game.HOME_WIN_PROB if game.HOME_WIN else game.AWAY_WIN_PROB
     percent = round(prob * 100, 2)
 
-    if percent >= 90:
+    if percent >= 95:
         descriptor = "압도적 우세"
     elif percent >= 75:
         descriptor = "우세"
-    elif percent >= 60:
+    elif percent >= 55:
         descriptor = "근소 우세"
     else:
         return game.HOME_NM, "접전 예상"
@@ -244,6 +244,7 @@ def game_detail():
     
     game = fetch_game_prediction(request_date, request_team)[0]
     team, proba = _get_proba(game)
+    
     card = {
             "title": f"{TEAMS[game.AWAY_NM]["full"]} vs {TEAMS[game.HOME_NM]["full"]}",
             "description": (
