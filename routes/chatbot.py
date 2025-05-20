@@ -244,7 +244,7 @@ def game_detail():
     
     game = fetch_game_prediction(request_date, request_team)[0]
     team, proba = _get_proba(game)
-    
+
     card = {
             "title": f"{TEAMS[game.AWAY_NM]["full"]} vs {TEAMS[game.HOME_NM]["full"]}",
             "description": (
@@ -296,7 +296,7 @@ def help():
                     {
                         "label": "오늘 경기",
                         "action": "block",
-                        "blockId": "BLOCK_ID_TODAY"
+                        "blockId": "682bd309c5b310190b6c9fde"
                     }
                 ]
             }
