@@ -25,7 +25,7 @@ The server will be available at [http://localhost:5000/](http://localhost:5000/)
 - `fetcher/`
     - Responsible for database queries and data processing. Keeps data logic separate from routing.
 - `routes/`
-    - Defines API endpoints and web routes, divided into
+    - Defines API endpoints and web routes.
         - `/web` for the web interface (charts, tables, visualizations)
         - `/chatbot` for Kakao chatbot APIs (game schedule, predictions)
 - `static/`
