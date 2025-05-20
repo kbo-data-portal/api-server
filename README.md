@@ -23,15 +23,15 @@ The server will be available at [http://localhost:5000/](http://localhost:5000/)
 
 ## Structure
 - `fetcher/`
-Responsible for database queries and data processing. Keeps data logic separate from routing.
+    - Responsible for database queries and data processing. Keeps data logic separate from routing.
 - `routes/`
-Defines API endpoints and web routes, divided into:
-    - `/web` for the web interface (charts, tables, visualizations)
-    - `/chatbot` for Kakao chatbot APIs (game schedule, predictions)
+    - Defines API endpoints and web routes, divided into
+        - `/web` for the web interface (charts, tables, visualizations)
+        - `/chatbot` for Kakao chatbot APIs (game schedule, predictions)
 - `static/`
-Contains CSS, JavaScript, images, and other static assets for the web frontend.
+    - Contains CSS, JavaScript, images, and other static assets for the web frontend.
 - `templates/`
-Holds HTML templates for rendering the web pages.
+    - Holds HTML templates for rendering the web pages.
 
 ## License
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
