@@ -101,7 +101,7 @@ def _get_team(params):
 def _get_proba(game):
     team = game.HOME_NM if game.HOME_WIN else game.AWAY_NM
     prob = game.HOME_WIN_PROB if game.HOME_WIN else game.AWAY_WIN_PROB
-    percent = round(prob * 100, 2)
+    percent = int(prob * 100)
 
     if percent >= 95:
         descriptor = "압도적 우세"
@@ -112,7 +112,7 @@ def _get_proba(game):
     else:
         return game.HOME_NM, "접전 예상"
 
-    return team, f"{team} {descriptor} (확률 {percent}%)"
+    return team, f"{team} {descriptor} (승리 {percent}%)"
 
 def _get_stat_comparison(home_nm, away_nm, home_stat, away_stat, convert=False, reverse=False):
     if convert:
