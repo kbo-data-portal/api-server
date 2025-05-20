@@ -7,16 +7,12 @@ def fetch_player_pitching_stats(season_id: int, team_name: str = None):
     table = TABLES["player_pitcher"]
     with ENGINE.connect() as conn:
         game_avg = conn.execute(select(func.avg(table.c["G"]))).fetchone()[0]
-        conditions = [
-            table.c["SEASON_ID"] == season_id,
-            table.c["G"] > float(game_avg) / 1.5
-        ]
+        conditions = [table.c["SEASON_ID"] == season_id]
 
         if team_name:
             conditions.append(table.c["TEAM_NM"] == team_name)
             conditions.append(table.c["IP"] > table.c["G"] * 2.65)
         else:
-            conditions.append(table.c["TEAM_NM"] == team_name)
             conditions.append(table.c["IP"] > table.c["G"] * 5.3)
             
         query = (
@@ -48,7 +44,6 @@ def fetch_player_hitting_stats(season_id: int, team_name: str = None):
             conditions.append(table.c["TEAM_NM"] == team_name)
             conditions.append(table.c["PA"] > table.c["G"] * 1.8)
         else:
-            conditions.append(table.c["TEAM_NM"] == team_name)
             conditions.append(table.c["PA"] > table.c["G"] * 3.6)
 
         query = (
