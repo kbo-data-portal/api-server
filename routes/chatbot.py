@@ -23,9 +23,13 @@ def _get_error_template(output):
     return {
         "version": "2.0",
         "template": {
-            "simpleText": {
-                "text": output
-            }
+            "outputs": [
+                {
+                    "simpleText": {
+                        "text": output
+                    }
+                }
+            ]
         }
     }
 
