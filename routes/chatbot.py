@@ -112,7 +112,7 @@ def _get_proba(game):
     else:
         return game.HOME_NM, "접전 예상"
 
-    return team, f"{team} {descriptor} (승리 확률 {percent}%)"
+    return team, f"{team} {descriptor} (확률 {percent}%)"
 
 def _get_stat_comparison(home_nm, away_nm, home_stat, away_stat, convert=False, reverse=False):
     if convert:
@@ -274,32 +274,6 @@ def game_detail():
     return jsonify(_get_template(
         {
             "basicCard": card
-        }
-    ))
-
-
-@chatbot_bp.route("/help", methods=["POST"])
-def help():
-    return jsonify(_get_template(
-        {
-            "basicCard": {
-                "title": "🧾 KBO 챗봇 이용 가이드",
-                "description": (
-                    "다음과 같은 질문을 할 수 있어요!\n\n"
-                    "- 오늘 경기 알려줘\n"
-                    "- 다음 주 금요일 일정 알려줘\n"
-                    "- 4월 10일 경기 알려줘\n"
-                    "- 삼성 경기 일정 알려줘\n"
-                    "- 내일 삼성 경기 알려줘\n"
-                ),
-                "buttons": [
-                    {
-                        "label": "오늘 경기",
-                        "action": "block",
-                        "blockId": "682bd309c5b310190b6c9fde"
-                    }
-                ]
-            }
         }
     ))
 
