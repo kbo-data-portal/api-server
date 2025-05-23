@@ -141,10 +141,14 @@ def schedule():
     items = []
     for schedule in game_schedule[:5]:
         team, proba = _get_proba(schedule)
+        description =  f"{schedule.G_TM} · {proba}"
+
+        if schedule.RESULT is not None:
+            description = f"예측 성공 · {proba}" if schedule.RESULT == schedule.HOME_WIN else f"예측 실패 · {proba}"
 
         items.append({
             "title": f"{schedule.AWAY_NM} vs {schedule.HOME_NM} - {schedule.S_NM}",
-            "description": f"{schedule.G_TM} · {proba}",
+            "description": description,
             "imageUrl": TEAMS[team]["logo"],
             "action": "block",
             "blockId": "682822d64df7f67fcdd445fe",

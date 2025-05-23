@@ -114,6 +114,7 @@ def fetch_game_prediction(date: datetime = None, teams: str = None):
                 table.c["AWAY_HR"],
                 table.c["HOME_R"],
                 table.c["AWAY_R"],
+                table.c["RESULT"],
                 table.c["HOME_WIN"],
                 table.c["HOME_WIN_PROB"],
                 table.c["AWAY_WIN_PROB"]
