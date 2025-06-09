@@ -33,8 +33,19 @@
                     </ul>
                   </div>
                   <div class="middle">
+                    {% if game.GAME_RESULT_CK == 0 %}
                     <div class="broadcasting">{{ game.G_TM }}</div>
                     <p class="staus">{{ game.S_NM }}</p>
+                    {% else %}
+                    <div class="broadcasting" style="font-size: 13px; color: #002063;">{{ game.T_SCORE_CN }} : {{ game.B_SCORE_CN }}</div>
+                    {% if game.T_SCORE_CN > game.B_SCORE_CN %}
+                    <p class="staus">{{ game.AWAY_NM }} 승</p>
+                    {% elif game.T_SCORE_CN < game.B_SCORE_CN %}
+                    <p class="staus">{{ game.HOME_NM }} 승</p>
+                    {% else %}
+                    <p class="staus">무승부</p>
+                    {% endif %}
+                    {% endif %}
                     <div class="info">
                       <div class="team away">
                         <div class="emb">
