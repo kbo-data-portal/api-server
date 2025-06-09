@@ -5,7 +5,7 @@ let currentPage = 1
 $(document).ready(function () {
   const today = $(".game-list-n").data("today")
 
-  let firstGame = $(".game-list-n .game-cont")[0];
+  let firstGame = $(".game-list-n .game-cont").first();
   let page = 0;
   $(".game-list-n .game-cont").each(function () {
     const date = $(this).data("game-id");
@@ -17,6 +17,7 @@ $(document).ready(function () {
       return false;
     }
   });
+  console.log("First game found:", firstGame, "Current page:", currentPage);
 
   updateSlider();
 
