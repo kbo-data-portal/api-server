@@ -46,8 +46,12 @@ def _get_date(params):
         return today
     elif "내일" in text:
         return today + timedelta(days=1)
+    elif "어제" in text:
+        return today - timedelta(days=1)
     elif "모레" in text:
         return today + timedelta(days=2)
+    elif "그제" in text:
+        return today - timedelta(days=2)
 
     date_match = re.search(r"(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})", text)
     if date_match:
