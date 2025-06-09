@@ -23,6 +23,9 @@ def fetch_recent_games():
                 table.c["HOME_NM"],
                 func.coalesce(table.c["T_PIT_P_NM"], "미정").label("T_PIT_P_NM"),
                 func.coalesce(table.c["B_PIT_P_NM"], "미정").label("B_PIT_P_NM"),
+                table.c["GAME_RESULT_CK"],
+                table.c["T_SCORE_CN"],
+                table.c["B_SCORE_CN"],
                 table.c["SEASON_ID"]
             )
             .where(and_(
