@@ -147,8 +147,14 @@ def schedule():
         team, proba = _get_proba(schedule)
         description =  f"{schedule.G_TM} · {proba}"
 
-        if schedule.RESULT is not None:
-            description = f"예측 성공 · {proba}" if schedule.RESULT == schedule.HOME_WIN else f"예측 실패 · {proba}"
+        if schedule.GAME_RESULT_CK == 1 or schedule.RESULT is not None:
+            if schedule.AWAY_SCORE > schedule.HOME_SCORE:
+                result = f"{schedule.AWAY_NM} 승"
+            elif schedule.AWAY_SCORE < schedule.HOME_SCORE:
+                result = f"{schedule.HOME_NM} 승"
+            else:
+                result = "무승부"
+            description = f"{schedule.AWAY_SCORE} : {schedule.HOME_SCORE} · {result}"
 
         items.append({
             "title": f"{schedule.AWAY_NM} vs {schedule.HOME_NM} - {schedule.S_NM}",
