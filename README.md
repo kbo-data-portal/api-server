@@ -1,6 +1,6 @@
-# KBO Data Portal
+# KBO Data Portal - API Server
 
-This repository provides a web-based interface for exploring KBO data, built with Flask. It serves as the frontend for visualizing collected and processed data from the KBO Data Pipeline.
+This repository provides a web-based interface and public API for exploring KBO data. Built with Flask, it supports both interactive visualizations and programmatic access to collected and processed data from the KBO Data Pipeline.
 
 ## Usage
 The web service and API are built on Flask and can be run locally or containerized.
