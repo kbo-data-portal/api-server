@@ -1,67 +1,69 @@
 Highcharts.setOptions({
   chart: {
     height: 175,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     style: {
-      fontFamily: 'inherit'
-    }
+      fontFamily: "inherit",
+    },
   },
   title: {
-    text: '',
-    style: { fontSize: '13px', color: 'black', fontWeight: 'normal' }
+    text: "",
+    style: { fontSize: "13px", color: "black", fontWeight: "normal" },
   },
   legend: { enabled: false },
-  credits: { enabled: false }
+  credits: { enabled: false },
 });
 
 function createPie(id, titleText, seriesData) {
   Highcharts.chart(id, {
     chart: {
-      type: 'pie',
+      type: "pie",
     },
     title: {
       text: titleText,
-      align: 'center',
-      verticalAlign: 'middle'
+      align: "center",
+      verticalAlign: "middle",
     },
     plotOptions: {
       pie: {
-        innerSize: '50%',
+        innerSize: "50%",
         dataLabels: {
           enabled: true,
           distance: -20,
           style: {
-            fontSize: '10px',
-            color: 'white',
-            textOutline: 'none',
-            fontWeight: 'normal',
-            textShadow: '0 1px 2px black'
+            fontSize: "10px",
+            color: "white",
+            textOutline: "none",
+            fontWeight: "normal",
+            textShadow: "0 1px 2px black",
           },
-          format: '{point.percentage:.0f}%'
-        }
-      }
+          format: "{point.percentage:.0f}%",
+        },
+      },
     },
-    series: [{
-      data: seriesData
-    }],
+    series: [
+      {
+        data: seriesData,
+      },
+    ],
     tooltip: {
       formatter: function () {
         return `${this.name}<br/> ${this.y} (${this.percentage.toFixed(0)}%)`;
-      }
-    }
+      },
+    },
   });
 }
 
 function createColumn(id, titleText, categories, seriesData) {
   Highcharts.chart(id, {
     chart: {
-      type: 'column'
+      type: "column",
     },
     title: {
-      text: titleText
+      text: titleText,
     },
     xAxis: {
-      categories: categories
+      categories: categories,
     },
     yAxis: {
       visible: false,
@@ -72,77 +74,84 @@ function createColumn(id, titleText, categories, seriesData) {
           enabled: true,
           inside: true,
           style: {
-            fontSize: '11px',
-            color: 'white',
-            textOutline: 'none',
-            fontWeight: 'normal',
-          }
-        }
-      }
+            fontSize: "11px",
+            color: "white",
+            textOutline: "none",
+            fontWeight: "normal",
+          },
+        },
+      },
     },
     series: seriesData,
     tooltip: {
       formatter: function () {
         return `${this.series.name}: ${this.y} ${this.category}`;
-      }
-    }
+      },
+    },
   });
 }
 
 function createBar(id, titleText, categories, seriesData, reverse, maxValue) {
   Highcharts.chart(id, {
     chart: {
-      type: 'bar',
+      type: "bar",
     },
     title: {
-      text: titleText
+      text: titleText,
     },
     xAxis: {
       categories: categories,
       opposite: true,
       labels: {
         enabled: reverse,
-        align: 'center',
-        x: 20
+        align: "center",
+        x: 20,
       },
       gridLineWidth: 0,
       lineWidth: 0,
     },
     yAxis: {
       max: maxValue,
-      title: { text: '' },
+      title: { text: "" },
       labels: {
-        enabled: false
+        enabled: false,
       },
       gridLineWidth: 0,
-      reversed: reverse
+      reversed: reverse,
     },
     plotOptions: {
       series: {
-        minPointLength: 15
+        minPointLength: 15,
       },
       bar: {
         dataLabels: {
           enabled: true,
           inside: true,
           style: {
-            fontSize: '11px',
-            color: 'white',
-            textOutline: 'none',
-            fontWeight: 'normal',
+            fontSize: "11px",
+            color: "white",
+            textOutline: "none",
+            fontWeight: "normal",
           },
-          format: '{point.y:.0f}'
-        }
-      }
+          format: "{point.y:.0f}",
+        },
+      },
     },
     series: seriesData,
     tooltip: {
-      enabled: false
-    }
+      enabled: false,
+    },
   });
 }
 
-function createButterflyBar(leftId, rightId, titleText, categories, leftData, rightData) {
+function createButterflyBar(
+  leftId,
+  rightId,
+  titleText,
+  categories,
+  leftData,
+  rightData,
+) {
   const maxArray1 = Math.max(...leftData[0].data);
   const maxArray2 = Math.max(...rightData[0].data);
   const maxValue = Math.max(maxArray1, maxArray2);

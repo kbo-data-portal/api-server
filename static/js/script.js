@@ -1,9 +1,8 @@
-
-const totalPages = Math.ceil($(".game-cont").length / 5)
-let currentPage = 1
+const totalPages = Math.ceil($(".game-cont").length / 5);
+let currentPage = 1;
 
 $(document).ready(function () {
-  const today = $(".game-list-n").data("today")
+  const today = $(".game-list-n").data("today");
 
   let firstGame = $(".game-list-n .game-cont").first();
   let page = 0;
@@ -33,7 +32,7 @@ $(document).on("click", ".bx-prev", function (e) {
     currentPage--;
     updateSlider();
   }
-})
+});
 
 $(document).on("click", ".bx-next", function (e) {
   e.preventDefault();
@@ -41,14 +40,14 @@ $(document).on("click", ".bx-next", function (e) {
     currentPage++;
     updateSlider();
   }
-})
+});
 
 $(document).on("click", ".game-cont", function () {
   const gameId = $(this).data("game-id");
 
   $(".game-cont").removeClass("on");
   $(this).addClass("on");
-  
+
   getMatch(gameId);
 });
 
@@ -64,13 +63,11 @@ $(document).on("click", ".stat-button", function () {
   getTeamStats(playerType, seasonId, homeName, awayName);
 });
 
-
 $(document).on("click", ".rank-info", function () {
-  if ($(this).hasClass('on')) {
+  if ($(this).hasClass("on")) {
     $(".rank-info").removeClass("on");
     getTeamPlayers(NaN);
-  }
-  else {
+  } else {
     $(".rank-info").removeClass("on");
     $(this).addClass("on");
 
