@@ -1,221 +1,215 @@
 {% extends 'layout/base.html' %}
-
 {% block content %}
-
-<div id="wrap">
-
-  {% include 'layout/header.html' %}
-
-  <hr />
-
-  <section id="LiveRelay" class="">
-    <div class="game-schedule">
-      <div class="tab-league">
-        <ul class="tab three">
-          <li class="tab-main-tit on" le-id="1" sr-id="0" id="leagueRegular">
-            <a href="#none">KBO 정규시즌</a>
-          </li>
-          <li class="tab-main-tit tab-main-fl" le-id="2" sr-id="0,1,10,15" id="leagueFutures">
-            <a href="#none">KBO 퓨처스리그</a>
-          </li>
-        </ul>
-      </div>
-      <div class="today-game">
-        <div class="bx-wrapper">
-          <div class="bx-viewport">
-            <ul class="game-list-n" data-today="{{ today }}">
-              {% for game in games %}
-              <li class="game-cont" data-game-id="{{ game.G_ID }}">
-                <div class="wrap">
-                  <div class="top">
-                    <ul>
-                      <li>{{ game.G_DT_TXT }}</li>
+    <div id="wrap">
+        {% include 'layout/header.html' %}
+        <hr />
+        <section id="LiveRelay" class="">
+            <div class="game-schedule">
+                <div class="tab-league">
+                    <ul class="tab three">
+                        <li class="tab-main-tit on" le-id="1" sr-id="0" id="leagueRegular">
+                            <a href="#none">KBO 정규시즌</a>
+                        </li>
+                        <li class="tab-main-tit tab-main-fl"
+                            le-id="2"
+                            sr-id="0,1,10,15"
+                            id="leagueFutures">
+                            <a href="#none">KBO 퓨처스리그</a>
+                        </li>
                     </ul>
-                  </div>
-                  <div class="middle">
-                    {% if game.GAME_RESULT_CK == 0 %}
-                    <div class="broadcasting">{{ game.G_TM }}</div>
-                    <p class="staus">{{ game.S_NM }}</p>
-                    {% else %}
-                    <div class="broadcasting" style="font-size: 13px; color: #002063;">{{ game.T_SCORE_CN }} : {{ game.B_SCORE_CN }}</div>
-                    {% if game.T_SCORE_CN > game.B_SCORE_CN %}
-                    <p class="staus">{{ game.AWAY_NM }} 승</p>
-                    {% elif game.T_SCORE_CN < game.B_SCORE_CN %}
-                    <p class="staus">{{ game.HOME_NM }} 승</p>
-                    {% else %}
-                    <p class="staus">무승부</p>
-                    {% endif %}
-                    {% endif %}
-                    <div class="info">
-                      <div class="team away">
-                        <div class="emb">
-                          <img
-                            src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.SEASON_ID }}/emblem_{{ game.AWAY_ID }}.png"
-                            alt="{{ game.AWAY_NM }}" />
-                        </div>
-                        <div class="today-pitcher">
-                          <p>
-                            <span class="before">선</span>{{ game.T_PIT_P_NM }}
-                          </p>
-                        </div>
-                      </div>
-                      <div class="vs">VS</div>
-                      <div class="team home">
-                        <div class="emb">
-                          <img
-                            src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.SEASON_ID }}/emblem_{{ game.HOME_ID }}.png"
-                            alt="{{ game.HOME_NM }}" />
-                        </div>
-                        <div class="today-pitcher">
-                          <p>
-                            <span class="before">선</span>{{ game.B_PIT_P_NM }}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-          <div class="bx-controls bx-has-controls-direction">
-            <div class="bx-controls-direction">
-              <a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a>
+                <div class="today-game">
+                    <div class="bx-wrapper">
+                        <div class="bx-viewport">
+                            <ul class="game-list-n" data-today="{{ today }}">
+                                {% for game in games %}
+                                    <li class="game-cont" data-game-id="{{ game.G_ID }}">
+                                        <div class="wrap">
+                                            <div class="top">
+                                                <ul>
+                                                    <li>{{ game.G_DT_TXT }}</li>
+                                                </ul>
+                                            </div>
+                                            <div class="middle">
+                                                {% if game.GAME_RESULT_CK == 0 %}
+                                                    <div class="broadcasting">{{ game.G_TM }}</div>
+                                                    <p class="staus">{{ game.S_NM }}</p>
+                                                {% else %}
+                                                    <div class="broadcasting" style="font-size: 13px; color: #002063;">{{ game.T_SCORE_CN }} : {{ game.B_SCORE_CN }}</div>
+                                                    {% if game.T_SCORE_CN > game.B_SCORE_CN %}
+                                                        <p class="staus">{{ game.AWAY_NM }} 승</p>
+                                                    {% elif game.T_SCORE_CN < game.B_SCORE_CN %}
+                                                        <p class="staus">{{ game.HOME_NM }} 승</p>
+                                                    {% else %}
+                                                        <p class="staus">무승부</p>
+                                                    {% endif %}
+                                                {% endif %}
+                                                <div class="info">
+                                                    <div class="team away">
+                                                        <div class="emb">
+                                                            <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.SEASON_ID }}/emblem_{{ game.AWAY_ID }}.png"
+                                                                 alt="{{ game.AWAY_NM }}" />
+                                                        </div>
+                                                        <div class="today-pitcher">
+                                                            <p>
+                                                                <span class="before">선</span>{{ game.T_PIT_P_NM }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="vs">VS</div>
+                                                    <div class="team home">
+                                                        <div class="emb">
+                                                            <img src="//6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/KBOHome/resources/images/emblem/regular/{{ game.SEASON_ID }}/emblem_{{ game.HOME_ID }}.png"
+                                                                 alt="{{ game.HOME_NM }}" />
+                                                        </div>
+                                                        <div class="today-pitcher">
+                                                            <p>
+                                                                <span class="before">선</span>{{ game.B_PIT_P_NM }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="bx-controls bx-has-controls-direction">
+                            <div class="bx-controls-direction">
+                                <a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+            <div class="game-info">
+                <div class="game-info-bg">
+                    <div class="match-box"></div>
+                    <div class="info-area">
+                        <div class="team away info"></div>
+                        <div class="vs">VS</div>
+                        <div class="team home info"></div>
+                    </div>
+                    <div class="stat-area-top">
+                        <div class="stat-area-twobox">
+                            <div class="graph-title">통산전적</div>
+                            <div class="graph-twobox">
+                                <div class="graph" id="graph-all-match-left"></div>
+                                <div class="graph" id="graph-all-match-right"></div>
+                            </div>
+                        </div>
+                        <div class="stat-area-match">
+                            <div class="graph-title">최근 5경기 맞대결</div>
+                            <ul class="match-list">
+                            </ul>
+                        </div>
+                        <div class="stat-area-twobox">
+                            <div class="graph-title">시즌전적</div>
+                            <div class="graph-twobox">
+                                <div class="graph" id="graph-match-left"></div>
+                                <div class="graph" id="graph-match-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-area-bottom">
+                        <div class="stat-area-button">
+                            <button type="button" class="stat-button active" data-player-type="hitter">타격</button>
+                            <button type="button" class="stat-button" data-player-type="pitcher">투구</button>
+                            <button type="button" class="stat-button" data-player-type="defense">수비</button>
+                        </div>
+                        <div class="stat-area-twobox">
+                            <div class="graph-stat">
+                                <div class="graph" id="graph-stat-left-away" style="width: 225px"></div>
+                                <div class="graph" id="graph-stat-left-home"></div>
+                            </div>
+                            <div class="graph-stat">
+                                <div class="graph" id="graph-stat-right-away" style="width: 225px"></div>
+                                <div class="graph" id="graph-stat-right-home"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="score-info">
+                <div class="score-info-left">
+                    <div class="score-title rank-info" style="cursor: pointer;">팀순위표</div>
+                    <table id="tblTeamRank" class="tbl">
+                        <thead>
+                            <tr>
+                                <th>순위</th>
+                                <th>팀명</th>
+                                <th>경기</th>
+                                <th>승</th>
+                                <th>패</th>
+                                <th>무</th>
+                                <th>승률</th>
+                                <th>게임차</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rank in ranks %}
+                                <tr class="rank-info" data-team-name="{{ rank.TEAM_NM }}">
+                                    <td>{{ rank.RANK }}</td>
+                                    <td>
+                                        <span class="team-name">{{ rank.TEAM_NM }}</span>
+                                    </td>
+                                    <td>{{ rank.W_CN+rank.L_CN+rank.D_CN }}</td>
+                                    <td>{{ rank.W_CN }}</td>
+                                    <td>{{ rank.L_CN }}</td>
+                                    <td>{{ rank.D_CN }}</td>
+                                    <td>{{ rank.W_RATE }}</td>
+                                    <td>{{ ((ranks[0].W_CN-rank.W_CN) + (rank.L_CN-ranks[0].L_CN)) / 2 }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="score-info-right">
+                    <div class="score-info-right-hitter">
+                        <div class="score-title">타자순위</div>
+                        <div class="top-player"></div>
+                        <table id="tblPitcherRank" class="tbl tbl-rank">
+                            <thead>
+                                <tr>
+                                    <th>순위</th>
+                                    <th>선수</th>
+                                    <th>팀명</th>
+                                    <th>득점</th>
+                                    <th>안타</th>
+                                    <th>타율</th>
+                                </tr>
+                            </thead>
+                            <tbody class="player-rank">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="score-info-right-pitcher">
+                        <div class="score-title">투수순위</div>
+                        <div class="top-player"></div>
+                        <table id="tblPitcherRank" class="tbl tbl-rank">
+                            <thead>
+                                <tr>
+                                    <th>순위</th>
+                                    <th>선수</th>
+                                    <th>팀명</th>
+                                    <th>승리</th>
+                                    <th>삼진</th>
+                                    <th>평균자책점</th>
+                                </tr>
+                            </thead>
+                            <tbody class="player-rank">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr />
+        <script src="static/js/chart.js" type="text/javascript"></script>
+        <script src="static/js/update.js" type="text/javascript"></script>
+        <script src="static/js/ajax.js" type="text/javascript"></script>
+        <script src="static/js/script.js" type="text/javascript"></script>
+        {% include 'layout/footer.html' %}
     </div>
-    <div class="game-info">
-      <div class="game-info-bg">
-        <div class="match-box"></div>
-        <div class="info-area">
-          <div class="team away info"></div>
-          <div class="vs">VS</div>
-          <div class="team home info"></div>
-        </div>
-        <div class="stat-area-top">
-          <div class="stat-area-twobox">
-            <div class="graph-title">통산전적</div>
-            <div class="graph-twobox">
-              <div class="graph" id="graph-all-match-left"></div>
-              <div class="graph" id="graph-all-match-right"></div>
-            </div>
-          </div>
-          <div class="stat-area-match">
-            <div class="graph-title">최근 5경기 맞대결</div>
-            <ul class="match-list"></ul>
-          </div>
-          <div class="stat-area-twobox">
-            <div class="graph-title">시즌전적</div>
-            <div class="graph-twobox">
-              <div class="graph" id="graph-match-left"></div>
-              <div class="graph" id="graph-match-right"></div>
-            </div>
-          </div>
-        </div>
-        <div class="stat-area-bottom">
-          <div class="stat-area-button">
-            <button type="button" class="stat-button active" data-player-type="hitter">타격</button>
-            <button type="button" class="stat-button" data-player-type="pitcher">투구</button>
-            <button type="button" class="stat-button" data-player-type="defense">수비</button>
-          </div>
-          <div class="stat-area-twobox">
-            <div class="graph-stat">
-              <div class="graph" id="graph-stat-left-away" style="width: 225px"></div>
-              <div class="graph" id="graph-stat-left-home"></div>
-            </div>
-            <div class="graph-stat">
-              <div class="graph" id="graph-stat-right-away" style="width: 225px"></div>
-              <div class="graph" id="graph-stat-right-home"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="score-info">
-      <div class="score-info-left">
-        <div class="score-title rank-info" style="cursor: pointer;">팀순위표</div>
-        <table id="tblTeamRank" class="tbl">
-          <thead>
-            <tr>
-              <th>순위</th>
-              <th>팀명</th>
-              <th>경기</th>
-              <th>승</th>
-              <th>패</th>
-              <th>무</th>
-              <th>승률</th>
-              <th>게임차</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for rank in ranks %}
-            <tr class="rank-info" data-team-name="{{ rank.TEAM_NM }}">
-              <td>{{ rank.RANK }}</td>
-              <td>
-                <span class="team-name">{{ rank.TEAM_NM }}</span>
-              </td>
-              <td>{{ rank.W_CN+rank.L_CN+rank.D_CN }}</td>
-              <td>{{ rank.W_CN }}</td>
-              <td>{{ rank.L_CN }}</td>
-              <td>{{ rank.D_CN }}</td>
-              <td>{{ rank.W_RATE }}</td>
-              <td>{{ ((ranks[0].W_CN-rank.W_CN) + (rank.L_CN-ranks[0].L_CN)) / 2 }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-      <div class="score-info-right">
-        <div class="score-info-right-hitter">
-          <div class="score-title">타자순위</div>
-          <div class="top-player"></div>
-          <table id="tblPitcherRank" class="tbl tbl-rank">
-            <thead>
-              <tr>
-                <th>순위</th>
-                <th>선수</th>
-                <th>팀명</th>
-                <th>득점</th>
-                <th>안타</th>
-                <th>타율</th>
-              </tr>
-            </thead>
-            <tbody class="player-rank"></tbody>
-          </table>
-        </div>
-        <div class="score-info-right-pitcher">
-          <div class="score-title">투수순위</div>
-          <div class="top-player"></div>
-          <table id="tblPitcherRank" class="tbl tbl-rank">
-            <thead>
-              <tr>
-                <th>순위</th>
-                <th>선수</th>
-                <th>팀명</th>
-                <th>승리</th>
-                <th>삼진</th>
-                <th>평균자책점</th>
-              </tr>
-            </thead>
-            <tbody class="player-rank"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr />
-  
-  <script src="static/js/chart.js" type="text/javascript"></script>
-  <script src="static/js/update.js" type="text/javascript"></script>
-  <script src="static/js/ajax.js" type="text/javascript"></script>
-  <script src="static/js/script.js" type="text/javascript"></script>
-
-  {% include 'layout/footer.html' %}
-
-</div>
-
 {% endblock %}

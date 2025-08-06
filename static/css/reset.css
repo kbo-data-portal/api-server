@@ -71,11 +71,11 @@ u,
 ul,
 var,
 video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 article,
@@ -90,12 +90,12 @@ hgroup,
 menu,
 nav,
 section {
-    display: block
+  display: block;
 }
 
 ol,
 ul {
-    list-style: none
+  list-style: none;
 }
 
 dl,
@@ -103,40 +103,40 @@ li,
 menu,
 ol,
 ul {
-    list-style: none
+  list-style: none;
 }
 
 blockquote,
 q {
-    quotes: none
+  quotes: none;
 }
 
 blockquote:after,
 blockquote:before,
 q:after,
 q:before {
-    content: '';
-    content: none
+  content: "";
+  content: none;
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 button {
-    background: 0 0;
-    border: 0 none;
-    cursor: pointer
+  background: 0 0;
+  border: 0 none;
+  cursor: pointer;
 }
 
 caption,
 legend {
-    overflow: hidden;
-    visibility: hidden;
-    text-indent: -9999px;
-    width: 0;
-    height: 0;
-    line-height: 0;
-    font-size: 0
+  overflow: hidden;
+  visibility: hidden;
+  text-indent: -9999px;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
 }
