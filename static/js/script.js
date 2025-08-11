@@ -4,18 +4,11 @@ let currentPage = 1;
 $(document).ready(function () {
   const today = $(".game-list-n").data("today");
 
-  let firstGame = $(".game-list-n .game-cont").first();
-  let page = 0;
-  $(".game-list-n .game-cont").each(function () {
-    const date = $(this).data("game-id");
-    page += 1;
+  if (!updateFirstGame(today)) {
+    const nextDay = (parseInt(today, 10) + 1).toString();
+    updateFirstGame(nextDay);
+  }
 
-    if (date.startsWith(today)) {
-      firstGame = $(this);
-      currentPage += Math.round(page / 5);
-      return false;
-    }
-  });
   console.log("First game found:", firstGame, "Current page:", currentPage);
 
   updateSlider();
@@ -24,6 +17,10 @@ $(document).ready(function () {
   getMatch(firstGame.data("game-id"));
 
   getTeamPlayers(NaN);
+});
+
+$(document).on("click", ".league-button", function (e) {
+  e.preventDefault();
 });
 
 $(document).on("click", ".bx-prev", function (e) {
@@ -74,4 +71,9 @@ $(document).on("click", ".rank-info", function () {
     const teamName = $(this).data("team-name");
     getTeamPlayers(teamName);
   }
+});
+
+$(document).on("click", ".disabled", function (e) {
+  e.preventDefault();
+  alert('준비 중입니다.');
 });
