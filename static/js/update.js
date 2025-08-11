@@ -1,3 +1,22 @@
+function updateFirstGame(targetDate) {
+  let found = false;
+  let page = 0;
+
+  $(".game-list-n .game-cont").each(function () {
+    const date = $(this).data("game-id");
+    page += 1;
+
+    if (date.startsWith(targetDate)) {
+      firstGame = $(this);
+      currentPage = Math.floor((page - 1) / 5) + 1;
+      found = true;
+      return false;
+    }
+  });
+
+  return found;
+}
+
 function updateSlider() {
   if (currentPage === 1) {
     $(".bx-prev").css("display", "none");
