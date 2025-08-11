@@ -49,15 +49,17 @@ $(document).on("click", ".game-cont", function () {
 });
 
 $(document).on("click", ".stat-button", function () {
-  const seasonId = $(this).data("season-id");
-  const homeName = $(this).data("home-name");
-  const awayName = $(this).data("away-name");
-  const playerType = $(this).data("player-type");
+  if (!$(this).hasClass("disabled")) {
+    const seasonId = $(this).data("season-id");
+    const homeName = $(this).data("home-name");
+    const awayName = $(this).data("away-name");
+    const playerType = $(this).data("player-type");
 
-  $(".stat-button").removeClass("active");
-  $(this).addClass("active");
+    $(".stat-button").removeClass("active");
+    $(this).addClass("active");
 
-  getTeamStats(playerType, seasonId, homeName, awayName);
+    getTeamStats(playerType, seasonId, homeName, awayName);
+  }
 });
 
 $(document).on("click", ".rank-info", function () {
@@ -75,5 +77,5 @@ $(document).on("click", ".rank-info", function () {
 
 $(document).on("click", ".disabled", function (e) {
   e.preventDefault();
-  alert('준비 중입니다.');
+  alert("준비 중입니다.");
 });
